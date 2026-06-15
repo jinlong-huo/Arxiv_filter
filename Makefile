@@ -42,6 +42,9 @@ note-new: ## Create a new paper note from template. Usage: make note-new NAME=zh
 
 # --- Maintenance ---
 
+download: ## Download PDFs from daily_digest.md. Opts: make download ARGS="--dest /path --dry-run"
+	python3 download_papers.py $(ARGS)
+
 clean: ## Remove generated files
 	rm -f daily_digest.md
 	rm -f launchd_stdout.log launchd_stderr.log

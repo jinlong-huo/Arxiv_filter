@@ -35,7 +35,12 @@ CATEGORIES = [
 MAX_PER_CATEGORY = 200
 
 # API 请求间隔（秒），礼貌起见别打太快
-API_DELAY = 1.0
+# arXiv 对频繁请求较敏感，3s 是安全值
+API_DELAY = 3.0
+
+# 遇到空返回时的重试等待（秒）和最大重试次数
+RETRY_DELAY = 30.0
+MAX_RETRIES = 2
 
 # 关键词权重
 # 设计原则：高分给能明确指向 LLM 推理 / GPU 数据中心 / RDMA 网络的词；
@@ -205,6 +210,20 @@ def clean_text(text):
     return text.lower()
 
 
+def extract_author_year(entry):
+    """Extract (first_author_last_name, year) from a feedparser entry."""
+    # First author last name
+    author = getattr(entry, "author", "") or ""
+    last_name = author.split()[-1] if author else "Unknown"
+
+    # Year from published date, fallback to current year
+    year = str(datetime.now().year)
+    if hasattr(entry, "published_parsed") and entry.published_parsed:
+        year = str(entry.published_parsed.tm_year)
+
+    return last_name, year
+
+
 def score_paper(title, summary):
     text = clean_text(title + " " + summary)
 
@@ -356,11 +375,28 @@ def fetch_papers():
             time.sleep(API_DELAY)
 
         url = _build_api_url(cat, MAX_PER_CATEGORY)
-        feed = feedparser.parse(url)
         feed_total = 0
         feed_skipped = 0
         feed_selected = 0
         feed_ocs_selected = 0
+
+        # 带重试的获取：arXiv 偶发返回空 feed（通常是限流），等一等再试
+        feed = feedparser.parse(url)
+        for attempt in range(MAX_RETRIES):
+            if feed.entries:
+                break
+            print(f"  [retry] {cat}: got 0 entries (attempt {attempt+1}/{MAX_RETRIES}), "
+                  f"waiting {RETRY_DELAY}s...")
+            time.sleep(RETRY_DELAY)
+            feed = feedparser.parse(url)
+
+        if not feed.entries:
+            print(f"  [WARNING] {cat}: 0 entries after {MAX_RETRIES+1} attempts — "
+                  f"likely rate-limited or API down")
+            stats[cat] = {
+                "total": 0, "skipped": 0, "selected": 0, "ocs_selected": 0,
+            }
+            continue
 
         for entry in feed.entries:
 
@@ -377,6 +413,7 @@ def fetch_papers():
             title = entry.title
             summary = entry.summary
             link = entry.link
+            first_author, year = extract_author_year(entry)
 
             # —— 主过滤器 ——
             score, max_single, matched = score_paper(title, summary)
@@ -388,6 +425,8 @@ def fetch_papers():
                     "max_single": max_single,
                     "matched": matched,
                     "link": link,
+                    "first_author": first_author,
+                    "year": year,
                     "summary": summary[:400]
                 })
                 feed_selected += 1
@@ -401,6 +440,8 @@ def fetch_papers():
                     "score": ocs_score,
                     "matched": ocs_matched,
                     "link": link,
+                    "first_author": first_author,
+                    "year": year,
                     "summary": summary[:400]
                 })
                 feed_ocs_selected += 1
@@ -447,6 +488,15 @@ def fetch_papers():
     print(f"New papers seen this run: {total_in_feeds - total_skipped}")
     print()
 
+    # 全局异常检测：所有分类均返回 0 篇 → 极可能是限流或 API 故障
+    if total_in_feeds == 0:
+        print("=" * 60)
+        print("⚠️  CRITICAL: arXiv API returned 0 entries for ALL categories.")
+        print("    This is almost certainly rate-limiting or an API outage.")
+        print("    Digest will be empty — check logs and try again later.")
+        print("=" * 60)
+        print()
+
     return selected, ocs_selected, total_main, total_ocs
 
 
@@ -477,6 +527,10 @@ def generate_markdown(papers, ocs_papers, total_main, total_ocs):
         for i, paper in enumerate(papers, start=1):
             lines.extend([
                 f"### {i}. {paper['title']}",
+                "",
+                f"**Author:** {paper.get('first_author', 'N/A')}",
+                "",
+                f"**Year:** {paper.get('year', 'N/A')}",
                 "",
                 f"**Score:** {paper['score']}",
                 "",
@@ -518,6 +572,10 @@ def generate_markdown(papers, ocs_papers, total_main, total_ocs):
             lines.extend([
                 f"### {i}. {paper['title']}",
                 "",
+                f"**Author:** {paper.get('first_author', 'N/A')}",
+                "",
+                f"**Year:** {paper.get('year', 'N/A')}",
+                "",
                 f"**OCS Score:** {paper['score']}",
                 "",
                 f"**OCS Keywords:** {', '.join(paper['matched'])}",
@@ -550,6 +608,12 @@ def main():
     do_send = "--send" in sys.argv
     is_weekend = datetime.now().weekday() >= 5  # 5=Sat, 6=Sun
 
+    # 周末 arXiv 不发布新论文，跳过 API 调用以节省配额
+    if is_weekend:
+        print("[skip] Weekend — arXiv does not publish on Sat/Sun, skipping entirely.")
+        print("[skip] API quota conserved. Next run will be on Monday.")
+        return
+
     papers, ocs_papers, total_main, total_ocs = fetch_papers()
 
     generate_markdown(papers, ocs_papers, total_main, total_ocs)
@@ -558,9 +622,7 @@ def main():
     print(f"OCS spotlight: {len(ocs_papers)} papers")
     print(f"Saved to {OUTPUT_FILE}")
 
-    if do_send and is_weekend:
-        print("[email] Weekend — skipping email (arXiv does not publish on Sat/Sun)")
-    elif do_send:
+    if do_send:
         send_email(papers, ocs_papers)
 
 

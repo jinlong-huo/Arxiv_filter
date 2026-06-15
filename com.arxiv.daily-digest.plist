@@ -7,19 +7,19 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/opt/anaconda3/envs/JLtorch/bin/python3</string>
-        <string>/Users/Vir-G/Downloads/Projects/QLab-stack/Arxiv_filter.py</string>
-        <string>--send</string>
+        <string>/bin/zsh</string>
+        <string>-c</string>
+        <string>/opt/anaconda3/envs/JLtorch/bin/python3 /Users/Vir-G/Downloads/Projects/QLab-stack/Arxiv_filter.py --send &amp;&amp; /opt/anaconda3/envs/JLtorch/bin/python3 /Users/Vir-G/Downloads/Projects/QLab-stack/download_papers.py</string>
     </array>
 
     <key>WorkingDirectory</key>
     <string>/Users/Vir-G/Downloads/Projects/QLab-stack</string>
 
-    <!-- 每天 15:00 触发；若此时休眠，唤醒后自动补执行 与美国时间对齐-->
+    <!-- 每天 10:00 触发；若此时休眠，唤醒后自动补执行 -->
     <key>StartCalendarInterval</key>
     <dict>
         <key>Hour</key>
-        <integer>15</integer>
+        <integer>10</integer>
         <key>Minute</key>
         <integer>0</integer>
     </dict>
