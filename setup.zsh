@@ -47,7 +47,7 @@ echo "  -> 已写入 $PLIST_DST"
 echo "[3/5] 加载 launchd 任务 ..."
 launchctl bootout gui/$(id -u)/$LABEL 2>/dev/null || true
 launchctl bootstrap gui/$(id -u) "$PLIST_DST"
-echo "  -> 已加载（每天 9:00 + 唤醒/开机时补执行）"
+echo "  -> 已加载（每天 10:00 BJ 时间，仅工作日；唤醒/开机时补执行）"
 
 # 4. 配置防止 Mac 深度休眠（可选）
 echo "[4/5] 休眠策略提醒 ..."

@@ -51,14 +51,14 @@ Write-Host "[2/4] 清理旧任务 ..."
 schtasks /delete /tn "$TaskName" /f 2>$null
 Write-Host "  -> 已清理"
 
-# 3. 创建每日定时任务（每天 9:00）
-Write-Host "[3/4] 创建计划任务（每天 9:00） ..."
+# 3. 创建每日定时任务（每天 10:00 BJ 时间，仅工作日）
+Write-Host "[3/4] 创建计划任务（每天 10:00 BJ 时间） ..."
 $Action = New-ScheduledTaskAction -Execute $PythonBin `
     -Argument "`"$PythonScript`" --send" `
     -WorkingDirectory $ScriptDir
 
-# 触发器：每天 9:00；错过则在就绪后一小时内补执行
-$Trigger = New-ScheduledTaskTrigger -Daily -At 09:00
+# 触发器：每天 10:00；错过则在就绪后一小时内补执行
+$Trigger = New-ScheduledTaskTrigger -Daily -At 10:00
 $Settings = New-ScheduledTaskSettingsSet `
     -AllowStartIfOnBatteries `
     -DontStopIfGoingOnBatteries `
@@ -76,7 +76,7 @@ Register-ScheduledTask -TaskName "$TaskName" `
     -Description "arXiv Daily Digest — 每日抓取 arXiv 论文并发送邮件" `
     -Force | Out-Null
 
-Write-Host "  -> 已创建：每天 9:00 + 错过补执行 + 仅联网时运行"
+Write-Host "  -> 已创建：每天 10:00 BJ 时间 + 错过补执行 + 仅联网时运行"
 
 # 4. 提醒邮件配置
 Write-Host "[4/4] 邮件配置提醒"

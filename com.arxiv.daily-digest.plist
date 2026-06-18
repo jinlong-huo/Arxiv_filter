@@ -9,7 +9,7 @@
     <array>
         <string>/bin/zsh</string>
         <string>-c</string>
-        <string>/opt/anaconda3/envs/JLtorch/bin/python3 /Users/Vir-G/Downloads/Projects/QLab-stack/Arxiv_filter.py --send &amp;&amp; /opt/anaconda3/envs/JLtorch/bin/python3 /Users/Vir-G/Downloads/Projects/QLab-stack/download_papers.py</string>
+        <string>if [ $(date +%u) -lt 6 ]; then /opt/anaconda3/envs/JLtorch/bin/python3 /Users/Vir-G/Downloads/Projects/QLab-stack/Arxiv_filter.py --send &amp;&amp; /opt/anaconda3/envs/JLtorch/bin/python3 /Users/Vir-G/Downloads/Projects/QLab-stack/download_papers.py; fi</string>
     </array>
 
     <key>WorkingDirectory</key>

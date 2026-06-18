@@ -2,6 +2,8 @@
 daily_digest.md
 seen_papers.json
 seen_papers.json.bak
+.last_run_date
+digest_papers.json
 
 # 日志
 launchd_stdout.log

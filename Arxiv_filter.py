@@ -8,12 +8,23 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
+import random
 import time
 import urllib.parse
 
 import feedparser
+
+# ── Timezone ──────────────────────────────────────────────────
+# All date logic uses Beijing time (UTC+8 / Asia/Shanghai).
+TZ = timezone(timedelta(hours=8))
+
+def bj_now():
+    return datetime.now(TZ)
+
+def bj_today_str():
+    return bj_now().strftime("%Y-%m-%d")
 
 # =========================
 # 配置
@@ -39,7 +50,8 @@ MAX_PER_CATEGORY = 200
 API_DELAY = 3.0
 
 # 遇到空返回时的重试等待（秒）和最大重试次数
-RETRY_DELAY = 30.0
+# 使用指数退避 + 随机抖动，避免与 arXiv 限流窗口谐振
+RETRY_BACKOFF_BASE = [20.0, 60.0]  # 第 1/2 次重试的基础等待秒数（±25% 抖动）
 MAX_RETRIES = 2
 
 # 关键词权重
@@ -150,16 +162,20 @@ OCS_KEYWORDS = {
 }
 
 OCS_NEGATIVE_KEYWORDS = {
-    "survey": -2,
-    "tutorial": -2,
-    "review": -2,
+    "survey": -6,
+    "a survey": -6,
+    "tutorial": -6,
+    "review": -4,
 }
 
 OCS_MIN_SCORE = 5
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-STATE_FILE = SCRIPT_DIR / "seen_papers.json"
+STATE_FILE = SCRIPT_DIR / "seen_papers.json"         # 流水账：所有查阅过的论文
+DIGEST_STATE_FILE = SCRIPT_DIR / "digest_papers.json" # 台账：上过 digest 的论文（去重用）
 OUTPUT_FILE = SCRIPT_DIR / "daily_digest.md"
+LOCK_FILE = SCRIPT_DIR / ".last_run_date"
+LOCK_WINDOW_HOURS = 2
 
 # =========================
 # 邮件配置（可选：python Arxiv_filter.py --send）
@@ -192,17 +208,76 @@ EMAIL_CONFIG = {
 # 工具函数
 # =========================
 
+def _load_json_migrated(filepath):
+    """Load JSON file. Migrate old-format http://arxiv.org/abs/... keys to canonical arXiv IDs."""
+    if not filepath.exists():
+        return {}, False
+    with open(filepath, "r") as f:
+        data = json.load(f)
+    migrated = False
+    new_data = {}
+    for key, value in data.items():
+        new_key = normalize_arxiv_id(key)
+        if new_key != key:
+            migrated = True
+        new_data[new_key] = value
+    return new_data, migrated
+
+
 def load_seen():
-    """Return dict: {paper_id: {"title": ..., "keywords": [...]}}"""
-    if STATE_FILE.exists():
-        with open(STATE_FILE, "r") as f:
-            return json.load(f)
-    return {}
+    """Return dict: {arxiv_id: {"title": ..., "keywords": [...]}}"""
+    data, migrated = _load_json_migrated(STATE_FILE)
+    if migrated:
+        save_seen(data)
+    return data
 
 
 def save_seen(seen):
     with open(STATE_FILE, "w") as f:
         json.dump(seen, f, indent=2, ensure_ascii=False)
+
+
+def load_digest_seen():
+    """Return dict of papers that have appeared in a previous digest (for dedup)."""
+    data, migrated = _load_json_migrated(DIGEST_STATE_FILE)
+    if migrated:
+        save_digest_seen(data)
+    return data
+
+
+def save_digest_seen(digest_seen):
+    with open(DIGEST_STATE_FILE, "w") as f:
+        json.dump(digest_seen, f, indent=2, ensure_ascii=False)
+
+
+def check_lock():
+    """Return True if this run should be skipped (already ran recently today)."""
+    if not LOCK_FILE.exists():
+        return False
+    try:
+        content = LOCK_FILE.read_text().strip()
+        lock_date = content.split()[0]
+        today = bj_today_str()
+        if lock_date != today:
+            return False
+        mtime = LOCK_FILE.stat().st_mtime
+        age_seconds = time.time() - mtime
+        return age_seconds < LOCK_WINDOW_HOURS * 3600
+    except Exception:
+        return False
+
+
+def write_lock():
+    """Record that a run completed today (Beijing time)."""
+    LOCK_FILE.write_text(bj_now().strftime("%Y-%m-%d %H:%M:%S"))
+
+
+def normalize_arxiv_id(raw_id):
+    """Extract canonical arXiv ID (e.g. '2606.16943v1') from oai: or http:// formats."""
+    m = re.search(r"(\d{4}\.\d{4,}(?:v\d+)?)", raw_id)
+    if m:
+        return m.group(1)
+    return raw_id
 
 
 def clean_text(text):
@@ -212,15 +287,11 @@ def clean_text(text):
 
 def extract_author_year(entry):
     """Extract (first_author_last_name, year) from a feedparser entry."""
-    # First author last name
     author = getattr(entry, "author", "") or ""
     last_name = author.split()[-1] if author else "Unknown"
-
-    # Year from published date, fallback to current year
-    year = str(datetime.now().year)
+    year = str(bj_now().year)
     if hasattr(entry, "published_parsed") and entry.published_parsed:
         year = str(entry.published_parsed.tm_year)
-
     return last_name, year
 
 
@@ -279,7 +350,7 @@ def send_email(papers, ocs_papers):
         print("[email] 未配置密码，跳过发送。请编辑 EMAIL_CONFIG。")
         return False
 
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = bj_today_str()
 
     def format_paper_list(paper_list, title_label):
         if not paper_list:
@@ -360,23 +431,27 @@ def _build_api_url(category, max_results):
 
 def fetch_papers():
 
-    seen = load_seen()           # 历史元数据，仅供参考，不阻塞选择
-    new_seen = dict(seen)        # 本次运行记录（含历史），用于跨 feed 去重
-    seen_this_run = set()        # 本次运行已处理的 paper_id，避免同次运行内重复打分
+    seen = load_seen()                 # 流水账：所有查阅过的论文（纯记录）
+    new_seen = dict(seen)              # 本次运行累加
+    digest_seen = load_digest_seen()   # 台账：上过 digest 的论文（去重用）
+    new_digest_seen = dict(digest_seen)
+    seen_this_run = set()              # 本次运行已处理的 paper_id，避免同次运行内重复打分
 
     selected = []
     ocs_selected = []
-    stats = {}  # category -> {total, skipped, selected, ocs_selected}
+    total_already_seen = 0       # 之前 digest 里出现过的论文数
+    stats = {}  # category -> {total, skipped, already_seen, selected, ocs_selected}
 
     for i, cat in enumerate(CATEGORIES):
 
         # 礼貌延迟，避免触发 arXiv 速率限制
         if i > 0:
-            time.sleep(API_DELAY)
+            time.sleep(API_DELAY + random.uniform(0, 2))
 
         url = _build_api_url(cat, MAX_PER_CATEGORY)
         feed_total = 0
         feed_skipped = 0
+        feed_already_seen = 0
         feed_selected = 0
         feed_ocs_selected = 0
 
@@ -385,22 +460,23 @@ def fetch_papers():
         for attempt in range(MAX_RETRIES):
             if feed.entries:
                 break
+            delay = RETRY_BACKOFF_BASE[attempt] * (0.75 + random.random() * 0.5)
             print(f"  [retry] {cat}: got 0 entries (attempt {attempt+1}/{MAX_RETRIES}), "
-                  f"waiting {RETRY_DELAY}s...")
-            time.sleep(RETRY_DELAY)
+                  f"waiting {delay:.1f}s...")
+            time.sleep(delay)
             feed = feedparser.parse(url)
 
         if not feed.entries:
             print(f"  [WARNING] {cat}: 0 entries after {MAX_RETRIES+1} attempts — "
                   f"likely rate-limited or API down")
             stats[cat] = {
-                "total": 0, "skipped": 0, "selected": 0, "ocs_selected": 0,
+                "total": 0, "skipped": 0, "already_seen": 0, "selected": 0, "ocs_selected": 0,
             }
             continue
 
         for entry in feed.entries:
 
-            paper_id = entry.id
+            paper_id = normalize_arxiv_id(entry.id)
             feed_total += 1
 
             # 仅跳过同一次运行内已经处理过的（跨 feed 重复）
@@ -409,6 +485,12 @@ def fetch_papers():
                 continue
 
             seen_this_run.add(paper_id)
+
+            # 跳过之前 digest 里已经出现过的论文，保证每天都是新的
+            if paper_id in digest_seen:
+                feed_already_seen += 1
+                total_already_seen += 1
+                continue
 
             title = entry.title
             summary = entry.summary
@@ -446,16 +528,25 @@ def fetch_papers():
                 })
                 feed_ocs_selected += 1
 
-            # store title + top 3 keywords for metadata
+            # 流水账：记录所有查阅过的论文
             new_seen[paper_id] = {
                 "title": title,
                 "keywords": matched[:3],
                 "ocs_keywords": ocs_matched[:3]
             }
 
+            # 台账：只记上过 digest 的论文，用于明天去重
+            if score >= MIN_SCORE or ocs_score >= OCS_MIN_SCORE:
+                new_digest_seen[paper_id] = {
+                    "title": title,
+                    "keywords": matched[:3],
+                    "ocs_keywords": ocs_matched[:3]
+                }
+
         stats[cat] = {
             "total": feed_total,
             "skipped": feed_skipped,
+            "already_seen": feed_already_seen,
             "selected": feed_selected,
             "ocs_selected": feed_ocs_selected,
         }
@@ -476,16 +567,18 @@ def fetch_papers():
     ocs_selected = ocs_selected[:MAX_OCS_PAPERS]
 
     save_seen(new_seen)
+    save_digest_seen(new_digest_seen)
 
     # 打印统计信息
     total_in_feeds = sum(s["total"] for s in stats.values())
     total_skipped = sum(s["skipped"] for s in stats.values())
     print(f"Total entries across feeds: {total_in_feeds}")
     print(f"Duplicates skipped (this run): {total_skipped}")
-    print(f"Already seen (from prior runs): {len(seen)}")
+    print(f"All-time papers seen: {len(new_seen)}")
+    print(f"Already in previous digest: {len(digest_seen)} → skipped {total_already_seen} today")
     print(f"Main filter matched: {total_main} → top {len(selected)}")
     print(f"OCS spotlight matched: {total_ocs} → top {len(ocs_selected)}")
-    print(f"New papers seen this run: {total_in_feeds - total_skipped}")
+    print(f"New papers seen this run: {total_in_feeds - total_skipped - total_already_seen}")
     print()
 
     # 全局异常检测：所有分类均返回 0 篇 → 极可能是限流或 API 故障
@@ -497,12 +590,12 @@ def fetch_papers():
         print("=" * 60)
         print()
 
-    return selected, ocs_selected, total_main, total_ocs
+    return selected, ocs_selected, total_main, total_ocs, total_in_feeds
 
 
 def generate_markdown(papers, ocs_papers, total_main, total_ocs):
 
-    today = datetime.now().strftime("%Y-%m-%d")
+    today = bj_today_str()
 
     lines = [
         f"# arXiv Daily Digest ({today})",
@@ -603,20 +696,108 @@ def generate_markdown(papers, ocs_papers, total_main, total_ocs):
     )
 
 
+def _digest_is_empty(md_text):
+    """Return True if the digest markdown contains no papers."""
+    # Empty main section means no papers (either "Total: 0" or "_No papers matched_")
+    return "Total: 0" in md_text or "_No papers matched the main filter today._" in md_text
+
+
+def parse_existing_digest():
+    """从已有的 daily_digest.md 中解析论文列表，供 --send-only 使用。"""
+    if not OUTPUT_FILE.exists():
+        print(f"[error] {OUTPUT_FILE} not found — run without --send-only first.")
+        return [], []
+
+    text = OUTPUT_FILE.read_text(encoding="utf-8")
+
+    def _extract(section_label):
+        papers = []
+        # 匹配 section 标题之后的内容
+        section_re = re.compile(
+            r"^## " + re.escape(section_label) + r"\s*$",
+            re.MULTILINE
+        )
+        m = section_re.search(text)
+        if not m:
+            return papers
+
+        section_text = text[m.end():]
+        # 在下一个 ## 处截断
+        next_section = re.search(r"^## ", section_text, re.MULTILINE)
+        if next_section:
+            section_text = section_text[:next_section.start()]
+
+        # 解析每篇论文：### N. Title ... **Link:** url
+        paper_blocks = re.split(r"^### \d+\. ", section_text, flags=re.MULTILINE)
+        for block in paper_blocks:
+            title_match = re.match(r"^(.*)$", block, re.MULTILINE)
+            link_match = re.search(r"^\*\*Link:\*\*\s*(https?://\S+)", block, re.MULTILINE)
+            if title_match and link_match:
+                papers.append({
+                    "title": title_match.group(1).strip(),
+                    "link": link_match.group(1).strip(),
+                })
+        return papers
+
+    main_papers = _extract("Main Digest")
+    ocs_papers = _extract("OCS & Optical Networking Spotlight")
+    return main_papers, ocs_papers
+
+
 def main():
 
     do_send = "--send" in sys.argv
-    is_weekend = datetime.now().weekday() >= 5  # 5=Sat, 6=Sun
+    send_only = "--send-only" in sys.argv
+    force_run = "--force" in sys.argv
+    is_weekend = bj_now().weekday() >= 5  # 5=Sat, 6=Sun (Beijing time)
 
-    # 周末 arXiv 不发布新论文，跳过 API 调用以节省配额
-    if is_weekend:
-        print("[skip] Weekend — arXiv does not publish on Sat/Sun, skipping entirely.")
-        print("[skip] API quota conserved. Next run will be on Monday.")
+    # --send-only: 仅发送已有 digest，不重新拉取
+    if send_only:
+        papers, ocs_papers = parse_existing_digest()
+        if not papers and not ocs_papers:
+            print("[send-only] Digest is empty — nothing to send.")
+            return
+        print(f"[send-only] Loaded {len(papers)} main + {len(ocs_papers)} OCS from {OUTPUT_FILE}")
+        send_email(papers, ocs_papers)
         return
 
-    papers, ocs_papers, total_main, total_ocs = fetch_papers()
+    # 周末 arXiv 不发布新论文，跳过以节省配额
+    if is_weekend:
+        print("[skip] Weekend — arXiv does not publish on Sat/Sun.")
+        return
+
+    if not force_run and check_lock():
+        print(f"[skip] Already ran within the last {LOCK_WINDOW_HOURS} hours "
+              f"(lock file: {LOCK_FILE})")
+        print("[skip] Use --force to override, or delete .last_run_date to re-run.")
+        return
+
+    papers, ocs_papers, total_main, total_ocs, total_in_feeds = fetch_papers()
+
+    today_tag = bj_today_str()
+
+    # 安全保护：如果本次结果为空，且今天已有非空 digest，保留已有内容
+    if not papers and not ocs_papers:
+        if OUTPUT_FILE.exists():
+            existing = OUTPUT_FILE.read_text(encoding="utf-8")
+            if today_tag in existing and not _digest_is_empty(existing):
+                print(f"[skip] Result is empty but today's digest already has content — "
+                      f"keeping existing {OUTPUT_FILE}")
+                if do_send:
+                    print("[send] Re-sending existing digest since --send was requested.")
+                    existing_papers, existing_ocs = parse_existing_digest()
+                    send_email(existing_papers, existing_ocs)
+                return
+        # 没有任何数据可用 → 不覆盖，不发邮件
+        print("[skip] No papers matched and no existing digest to fall back on — "
+              "nothing to send. This may be a rate-limit or API outage.")
+        return
 
     generate_markdown(papers, ocs_papers, total_main, total_ocs)
+
+    # 只有 API 真正返回数据时才写锁，避免 VPN 没开 / 限流导致空跑后锁住
+    if total_in_feeds > 0:
+        write_lock()
 
     print(f"Main filter: {len(papers)} papers")
     print(f"OCS spotlight: {len(ocs_papers)} papers")

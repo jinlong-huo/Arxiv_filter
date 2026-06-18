@@ -36,7 +36,7 @@ def sanitize_title(title: str, max_chars: int = MAX_TITLE_CHARS) -> str:
 
 def extract_paper_ids(digest_path: Path) -> list[tuple[str, str, str, str, str]]:
     """Parse daily_digest.md and return list of (paper_id, title, author, year, section)
-    tuples. Section is 'main' or 'ocs'.
+    tuples. Section is 'LLM' or 'LLM/OCS-Infra'.
     """
     if not digest_path.exists():
         print(f"Digest file not found: {digest_path}")
@@ -50,16 +50,16 @@ def extract_paper_ids(digest_path: Path) -> list[tuple[str, str, str, str, str]]
     # Split into sections by ## headers
     sections = re.split(r"\n## (.+)\n", content)
 
-    current_section = "main"
+    current_section = "LLM"
 
     for i in range(1, len(sections), 2):
         section_title = sections[i].strip()
         section_body = sections[i + 1] if i + 1 < len(sections) else ""
 
         if "ocs" in section_title.lower() or "optical" in section_title.lower():
-            current_section = "ocs"
+            current_section = "LLM/OCS-Infra"
         else:
-            current_section = "main"
+            current_section = "LLM"
 
         # Split into individual papers by ### N. header
         entries = re.split(r"\n### \d+\. ", section_body)
@@ -132,7 +132,7 @@ def main():
 
     print(f"\nFound {len(papers)} paper(s) in {DIGEST_FILE.name}:\n")
     for i, (pid, title, author, year, section) in enumerate(papers, 1):
-        print(f"  {i:02d}. [{section:4s}] {author}_{year} | {title[:80]}{'...' if len(title) > 80 else ''}")
+        print(f"  {i:02d}. [{section:14s}] {author}_{year} | {title[:80]}{'...' if len(title) > 80 else ''}")
     print()
 
     if args.dry_run:
@@ -143,7 +143,7 @@ def main():
 
     downloaded = 0
     for i, (pid, title, author, year, section) in enumerate(papers, 1):
-        # Subfolder per section: main/ or ocs/
+        # Subfolder per section: LLM/ or LLM/OCS-Infra/
         section_dir = args.dest / section
         section_dir.mkdir(parents=True, exist_ok=True)
 
@@ -158,7 +158,7 @@ def main():
         if i < len(papers):
             time.sleep(ARXIV_DELAY)
 
-    print(f"\nDone. Downloaded {downloaded} / {len(papers)} paper(s) to {args.dest}/<section>/")
+    print(f"\nDone. Downloaded {downloaded} / {len(papers)} paper(s) to {args.dest}/")
 
 
 if __name__ == "__main__":
