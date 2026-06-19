@@ -532,11 +532,13 @@ def fetch_papers():
 
             seen_this_run.add(paper_id)
 
-            # 跳过之前 digest 里已经出现过的论文，保证每天都是新的
+            # 跳过之前 digest 里已经出现过的论文（仅跨天去重，同日可重跑）
             if paper_id in digest_seen:
-                feed_already_seen += 1
-                total_already_seen += 1
-                continue
+                entry_date = digest_seen[paper_id].get("date", "")
+                if entry_date != bj_today_str():
+                    feed_already_seen += 1
+                    total_already_seen += 1
+                    continue
 
             title = entry.title
             summary = entry.summary
@@ -581,12 +583,13 @@ def fetch_papers():
                 "ocs_keywords": ocs_matched[:3]
             }
 
-            # 台账：只记上过 digest 的论文，用于明天去重
+            # 台账：只记上过 digest 的论文，用于跨天去重（同日可重跑）
             if score >= MIN_SCORE or ocs_score >= OCS_MIN_SCORE:
                 new_digest_seen[paper_id] = {
                     "title": title,
                     "keywords": matched[:3],
-                    "ocs_keywords": ocs_matched[:3]
+                    "ocs_keywords": ocs_matched[:3],
+                    "date": bj_today_str(),
                 }
 
         stats[cat] = {
