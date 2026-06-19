@@ -91,6 +91,15 @@ KEYWORDS = {
     "parallelism": 3,
     "network": 2,
     "memory": 2,
+
+    # === GPU 集合通信库（NCCL / RCCL / oneCCL） ===
+    "collective communication": 6,
+    "nccl": 5,
+    "rccl": 5,
+    "all-reduce": 5,
+    "allreduce": 5,
+    "gpu direct": 5,
+    "gpudirect": 5,
 }
 
 # 负向词（综述、教程等）
@@ -115,13 +124,15 @@ MAX_OCS_PAPERS = 10
 # =========================
 
 OCS_KEYWORDS = {
-    # === 光电路交换 ===
-    "optical circuit switch": 6,
-    "optical circuit switching": 6,
+    # === 光电路交换 (core OCS) ===
+    "optical circuit switch": 7,
+    "optical circuit switching": 7,
     "optical switch": 5,
     "optical switching": 5,
-    "circuit switch": 5,
-    "circuit switching": 6,
+    "photonic switch": 6,
+    "photonic switching": 5,
+    # "circuit switch" without "optical" is too broad — dropped
+    # "circuit switching" below weight 5 cannot pass OCS_MIN_SCORE alone
 
     # === 光互连 / 光网络 ===
     "optical interconnect": 5,
@@ -129,36 +140,63 @@ OCS_KEYWORDS = {
     "optical fabric": 5,
     "photonic interconnect": 5,
     "photonic network": 5,
-    "photonic switch": 5,
+    "optical data center": 5,
+    "optical datacenter": 5,
+    "all-optical network": 5,
+    "all optical network": 5,
 
     # === 可重构光拓扑 ===
     "reconfigurable optical": 5,
     "optical topology": 5,
     "reconfigurable topology": 5,
     "reconfigurable network": 5,
+    "topology engineering": 7,
+    "topology reconfiguration": 7,
+    "optical reconfiguration": 5,
 
-    # === 波分 / MEMS / 交叉连接 ===
-    "wavelength division": 5,
-    "wdm": 5,
+    # === 波分 / MEMS / 交叉连接 / ROADM ===
+    "wavelength division multiplex": 5,
     "optical mems": 5,
     "optical cross-connect": 5,
     "optical cross connect": 5,
+    "roadm": 5,
+    "reconfigurable optical add-drop": 5,
 
-    # === 共封装光学 / 新 infra ===
-    "co-packaged optics": 5,
-    "co-packaged optical": 5,
-    "cpo": 6,
-    "ccl": 4,
-    "collective communication library": 6,
-    "optical i/o": 5,
-    "optical io": 4,
+    # === 共封装光学 / 硅光 ===
+    "co-packaged optics": 6,
+    "co-packaged optical": 6,
+    "co packaged optics": 6,
     "optical transceiver": 5,
     "silicon photonic": 4,
+    "silicon photonics": 4,
 
-    # === 调度与光网络交叉 ===
+    # === 光 I/O ===
+    "optical i/o": 5,
+    "optical io": 4,
+
+    # === 弹性光网络 / 空分复用 ===
+    "elastic optical network": 5,
+    "flexgrid": 5,
+    "flex grid": 5,
+    "space division multiplex": 5,
+    "multi-core fiber": 5,
+    "multicore fiber": 5,
+    "hollow-core fiber": 5,
+    "hollow core fiber": 5,
+    "anti-resonant fiber": 5,
+
+    # === AI/ML 驱动的光网络 (2025-2026 热点) ===
+    "optical network optimization": 6,
+    "optical network automation": 5,
+    "digital twin optical": 6,
+    "machine learning optical network": 6,
+    "reinforcement learning optical": 6,
+    "llm optical network": 5,
+    "optical network planning": 5,
+
+    # === 光网络调度 ===
     "optical scheduling": 6,
-    "topology engineering": 6,
-    "topology reconfiguration": 6,
+    "optical resource allocation": 5,
 }
 
 OCS_NEGATIVE_KEYWORDS = {
@@ -166,6 +204,14 @@ OCS_NEGATIVE_KEYWORDS = {
     "a survey": -6,
     "tutorial": -6,
     "review": -4,
+    # CV / medical 噪声 — 这些包含 "optical" 但与光网络无关
+    "optical flow": -8,
+    "optical coherence tomography": -8,
+    "optical character recognition": -8,
+    "optical sensor": -6,
+    "fiber sensor": -6,
+    "optical camera": -6,
+    "optical image": -6,
 }
 
 OCS_MIN_SCORE = 5
