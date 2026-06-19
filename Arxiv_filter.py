@@ -220,8 +220,6 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 STATE_FILE = SCRIPT_DIR / "seen_papers.json"         # 流水账：所有查阅过的论文
 DIGEST_STATE_FILE = SCRIPT_DIR / "digest_papers.json" # 台账：上过 digest 的论文（去重用）
 OUTPUT_FILE = SCRIPT_DIR / "daily_digest.md"
-LOCK_FILE = SCRIPT_DIR / ".last_run_date"
-LOCK_WINDOW_HOURS = 2
 
 # =========================
 # 邮件配置（可选：python Arxiv_filter.py --send）
@@ -294,28 +292,6 @@ def load_digest_seen():
 def save_digest_seen(digest_seen):
     with open(DIGEST_STATE_FILE, "w") as f:
         json.dump(digest_seen, f, indent=2, ensure_ascii=False)
-
-
-def check_lock():
-    """Return True if this run should be skipped (already ran recently today)."""
-    if not LOCK_FILE.exists():
-        return False
-    try:
-        content = LOCK_FILE.read_text().strip()
-        lock_date = content.split()[0]
-        today = bj_today_str()
-        if lock_date != today:
-            return False
-        mtime = LOCK_FILE.stat().st_mtime
-        age_seconds = time.time() - mtime
-        return age_seconds < LOCK_WINDOW_HOURS * 3600
-    except Exception:
-        return False
-
-
-def write_lock():
-    """Record that a run completed today (Beijing time)."""
-    LOCK_FILE.write_text(bj_now().strftime("%Y-%m-%d %H:%M:%S"))
 
 
 def normalize_arxiv_id(raw_id):
@@ -797,8 +773,6 @@ def main():
 
     do_send = "--send" in sys.argv
     send_only = "--send-only" in sys.argv
-    force_run = "--force" in sys.argv
-    is_weekend = bj_now().weekday() >= 5  # 5=Sat, 6=Sun (Beijing time)
 
     # --send-only: 仅发送已有 digest，不重新拉取
     if send_only:
@@ -808,17 +782,6 @@ def main():
             return
         print(f"[send-only] Loaded {len(papers)} main + {len(ocs_papers)} OCS from {OUTPUT_FILE}")
         send_email(papers, ocs_papers)
-        return
-
-    # 周末 arXiv 不发布新论文，跳过以节省配额
-    if is_weekend:
-        print("[skip] Weekend — arXiv does not publish on Sat/Sun.")
-        return
-
-    if not force_run and check_lock():
-        print(f"[skip] Already ran within the last {LOCK_WINDOW_HOURS} hours "
-              f"(lock file: {LOCK_FILE})")
-        print("[skip] Use --force to override, or delete .last_run_date to re-run.")
         return
 
     papers, ocs_papers, total_main, total_ocs, total_in_feeds = fetch_papers()
@@ -843,10 +806,6 @@ def main():
         return
 
     generate_markdown(papers, ocs_papers, total_main, total_ocs)
-
-    # 只有 API 真正返回数据时才写锁，避免 VPN 没开 / 限流导致空跑后锁住
-    if total_in_feeds > 0:
-        write_lock()
 
     print(f"Main filter: {len(papers)} papers")
     print(f"OCS spotlight: {len(ocs_papers)} papers")
