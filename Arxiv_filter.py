@@ -159,8 +159,8 @@ OCS_KEYWORDS = {
     "optical mems": 5,
     "optical cross-connect": 5,
     "optical cross connect": 5,
-    "roadm": 5,
     "reconfigurable optical add-drop": 5,
+    "roadm": 3,  # low weight: short acronym, matches "roadmap" — needs co-hit to pass threshold
 
     # === 共封装光学 / 硅光 ===
     "co-packaged optics": 6,
