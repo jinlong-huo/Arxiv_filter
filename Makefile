@@ -1,4 +1,4 @@
-.PHONY: help install run dry-run setup-mac member-new member-export clean
+.PHONY: help install run send all member-new member-export clean
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -14,11 +14,18 @@ run: ## Run arXiv daily digest (dry-run, no email)
 send: ## Run arXiv daily digest + send email
 	python3 Arxiv_filter.py --send
 
-setup-mac: ## Install macOS launchd scheduled task
-	./setup.zsh
+wait: ## Run + send, auto-retry on 429 rate-limit (5 min wait)
+	python3 Arxiv_filter.py --send --wait
 
-setup-win: ## Install Windows scheduled task (run in admin PowerShell)
-	@echo "Run: Set-ExecutionPolicy -Scope CurrentUser RemoteSigned; .\setup.ps1"
+all: ## Full run: filter + send email + download PDFs
+	python3 Arxiv_filter.py --send && python3 download_papers.py
+
+daily: ## Fetch → verify → send → download (gated, recommended)
+	./run_daily.sh
+
+daily-nosend: ## Fetch → verify → download (skip email)
+	./run_daily.sh --skip-send
+
 
 # --- Members ---
 
@@ -47,5 +54,4 @@ download: ## Download PDFs from daily_digest.md. Opts: make download ARGS="--des
 
 clean: ## Remove generated files
 	rm -f daily_digest.md
-	rm -f launchd_stdout.log launchd_stderr.log
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; true
