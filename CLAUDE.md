@@ -5,8 +5,13 @@ LLM inference / datacenter networking research group toolkit.
 ## Architecture
 
 ```
-Arxiv_filter.py          # Daily arXiv digest engine (the daily driver)
-setup.zsh / setup.ps1    # Install launchd (macOS) / schtasks (Windows) daily 09:00
+Arxiv_filter.py           # Main orchestrator (fetch → filter → select → digest → send)
+arxiv_digest/              # Pipeline modules
+  ├── config.py            #   All settings: keywords, thresholds, paths, email
+  ├── fetch.py             #   arXiv API: query builder, retry logic, error classification
+  ├── filter.py            #   Text cleaning, keyword scoring (main + OCS)
+  ├── digest.py            #   State I/O, top-N selection, markdown generation
+  └── emailer.py           #   SMTP email (plain text + HTML)
 members/<name>/           # Personal workspace — paper notes, projects, repros
 paper-notes/              # Shared paper note template
 knowledge-base/           # Glossary, reading roadmap, topic deep-dives
@@ -20,19 +25,19 @@ onboarding/ / offboarding/ # Join/leave procedures
 - **Paper notes**: copy `paper-notes/template.md` → `members/<name>/paper-notes/<year>/<paper-slug>.md`
 - **Python**: single dependency (`feedparser`), install with `pip install -r requirements.txt`
 - **Git**: `main` is protected; work on `feature/*` branches; commit types per [CONTRIBUTING.md](CONTRIBUTING.md)
-- **Quick commands**: `make run`, `make send`, `make setup-mac`, `make note-new NAME=... FILE=...`
+- **Quick commands**: `make run`, `make send`, `make note-new NAME=... FILE=...`
 
-## Arxiv_filter.py
+## Pipeline
 
-- Fetches 8 CS categories from `export.arxiv.org/api/query`, 200 papers/category
-- Scores papers against two keyword filters: main (LLM/GPU/RDMA/scheduling) + OCS spotlight (optical switching)
-- Top-15 main + top-10 OCS → `daily_digest.md`
-- `--send` emails the digest (skips on Sat/Sun)
-- State tracked in `seen_papers.json`
-- Configured via variables at top of script: `CATEGORIES`, `KEYWORDS`, `OCS_KEYWORDS`, `MIN_SCORE`, `MAX_PAPERS`
+1. **fetch.py** — Pulls 8 CS categories from `export.arxiv.org/api/query`, 200 papers each. Retry with exponential backoff; fatal-error detection for SSL/DNS failures.
+2. **filter.py** — Scores each paper against two independent keyword filters: main (LLM/GPU/RDMA/scheduling) and OCS spotlight (optical switching).
+3. **digest.py** — Selects top-15 main + top-10 OCS, writes `daily_digest.md`. Manages `seen_papers.json` and `digest_papers.json` state.
+4. **emailer.py** — Sends multipart email (plain + HTML) via Gmail SMTP.
+5. **Arxiv_filter.py** — Orchestrates the pipeline. `--send` triggers email; `--send-only` re-sends existing digest.
+
+All knobs live in `config.py`: `CATEGORIES`, `KEYWORDS`, `OCS_KEYWORDS`, `MIN_SCORE`, `MAX_PAPERS`.
 
 ## Dependencies
 
 - Python 3.11+ with `feedparser` (see `requirements.txt`)
-- macOS: `launchd` (built-in); Windows: `schtasks` (built-in)
 - Gmail app password for email (stored in `.email_password`, gitignored)

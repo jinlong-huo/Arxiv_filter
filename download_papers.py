@@ -17,7 +17,7 @@ import urllib.request
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-DIGEST_FILE = SCRIPT_DIR / "daily_digest.md"
+DIGEST_FILE = SCRIPT_DIR / "arxiv_digest" / "daily_digest.md"
 DEFAULT_DEST = Path.home() / "Downloads" / "Paper"
 ARXIV_DELAY = 3.0  # seconds between downloads, be polite
 MAX_TITLE_CHARS = 80   # max chars of title in filename

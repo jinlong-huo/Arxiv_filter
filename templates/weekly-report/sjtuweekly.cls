@@ -28,7 +28,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-\lhead{\zihao{-5}\songti 上海交通大学\enspace 研究生工作周报}
+\lhead{\zihao{-5}\songti 上海交通大学\enspace 工作周报}
 \rhead{\zihao{-5}\songti\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -59,7 +59,7 @@
   \vspace{2.0cm}
   % 标题
   \begin{center}
-    {\zihao{2}\songti\bfseries 研究生工作周报}
+    {\zihao{2}\songti\bfseries 工作汇报}
   \end{center}
   \vspace{0.8cm}
   % 信息（分行）

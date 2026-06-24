@@ -8,8 +8,13 @@
 ```
 group-toolkit/
 │
-├── Arxiv_filter.py              ← 🔍 发现：每日自动抓论文 + 邮件推送
-├── setup.zsh / setup.ps1        ← macOS / Windows 定时任务安装
+├── Arxiv_filter.py              ← 🎯 主入口（fetch → filter → select → digest → send）
+├── arxiv_digest/                ←    流水线模块
+│   ├── config.py                ←       全部配置：关键词、阈值、路径
+│   ├── fetch.py                 ←       arXiv API + 重试 + 错误分类
+│   ├── filter.py                ←       关键词打分（主过滤器 + OCS）
+│   ├── digest.py                ←       状态管理 + Top-N 选择 + Markdown
+│   └── emailer.py               ←       SMTP 邮件发送
 │
 ├── paper-notes/                 ← 📖 共享论文笔记模板
 │   └── template.md              ←    标准笔记模板（what/why/how/pros/cons）
@@ -105,11 +110,6 @@ export ARXIV_DIGEST_EMAIL_PASSWORD="你的Gmail应用专用密码"
 ```bash
 python3 Arxiv_filter.py --send
 ```
-
-**4. 设为每天自动跑**
-
-- macOS: `./setup.zsh`
-- Windows (管理员 PowerShell): `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned; .\setup.ps1`
 
 ### 调参
 
