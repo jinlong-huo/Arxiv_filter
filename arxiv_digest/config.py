@@ -35,6 +35,7 @@ CATEGORIES = [
     "cs.AI",
     "cs.CV",
     "cs.SY",
+    "physics.optics",   # device/hardware OCS papers live here, not cross-listed to cs.*
 ]
 
 MAX_PER_CATEGORY = 200

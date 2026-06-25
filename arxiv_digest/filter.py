@@ -23,6 +23,7 @@ def normalize_arxiv_id(raw_id):
 def extract_author_year(entry):
     """从 feedparser entry 提取 (第一作者姓氏, 年份)。"""
     author = getattr(entry, "author", "") or ""
+    author = author.strip()
     last_name = author.split()[-1] if author else "Unknown"
     year = str(config.bj_now().year)
     if hasattr(entry, "published_parsed") and entry.published_parsed:

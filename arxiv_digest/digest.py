@@ -169,6 +169,41 @@ def generate_markdown(papers, ocs_papers, total_main, total_ocs):
     config.OUTPUT_FILE.write_text("\n".join(lines), encoding="utf-8")
 
 
+# ── Console output ──────────────────────────────────────────────
+
+def print_results(papers, ocs_papers):
+    """Print selected papers directly to stdout so you see results immediately."""
+    width = 80
+
+    def _print_section(heading, papers):
+        if not papers:
+            print(f"\n{'─'*width}")
+            print(f"  {heading}: 0 papers matched")
+            print(f"{'─'*width}")
+            return
+        print(f"\n{'═'*width}")
+        print(f"  {heading} — {len(papers)} papers")
+        print(f"{'═'*width}")
+        for i, p in enumerate(papers, 1):
+            title = p["title"].replace("\n", " ").strip()
+            score = p["score"]
+            keywords = ", ".join(p.get("matched", [])[:5])
+            link = p.get("link", "")
+            author = p.get("first_author", "N/A")
+            year = p.get("year", "N/A")
+            snippet = p.get("summary", "")[:200].replace("\n", " ").strip()
+
+            print(f"\n  {i:2d}. {title}")
+            print(f"      Score: {score}  |  Author: {author}  |  Year: {year}")
+            print(f"      Keywords: {keywords}")
+            print(f"      Link: {link}")
+            print(f"      Abstract: {snippet}...")
+        print(f"\n{'─'*width}")
+
+    _print_section("Main Digest", papers)
+    _print_section("OCS & Optical Networking Spotlight", ocs_papers)
+
+
 # ── Helper ─────────────────────────────────────────────────────
 
 def _is_empty(md_text):

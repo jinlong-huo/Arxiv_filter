@@ -4,6 +4,7 @@
 import random
 import time
 import urllib.parse
+from datetime import timedelta
 
 import feedparser
 
@@ -11,13 +12,19 @@ from arxiv_digest import config
 
 
 def _build_combined_url():
-    """构造合并查询 URL — 所有分类用 OR 串成一次请求。
+    """构造合并查询 URL — 所有分类用 OR 串成一次请求，限定最近 3 天。
 
-    arXiv API 单次最多返回 2,000 条，我们 8×200=1,600 条，一次搞定。
+    不加日期过滤会命中整个历史归档，cs.AI + cs.CV 就有几十万条，
+    排序极慢且容易超时/空响应，arXiv 官方明确建议控制结果集大小。
+    3 天窗口吸收 BJT/GMT 时区差和 arXiv 的 24h 索引延迟。
     """
     categories = " OR ".join(f"cat:{c}" for c in config.CATEGORIES)
+    now = config.bj_now()
+    date_to = now.strftime("%Y%m%d2359")
+    date_from = (now - timedelta(days=3)).strftime("%Y%m%d0000")
+    search_query = f"({categories}) AND submittedDate:[{date_from} TO {date_to}]"
     params = {
-        "search_query": categories,
+        "search_query": search_query,
         "start": "0",
         "max_results": str(config.MAX_PER_CATEGORY * len(config.CATEGORIES)),
         "sortBy": "submittedDate",
@@ -94,6 +101,65 @@ def _group_by_category(entries):
     return grouped
 
 
+def _prompt_retry(reason, wait_sec=None):
+    """Ask user interactively whether to wait and retry. Returns True if retrying."""
+    if wait_sec is None:
+        wait_sec = 300 + random.randint(0, 60)
+    mins = wait_sec // 60
+    secs = wait_sec % 60
+
+    print(f"\n{'─'*55}")
+    print(f"  {reason}")
+    print(f"  Wait {mins}m{secs}s and retry automatically? [Y/n] ", end="", flush=True)
+
+    try:
+        answer = input().strip().lower()
+    except (EOFError, KeyboardInterrupt):
+        print()
+        return False
+
+    if answer in ("", "y", "yes"):
+        print(f"  Waiting {wait_sec}s...", end="", flush=True)
+        for remaining in range(wait_sec, 0, -1):
+            time.sleep(1)
+            if remaining % 30 == 0:
+                print(f"\n  ({remaining // 60}m{remaining % 60:02d}s remaining)...", end="", flush=True)
+        print(" retrying!")
+        return True
+    else:
+        print("  Skipping — run again later or use --wait for auto-retry.")
+        return False
+
+
+USER_AGENT = "arXivDailyDigest/1.0 (mailto:rawking1621@gmail.com)"
+
+
+def _is_arxiv_error_feed(feed):
+    """Detect arXiv API error masquerading as HTTP 200 with a single 'Error' entry.
+
+    arXiv's legacy API returns HTTP 200 with one Atom entry whose title is
+    "Error" when the query is malformed (e.g. max_results too high, bad
+    boolean syntax).  That entry has no arxiv_primary_category, so it all
+    lands in 'unknown' and looks like "0 entries for ALL categories."
+    """
+    if not feed.entries or len(feed.entries) != 1:
+        return None
+    entry = feed.entries[0]
+    title = getattr(entry, 'title', '').strip()
+    if title.lower() == 'error':
+        summary = getattr(entry, 'summary', '')
+        return f"arXiv API rejected the query: {summary}" if summary else \
+               "arXiv API returned 'Error' entry (no details)"
+    return None
+
+
+def _do_fetch(url):
+    """Single fetch attempt.  Returns (feed, status_int, bozo, is_429, is_503, fatal)."""
+    feed = feedparser.parse(url, agent=USER_AGENT)
+    status_int, bozo, is_429, is_503, fatal = _classify_status(feed)
+    return feed, status_int, bozo, is_429, is_503, fatal
+
+
 def fetch_all(wait_on_429=False):
     """拉取全部 CATEGORIES 的论文（单次合并查询），返回 (entries_by_category, stats)。
 
@@ -103,46 +169,57 @@ def fetch_all(wait_on_429=False):
     wait_on_429: if True, wait 5 min and retry when rate-limited instead of aborting.
     """
     # Pre-fetch jitter — avoid hitting the API at predictable instants
-    pre_jitter = random.uniform(1.0, 5.0)
+    pre_jitter = random.uniform(1.0, config.API_DELAY)
     time.sleep(pre_jitter)
 
     url = _build_combined_url()
-
-    # arXiv API 要求 User-Agent，否则限流更严格
     print(f"  [fetch] {url[:120]}...")
 
-    # ── Attempt 1 ──
-    feed = feedparser.parse(url, agent="arXivDailyDigest/1.0 (mailto:rawking1621@gmail.com)")
-    status_int, bozo, is_429, is_503, fatal = _classify_status(feed)
+    # ── Attempt 1 ──────────────────────────────────────────────
+    feed, status_int, bozo, is_429, is_503, fatal = _do_fetch(url)
 
-    # HTTP 429 → immediate rate-limit
+    # Debug: surface arXiv "Error" entry (Bug 3 — malformed query masquerading as success)
+    error_msg = _is_arxiv_error_feed(feed)
+    if error_msg:
+        print(f"\n⛔ {error_msg}")
+        print("   This is NOT a rate-limit — the query itself is invalid.")
+        print(f"   URL: {url}")
+        return [], _empty_stats()
+
+    # Success on first attempt
+    if feed.entries:
+        grouped = _group_by_category(feed.entries)
+        return _build_result(grouped)
+
+    # ── No entries — classify the failure ─────────────────────
     if is_429:
+        wait_sec = 300 + random.randint(0, 60)
         if wait_on_429:
-            wait_sec = 300 + random.randint(0, 60)
             print(f"\n⛔ arXiv is rate-limiting this IP (HTTP 429). "
                   f"Waiting {wait_sec}s ({wait_sec // 60}min) then retrying...")
             time.sleep(wait_sec)
             return fetch_all(wait_on_429=False)
-        print(f"\n⛔ arXiv is rate-limiting this IP (HTTP 429). "
-              f"Wait 5-10 minutes and re-run (or use --wait for auto-retry).")
+        if _prompt_retry("arXiv is rate-limiting this IP (HTTP 429).", wait_sec):
+            return fetch_all(wait_on_429=False)
         return [], _empty_stats()
 
-    # HTTP 503 → server-side trouble, retry with long backoff
-    retry_reason = None
-    if is_503:
-        retry_reason = f"HTTP 503 — arXiv API is temporarily unavailable"
-    elif status_int == 200 and bozo is not None:
-        retry_reason = f"HTTP 200 but feed parse failed" \
-                       f"{f' — {str(bozo)[:100]}' if bozo else ''}"
-    elif fatal:
+    if fatal:
         print(f"⛔ [FATAL] non-retryable error: {str(bozo)[:200]}")
         return [], _empty_stats()
 
-    # ── Retry loop (503 / parse errors only; 429 bails above) ──
-    for attempt in range(config.MAX_RETRIES):
-        if retry_reason is None:
-            break  # first attempt succeeded
+    if is_503:
+        retry_reason = "HTTP 503 — arXiv API is temporarily unavailable"
+    elif status_int == 200 and bozo is not None:
+        retry_reason = f"HTTP 200 but feed parse failed" \
+                       f"{f' — {str(bozo)[:100]}' if bozo else ''}"
+    else:
+        # Bug 1 fix: previously this case (timeout, connection refused,
+        # weird status, 200-with-zero-entries-and-no-error) left
+        # retry_reason = None, which the loop treated as "succeeded."
+        retry_reason = f"HTTP {status_int} — empty response (no entries)"
 
+    # ── Retry loop ────────────────────────────────────────────
+    for attempt in range(config.MAX_RETRIES):
         # 503 退避比解析错误退避更长
         base = config.RETRY_BACKOFF_503_BASE if is_503 else config.RETRY_BACKOFF_BASE
         if attempt < len(base):
@@ -153,24 +230,30 @@ def fetch_all(wait_on_429=False):
               f"attempt {attempt + 2}/{config.MAX_RETRIES + 1}, "
               f"waiting {delay:.1f}s...")
         time.sleep(delay)
-        feed = feedparser.parse(url)
 
-        # Re-check after retry
-        status_int2, bozo2, is_429_2, is_503_2, fatal2 = _classify_status(feed)
+        # Bug 2 fix: use _do_fetch which always passes User-Agent
+        feed, status_int2, bozo2, is_429_2, is_503_2, fatal2 = _do_fetch(url)
+
+        # Check for arXiv error entry on retry too
+        error_msg = _is_arxiv_error_feed(feed)
+        if error_msg:
+            print(f"\n⛔ {error_msg}")
+            print(f"   URL: {url}")
+            return [], _empty_stats()
 
         if feed.entries:
-            # Success — got data
             grouped = _group_by_category(feed.entries)
             return _build_result(grouped)
 
         if is_429_2:
+            wait_sec = 300 + random.randint(0, 60)
             if wait_on_429:
-                wait_sec = 300 + random.randint(0, 60)
                 print(f"  [RATE-LIMITED] HTTP 429 on retry — "
                       f"waiting {wait_sec}s ({wait_sec // 60}min) then retrying...")
                 time.sleep(wait_sec)
                 return fetch_all(wait_on_429=False)
-            print(f"  [RATE-LIMITED] HTTP 429 on retry — giving up")
+            if _prompt_retry("HTTP 429 on retry — arXiv is rate-limiting.", wait_sec):
+                return fetch_all(wait_on_429=False)
             return [], _empty_stats()
 
         if fatal2:
@@ -182,9 +265,11 @@ def fetch_all(wait_on_429=False):
             retry_reason = "HTTP 503 — arXiv API is temporarily unavailable"
             is_503 = True
         elif status_int2 == 200 and bozo2 is not None:
-            retry_reason = f"HTTP 200 but feed parse failed"
+            retry_reason = "HTTP 200 but feed parse failed"
+            is_503 = False
         else:
             retry_reason = f"HTTP {status_int2} — empty response"
+            is_503 = False
 
     # ── After all retries ──
     if feed.entries:
@@ -196,8 +281,8 @@ def fetch_all(wait_on_429=False):
     print(f"\n⛔ arXiv API returned 0 entries after "
           f"{config.MAX_RETRIES + 1} attempt(s) (HTTP {status_final}).")
     if not wait_on_429:
-        print("   This may be rate-limiting or an API outage.")
-        print("   Try again in 5-10 minutes, or use --wait for auto-retry.")
+        if _prompt_retry(f"All {config.MAX_RETRIES + 1} attempts exhausted (HTTP {status_final})."):
+            return fetch_all(wait_on_429=False)
     return [], _empty_stats()
 
 

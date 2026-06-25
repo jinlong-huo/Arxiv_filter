@@ -232,8 +232,7 @@ def main():
 
     # ── Stage 4: Digest ────────────────────────────────────
     digest.generate_markdown(selected, ocs_selected, total_main, total_ocs)
-    print(f"Main filter: {len(selected)} papers")
-    print(f"OCS spotlight: {len(ocs_selected)} papers")
+    digest.print_results(selected, ocs_selected)
     print(f"Saved to {config.OUTPUT_FILE}")
 
     # ── Stage 5: Send ──────────────────────────────────────
