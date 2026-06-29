@@ -1,4 +1,4 @@
-.PHONY: help install run send all member-new member-export clean
+.PHONY: help install run send wait all daily daily-nosend member-new member-export note-new download clean
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -9,22 +9,22 @@ install: ## Install Python dependencies
 	pip install feedparser
 
 run: ## Run arXiv daily digest (dry-run, no email)
-	python3 Arxiv_filter.py
+	python3 arxiv_digest/Arxiv_filter.py
 
 send: ## Run arXiv daily digest + send email
-	python3 Arxiv_filter.py --send
+	python3 arxiv_digest/Arxiv_filter.py --send
 
 wait: ## Run + send, auto-retry on 429 rate-limit (5 min wait)
-	python3 Arxiv_filter.py --send --wait
+	python3 arxiv_digest/Arxiv_filter.py --send --wait
 
-all: ## Full run: filter + send email + download PDFs
-	python3 Arxiv_filter.py --send && python3 download_papers.py
+all: ## Full run: filter + send email + download PDFs + rename
+	python3 arxiv_digest/Arxiv_filter.py --send && make download
 
 daily: ## Fetch → verify → send → download (gated, recommended)
-	./run_daily.sh
+	./arxiv_digest/run_daily.sh
 
 daily-nosend: ## Fetch → verify → download (skip email)
-	./run_daily.sh --skip-send
+	./arxiv_digest/run_daily.sh --skip-send
 
 
 # --- Members ---
@@ -49,9 +49,9 @@ note-new: ## Create a new paper note from template. Usage: make note-new NAME=zh
 
 # --- Maintenance ---
 
-download: ## Download PDFs from daily_digest.md. Opts: make download ARGS="--dest /path --dry-run"
-	python3 download_papers.py $(ARGS)
+download: ## Download PDFs + rename to Author_Year_Title. Opts: make download ARGS="--dry-run"
+	python3 arxiv_digest/download_papers.py $(ARGS) && python3 arxiv_digest/rename_papers.py
 
 clean: ## Remove generated files
-	rm -f daily_digest.md
+	rm -f arxiv_digest/daily_digest.md
 	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null; true

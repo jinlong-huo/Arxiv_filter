@@ -5,13 +5,15 @@ LLM inference / datacenter networking research group toolkit.
 ## Architecture
 
 ```
-Arxiv_filter.py           # Main orchestrator (fetch → filter → select → digest → send)
-arxiv_digest/              # Pipeline modules
-  ├── config.py            #   All settings: keywords, thresholds, paths, email
-  ├── fetch.py             #   arXiv API: query builder, retry logic, error classification
-  ├── filter.py            #   Text cleaning, keyword scoring (main + OCS)
-  ├── digest.py            #   State I/O, top-N selection, markdown generation
-  └── emailer.py           #   SMTP email (plain text + HTML)
+arxiv_digest/               # Pipeline (fetch → filter → select → digest → send)
+  ├── Arxiv_filter.py       #   Main orchestrator
+  ├── config.py             #   All settings: keywords, thresholds, paths, email
+  ├── fetch.py              #   arXiv API: query builder, retry logic, error classification
+  ├── filter.py             #   Text cleaning, keyword scoring (main + OCS)
+  ├── digest.py             #   State I/O, top-N selection, markdown generation
+  ├── emailer.py            #   SMTP email (plain text + HTML)
+  ├── download_papers.py    #   PDF downloader
+  └── rename_papers.py      #   PDF renamer (Zotero format)
 members/<name>/           # Personal workspace — paper notes, projects, repros
 paper-notes/              # Shared paper note template
 knowledge-base/           # Glossary, reading roadmap, topic deep-dives

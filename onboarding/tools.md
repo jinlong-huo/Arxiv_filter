@@ -19,7 +19,7 @@ export ARXIV_DIGEST_EMAIL_PASSWORD="你的Gmail应用专用密码"
 # 或者: echo "密码" > .email_password
 
 # 测试
-python3 Arxiv_filter.py --send
+python3 arxiv_digest/Arxiv_filter.py --send
 ```
 
 **设为每天自动跑**

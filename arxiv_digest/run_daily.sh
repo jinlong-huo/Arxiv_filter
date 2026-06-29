@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
-# run_daily.sh — fetch → verify → send → download
+# run_daily.sh — fetch → verify → send → download → rename
 #
 # Runs the arXiv pipeline once, verifies the digest is healthy, then
-# gates email + PDF download on success.  Fails loudly and early if
-# the fetch produced nothing usable (rate-limit, API outage, 0 matches).
+# gates email + PDF download + rename on success.  Fails loudly and
+# early if the fetch produced nothing usable (rate-limit, API outage, 0 matches).
 #
 # Usage:
 #     ./run_daily.sh              # full run (no flags)
@@ -14,7 +14,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-DIGEST_FILE="$SCRIPT_DIR/arxiv_digest/daily_digest.md"
+DIGEST_FILE="$SCRIPT_DIR/daily_digest.md"
 TODAY="$(date '+%Y-%m-%d')"
 
 RED='\033[0;31m'
@@ -81,9 +81,9 @@ echo ""
 # Step 3 — Send email (unless --skip-send)
 # ──────────────────────────────────────────────
 if [[ "${1:-}" == "--skip-send" ]]; then
-    echo "[3/4] Email skipped (--skip-send flag)"
+    echo "[3/5] Email skipped (--skip-send flag)"
 else
-    echo "[3/4] Sending email …"
+    echo "[3/5] Sending email …"
     if python3 Arxiv_filter.py --send-only; then
         echo -e "${GREEN}✓ Email sent${NC}"
     else
@@ -96,12 +96,22 @@ echo ""
 # ──────────────────────────────────────────────
 # Step 4 — Download PDFs
 # ──────────────────────────────────────────────
-echo "[4/4] Downloading PDFs …"
+echo "[4/5] Downloading PDFs …"
 echo ""
 
 python3 download_papers.py
 
 echo ""
+
+# ──────────────────────────────────────────────
+# Step 5 — Rename PDFs
+# ──────────────────────────────────────────────
+echo "[5/5] Renaming PDFs …"
+echo ""
+
+python3 rename_papers.py
+
+echo ""
 echo -e "${GREEN}══════════════════════════════════════════════════${NC}"
-echo -e "${GREEN}  Done — digest sent + PDFs downloaded${NC}"
+echo -e "${GREEN}  Done — digest sent + PDFs downloaded + renamed${NC}"
 echo -e "${GREEN}══════════════════════════════════════════════════${NC}"

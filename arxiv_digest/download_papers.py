@@ -3,9 +3,10 @@
 Download arXiv papers listed in daily_digest.md to a target folder.
 
 Usage:
-    python3 download_papers.py                          # downloads to /Users/Vir-G/Downloads/Paper
-    python3 download_papers.py --dest /some/folder      # custom destination
-    python3 download_papers.py --dry-run                # list what would be downloaded
+    python3 arxiv_digest/download_papers.py                          # downloads to ~/Downloads/Paper
+    python3 arxiv_digest/download_papers.py --dest /some/folder      # custom destination
+    python3 arxiv_digest/download_papers.py --dry-run                # list what would be downloaded
+    make download ARGS="--dry-run"                                    # via Makefile
 """
 
 import argparse
@@ -17,8 +18,8 @@ import urllib.request
 from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
-DIGEST_FILE = SCRIPT_DIR / "arxiv_digest" / "daily_digest.md"
-DEFAULT_DEST = Path.home() / "Downloads" / "Paper"
+DIGEST_FILE = SCRIPT_DIR / "daily_digest.md"
+DEFAULT_DEST = Path.home() / "Downloads" / "Paper" / "LLM"
 ARXIV_DELAY = 3.0  # seconds between downloads, be polite
 MAX_TITLE_CHARS = 80   # max chars of title in filename
 

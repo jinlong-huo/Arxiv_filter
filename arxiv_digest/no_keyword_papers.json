@@ -1,1409 +1,170 @@
 {
-  "Radio Resource Management for the Uplink of Hybrid Beamforming Systems": {
-    "title": "Radio Resource Management for the Uplink of Hybrid Beamforming Systems",
-    "link": "https://arxiv.org/abs/2606.22643v1",
-    "first_author": "Rosenberg",
-    "year": "2026",
-    "summary": "This paper studies radio resource management (RRM) for the uplink of a multi-channel cellular system with hybrid beamforming based on analog beamforming using predefined codebooks and zero-forcing digital beamforming. We first formulate a per-time slot joint RRM optimization problem, which includes "
-  },
-  "Game-Theoretic Framework for Private Data Sharing in Vehicular Networks": {
-    "title": "Game-Theoretic Framework for Private Data Sharing in Vehicular Networks",
-    "link": "https://arxiv.org/abs/2606.22115v1",
-    "first_author": "Krishnamachari",
-    "year": "2026",
-    "summary": "We present a novel game-theoretic framework designed to enhance privacy and scalability in decentralized vehicular data collection systems. The proposed hybrid architecture comprises vehicles that supply sensor data, independent servers that process data via secure multiparty computation, a coordina"
-  },
-  "Multi-Target Maneuver Coordinations: Unlocking Coordination Opportunities in Connected Automated Driving": {
-    "title": "Multi-Target Maneuver Coordinations: Unlocking Coordination Opportunities in Connected Automated Driving",
-    "link": "https://arxiv.org/abs/2606.22055v1",
-    "first_author": "Altintas",
-    "year": "2026",
-    "summary": "Maneuver coordination is a key enabler of connected and automated driving, allowing vehicles to negotiate and execute maneuvers that would otherwise be difficult, inefficient or unsafe. Existing approaches and use cases typically assume coordination with a single predefined target vehicle, which lim"
-  },
-  "Can Quantum Receiver Beat the SIC Limit in Multiple Access Networks?": {
-    "title": "Can Quantum Receiver Beat the SIC Limit in Multiple Access Networks?",
-    "link": "https://arxiv.org/abs/2606.20956v1",
+  "AB-Sync: Attention-Based Slot-Level Clock Synchronization Method for UWB-TDOA Localization Networks": {
+    "title": "AB-Sync: Attention-Based Slot-Level Clock Synchronization Method for UWB-TDOA Localization Networks",
+    "link": "https://arxiv.org/abs/2606.28087v1",
     "first_author": "Liu",
     "year": "2026",
-    "summary": "Successive interference cancellation (SIC) is an important technique for 5G/B5G wireless receivers to resolve interfering signals from multiple users. While SIC has been proven to approach the channel capacity limit in many settings of multiple access networks, it remains unknown if this limit can b"
+    "summary": "Ultra-wideband (UWB) time-difference-of-arrival (TDOA) localization networks provide high-update-rate indoor location services for IoT and cyber-physical applications, but their accuracy depends on nanosecond-level clock synchronization among anchors. Existing wireless clock synchronization (WCS) me"
   },
-  "Energy-Efficient FSO Reconfiguration under User Mobility in Hybrid Fiber-IAB Backhaul": {
-    "title": "Energy-Efficient FSO Reconfiguration under User Mobility in Hybrid Fiber-IAB Backhaul",
-    "link": "https://arxiv.org/abs/2606.18017v1",
-    "first_author": "Monti",
+  "Mixed-Precision For Energy Efficient Computations": {
+    "title": "Mixed-Precision For Energy Efficient Computations",
+    "link": "https://arxiv.org/abs/2606.27949v1",
+    "first_author": "Iakymchuk",
     "year": "2026",
-    "summary": "User mobility creates stochastic, time-varying backhaul demand that static capacity provisioning cannot match. We propose a closed-loop, load-aware hysteresis controller for hybrid fiber-IAB-FSO backhaul and show that energy drops faster than coverage: 8% to 44% energy savings cost only 0.9% to 6.7%"
+    "summary": "As simulations grow more realistic, the pursuit of higher accuracy results in extended computation times and substantial power consumption. This study explores mixed-precision computing as a promising strategy to address these challenges, leveraging computer arithmetic tools to optimize performance."
   },
-  "Integration of 5G and Industrial Digital Models: A Case Study with AGVs": {
-    "title": "Integration of 5G and Industrial Digital Models: A Case Study with AGVs",
-    "link": "https://arxiv.org/abs/2606.17655v1",
-    "first_author": "Gozálvez",
-    "year": "2026",
-    "summary": "5G is a fundamental technology for the digitalization of smart manufacturing. Smart manufacturing relies on the use of digital models to optimize industrial processes before implementation on the manufacturing plants. These models should account for the impact of 5G communications to adequately dime"
-  },
-  "Development and Design of FLKit: A Structured Onboarding Toolkit for Federated Learning in Health and Life Sciences": {
-    "title": "Development and Design of FLKit: A Structured Onboarding Toolkit for Federated Learning in Health and Life Sciences",
-    "link": "https://arxiv.org/abs/2606.23500v1",
-    "first_author": "Peeters",
-    "year": "2026",
-    "summary": "Federated learning lets institutions train shared models without moving their data, which makes it a natural fit for health and life sciences research under strict privacy regulation. The methods are maturing fast, but the practical barrier now comes earlier: a team starting a federated project meet"
-  },
-  "Solving Approximate Agreement on continuous and discrete spaces": {
-    "title": "Solving Approximate Agreement on continuous and discrete spaces",
-    "link": "https://arxiv.org/abs/2606.23260v1",
-    "first_author": "Rajsbaum",
-    "year": "2026",
-    "summary": "We consider $n$ asynchronous processes prone to crashes, communicating via shared read-write registers, and study the wait-free solvability of approximate agreement: given inputs, processes must output values that are close to each other, and satisfy a validity property. At the very least, if inputs"
-  },
-  "Towards Global Multi-Cloud Strategies: Insights into AWS and Alibaba Cloud Synergy": {
-    "title": "Towards Global Multi-Cloud Strategies: Insights into AWS and Alibaba Cloud Synergy",
-    "link": "https://arxiv.org/abs/2606.21680v1",
-    "first_author": "Neumann",
-    "year": "2026",
-    "summary": "Multi-cloud strategies are increasingly adopted by modern enterprises to improve agility and resilience and to reduce vendor lock-in. Integrating workloads across providers, such as Amazon Web Services (AWS) and Alibaba Cloud, remains challenging due to interoperability and migration issues. This pa"
-  },
-  "Certified Euclidean-Residue Minimal-Alignment Switch Decompositions for Three Edge-Disjoint Hamiltonian Cycles in Eisens": {
-    "title": "Certified Euclidean-Residue Minimal-Alignment Switch Decompositions for Three Edge-Disjoint Hamiltonian Cycles in Eisenstein--Jacobi Networks",
-    "link": "https://arxiv.org/abs/2606.19832v1",
-    "first_author": "Albader",
-    "year": "2026",
-    "summary": "Eisenstein--Jacobi (EJ) networks are degree-six quotient-lattice interconnection networks. For a generator $α=a+bρ$, let $N=a^2+ab+b^2$ and $d=\\gcd(a,b)$. If $d=1$, the three natural unit directions already give three edge-disjoint Hamiltonian cycles. If $d>1$, each unit direction splits into $d$ cy"
-  },
-  "On the Notions of Bounded Bypass, and How to Make any Deadlock-Free MUTEX Protocol Satisfy One of Them": {
-    "title": "On the Notions of Bounded Bypass, and How to Make any Deadlock-Free MUTEX Protocol Satisfy One of Them",
-    "link": "https://arxiv.org/abs/2606.19003v1",
-    "first_author": "Spronck",
-    "year": "2026",
-    "summary": "In the literature on mutual exclusion, bounded bypass has been used for a long time as a strengthening of starvation-freedom, but, to the best of our knowledge, it still lacks a satisfying definition as a liveness property on its own. Moreover, we have encountered MUTEX protocols for which this noti"
-  },
-  "A Composable CRDT Layer for Byzantine-Resilient Deterministic Reconstruction": {
-    "title": "A Composable CRDT Layer for Byzantine-Resilient Deterministic Reconstruction",
-    "link": "https://arxiv.org/abs/2606.18966v2",
-    "first_author": "Brocco",
-    "year": "2026",
-    "summary": "Conflict-free Replicated Data Types (CRDTs) ensure Strong Eventual Consistency without coordination, but typically assume benign participants and rely on validation or exclusion to handle Byzantine behavior.\n  We address this problem through deterministic state reconstruction: rather than deciding w"
-  },
-  "DejaVu: Why You Should Write to Your DRAM Rows Twice, Carefully": {
-    "title": "DejaVu: Why You Should Write to Your DRAM Rows Twice, Carefully",
-    "link": "https://arxiv.org/abs/2606.22297v1",
-    "first_author": "Mutlu",
-    "year": "2026",
-    "summary": "We provide the first experimental demonstration of DejaVu, a phenomenon where the data previously written to DRAM cells affects DRAM's vulnerability to read disturbance. Our experimental characterization using 112 COTS DDR4 DRAM chips from all three major manufacturers shows that, compared to the ba"
-  },
-  "Row-Based Layout Synthesis for Analog Circuits Using Height-Quantized Primitives": {
-    "title": "Row-Based Layout Synthesis for Analog Circuits Using Height-Quantized Primitives",
-    "link": "https://arxiv.org/abs/2606.21767v1",
-    "first_author": "Sapatnekar",
-    "year": "2026",
-    "summary": "Restrictive design rules and strong layout-dependent effects have tightened the coupling between physical layout decisions and electrical performance in advanced process nodes, such as FinFET, making analog and mixed-signal (AMS) layout automation increasingly difficult. This paper presents a quanti"
-  },
-  "A Tool for the Synthesis of Adaptive Probabilistic Processors Based on the Ising Model": {
-    "title": "A Tool for the Synthesis of Adaptive Probabilistic Processors Based on the Ising Model",
-    "link": "https://arxiv.org/abs/2606.19533v1",
-    "first_author": "Azambuja",
-    "year": "2026",
-    "summary": "This work presents a tool for the synthesis and simulation of probabilistic architectures for solving combinatorial optimization problems by mapping them to the Ising model. The proposed approach automatically constructs the Ising Hamiltonian and determines the number of probabilistic elements (p-bi"
-  },
-  "ComPart: Community-Guided Post-Coarsening for High-Quality Hypergraph Partitioning": {
-    "title": "ComPart: Community-Guided Post-Coarsening for High-Quality Hypergraph Partitioning",
-    "link": "https://arxiv.org/abs/2606.18131v1",
-    "first_author": "Xie",
-    "year": "2026",
-    "summary": "Hypergraph partitioning is a critical step in the design of complex embedded systems, essential for optimizing task mapping on heterogeneous MPSoCs and enabling multi-FPGA prototyping. Many existing methods rely on community detection to identify modules with dense internal and sparse external conne"
-  },
-  "IMPart: Integration of Memetic Operations into Multi-Level Framework for Large-k-Way Hypergraph Partitioning": {
-    "title": "IMPart: Integration of Memetic Operations into Multi-Level Framework for Large-k-Way Hypergraph Partitioning",
-    "link": "https://arxiv.org/abs/2606.18117v1",
-    "first_author": "Xie",
-    "year": "2026",
-    "summary": "The problem of k-way hypergraph partitioning is fundamental with significant applications in various fields, including VLSI design and scientific computing. State-of-the-art hypergraph partitioners commonly employ a multi-level framework encompassing coarsening, initial partitioning, uncoarsening, a"
-  },
-  "PsyBridge: A Hybrid Intelligent Framework for Multi-Dimensional Mental Health Assessment and Decision Support": {
-    "title": "PsyBridge: A Hybrid Intelligent Framework for Multi-Dimensional Mental Health Assessment and Decision Support",
-    "link": "https://arxiv.org/abs/2606.23673v1",
-    "first_author": "Wilson",
-    "year": "2026",
-    "summary": "Mental health assessment commonly relies on isolated screening instruments or data-driven models that often lack interpretability and multi-dimensional integration. Existing approaches frequently focus on individual indicators such as depression or anxiety while providing limited support for compreh"
-  },
-  "TailorMind: Towards Preference-Aligned Multimodal Content Generation": {
-    "title": "TailorMind: Towards Preference-Aligned Multimodal Content Generation",
-    "link": "https://arxiv.org/abs/2606.23643v1",
-    "first_author": "Nie",
-    "year": "2026",
-    "summary": "Personalized content systems depend on available UGC and struggle when suitable content is absent, delayed, or costly to create. Although multimodal generators can synthesize content on demand, how to translate behavioral traces into generation-ready preferences remains underexplored. We study perso"
-  },
-  "AI-driven Optimisation of Quality of Recovery (QoR) in Remote Patient Monitoring": {
-    "title": "AI-driven Optimisation of Quality of Recovery (QoR) in Remote Patient Monitoring",
-    "link": "https://arxiv.org/abs/2606.23631v1",
-    "first_author": "Drobnjak",
-    "year": "2026",
-    "summary": "Remote patient monitoring depends on patient-reported data to capture the subjective dimension of recovery that devices cannot measure. The Quality of Recovery (QoR-15) survey is the gold-standard instrument for this purpose. It was designed and validated for occasional in-hospital assessment, yet r"
-  },
-  "Against Proxy Optimization": {
-    "title": "Against Proxy Optimization",
-    "link": "https://arxiv.org/abs/2606.23597v1",
-    "first_author": "Neth",
-    "year": "2026",
-    "summary": "I discuss conditions under which maximizing a proxy utility function is harmful and suggest this poses problems for applying decision theory."
-  },
-  "Digital Humanism and Evolutionary Design": {
-    "title": "Digital Humanism and Evolutionary Design",
-    "link": "https://arxiv.org/abs/2606.23417v1",
-    "first_author": "Höhl",
-    "year": "2026",
-    "summary": "This paper examines the two concepts of digital humanism and evolutionary design. The aim is to identify and highlight potential common structures, synergies, and challenges. How should and can technical systems be designed, and what implications does this have for the design of our environment? In "
-  },
-  "EHR-Complex: Benchmarking Medical Agents for Complex Clinical Reasoning": {
-    "title": "EHR-Complex: Benchmarking Medical Agents for Complex Clinical Reasoning",
-    "link": "https://arxiv.org/abs/2606.23301v1",
-    "first_author": "Ren",
-    "year": "2026",
-    "summary": "Clinical agents promise to democratize access to electronic health records (EHRs), yet existing benchmarks fail to reflect the complexity of practical EHR analysis, e.g., often operating on idealized, clean EHRs via static SQL generation rather than interactive execution. In this work, we introduce "
-  },
-  "HOLMES: Evaluating Higher-Order Logical Reasoning in LLMs": {
-    "title": "HOLMES: Evaluating Higher-Order Logical Reasoning in LLMs",
-    "link": "https://arxiv.org/abs/2606.23238v1",
-    "first_author": "Pan",
-    "year": "2026",
-    "summary": "Logical reasoning is essential for reliable AI, yet existing benchmarks are largely first-order-logic-centric, focusing on object-level deduction over fixed predicates. This misses many realistic scenarios where models must reason over rules, predicates, functions, constraints, and decision procedur"
-  },
-  "Capable but Careless: Do Computer-Use Agents Follow Contextual Integrity?": {
-    "title": "Capable but Careless: Do Computer-Use Agents Follow Contextual Integrity?",
-    "link": "https://arxiv.org/abs/2606.23189v1",
-    "first_author": "Gurevych",
-    "year": "2026",
-    "summary": "Computer-use agents (CUAs) now act on a user's behalf across personal applications such as email, calendars, and to-do lists. This cross-application access is useful, but it also creates a privacy risk that has been largely overlooked: when an agent works in one context, it can pull in information f"
-  },
-  "Some Results about the Expressivity of Preference-Incomplete Structured Argumentation Frameworks": {
-    "title": "Some Results about the Expressivity of Preference-Incomplete Structured Argumentation Frameworks",
-    "link": "https://arxiv.org/abs/2606.23055v1",
-    "first_author": "Yuste-Ginel",
-    "year": "2026",
-    "summary": "This paper studies the expressive power of ASPIC$^+$ argumentation frameworks with uncertain preference profiles by comparing them with several abstract formalisms with uncertain defeats. Most of our results are negative (and some of them are theoretically unexpected). We also conjecture a positive,"
-  },
-  "From numerical proportions to analogical proportions between probabilities": {
-    "title": "From numerical proportions to analogical proportions between probabilities",
-    "link": "https://arxiv.org/abs/2606.23029v1",
-    "first_author": "Richard",
-    "year": "2026",
-    "summary": "Analogical proportions link four items a, b, c, d by a relation stating that ``a is to b as c is to d\", a, b, c, d being the formal representation of real world entities, ranging from simple numerical values to more complex structures such as profiles. Accordingly, $a, b, c, d$ could be atomic value"
-  },
-  "Intent-Governed Tool Authorization for AI Agents": {
-    "title": "Intent-Governed Tool Authorization for AI Agents",
-    "link": "https://arxiv.org/abs/2606.22916v1",
-    "first_author": "Wang",
-    "year": "2026",
-    "summary": "AI agents increasingly act through external tools: they read private data, construct structured payloads, submit write requests, export records, and coordinate workflows across application boundaries. Existing authorization mechanisms usually ask whether an integration credential, app, or token can "
-  },
-  "Finding the Evidence: Discovering Decision-Supporting Tokens for On-Policy Reasoning Distillation": {
-    "title": "Finding the Evidence: Discovering Decision-Supporting Tokens for On-Policy Reasoning Distillation",
-    "link": "https://arxiv.org/abs/2606.22830v1",
-    "first_author": "Cai",
-    "year": "2026",
-    "summary": "On-policy distillation transfers reasoning ability through dense token-level supervision, yet the nature of the transferable signal remains unclear. We discover that reasoning chains contain two types of knowledge that require different discovery mechanisms: decisions (where to branch), which surfac"
-  },
-  "AI-Assisted Help-Seeking Trajectories in Programming Education from an SRL-Informed Perspective": {
-    "title": "AI-Assisted Help-Seeking Trajectories in Programming Education from an SRL-Informed Perspective",
-    "link": "https://arxiv.org/abs/2606.22809v1",
-    "first_author": "Konomi",
-    "year": "2026",
-    "summary": "Generative AI tools provide novice programmers with instant, personalized support, but also raise concerns about whether AI use supports or bypasses students' regulation of problem-solving. Existing work has largely focused on correctness, usability, or overall usage frequency, with less attention t"
-  },
-  "Measuring Behavior Portability in Large Language Models": {
-    "title": "Measuring Behavior Portability in Large Language Models",
-    "link": "https://arxiv.org/abs/2606.22797v1",
-    "first_author": "Evans",
-    "year": "2026",
-    "summary": "Large language models are increasingly deployed as autonomous decision makers, yet the behavioral mapping they exhibit can vary substantially across decision environments that are payoff-equivalent by construction-environments that share identical payoff-relevant structure but differ in surface pres"
-  },
-  "Confident but Conflicted: Internal Uncertainty and Cognitive Dissonance Resolution in LLMs": {
-    "title": "Confident but Conflicted: Internal Uncertainty and Cognitive Dissonance Resolution in LLMs",
-    "link": "https://arxiv.org/abs/2606.22633v1",
-    "first_author": "Lerman",
-    "year": "2026",
-    "summary": "Large language models (LLMs) frequently encounter inputs that disagree with their prior outputs, through user pushback, retrieved documents, or web search results. While the way they resolve such conflicts -- a process we frame as cognitive dissonance resolution -- has been characterized behaviorall"
-  },
-  "MacAgentBench: Benchmarking AI Agents on Real-World macOS Desktop": {
-    "title": "MacAgentBench: Benchmarking AI Agents on Real-World macOS Desktop",
-    "link": "https://arxiv.org/abs/2606.22557v1",
-    "first_author": "Zhou",
-    "year": "2026",
-    "summary": "Computer use agents (CUAs) have advanced rapidly in desktop automation, and a growing number of users deploy CUAs such as OpenClaw on Mac Mini for always-on automation. However, existing benchmarks, including those for macOS, evaluate agents without framework augmentation and rely on binary evaluati"
-  },
-  "Imagine to Ensure Safety in Hierarchical Reinforcement Learning": {
-    "title": "Imagine to Ensure Safety in Hierarchical Reinforcement Learning",
-    "link": "https://arxiv.org/abs/2606.22509v1",
-    "first_author": "Panov",
-    "year": "2026",
-    "summary": "This work investigates the safe exploration problem in reinforcement learning, where an agent must maximize cumulative performance while simultaneously satisfying safety constraints. This challenge becomes even more pronounced in long-horizon tasks, where existing safe methods face fundamental limit"
-  },
-  "Self-Evolving Cognitive Framework via Causal World Modeling for Embodied Scientific Intelligence": {
-    "title": "Self-Evolving Cognitive Framework via Causal World Modeling for Embodied Scientific Intelligence",
-    "link": "https://arxiv.org/abs/2606.22449v1",
-    "first_author": "Inamura",
-    "year": "2026",
-    "summary": "Current embodied world models are primarily optimized for predictive objectives, limiting their ability to generalize under distribution shifts and reason systematically about unseen situations and hypothetical interventions. We argue that embodied intelligence should move beyond predictive world mo"
-  },
-  "Efficient Multimodal Clinical Question Answering for Pulmonary Embolism Risk Assessment": {
-    "title": "Efficient Multimodal Clinical Question Answering for Pulmonary Embolism Risk Assessment",
-    "link": "https://arxiv.org/abs/2606.22442v1",
-    "first_author": "Jia",
-    "year": "2026",
-    "summary": "Pulmonary embolism (PE) is a high risk cardiopulmonary condition whose management requires both timely diagnosis and reliable assessment of future clinical risk. Because PE care routinely combines computed tomography pulmonary angiography (CTPA), radiology interpretation, and longitudinal electronic"
-  },
-  "SVGym (SciVerseGym): An Environment for Reinforcement Learning and Bayesian Optimization in Crystal Discovery": {
-    "title": "SVGym (SciVerseGym): An Environment for Reinforcement Learning and Bayesian Optimization in Crystal Discovery",
-    "link": "https://arxiv.org/abs/2606.22425v1",
-    "first_author": "Cao",
-    "year": "2026",
-    "summary": "Machine-learned interatomic potentials now enable efficient atomistic evaluation for interactive materials discovery, yet closed-loop crystal search methods remain fragmented across bespoke pipelines for editing, relaxation, scoring, constraints, and bookkeeping. We introduce SciVerseGym, a Gymnasiu"
-  },
-  "Reference-Free Assessment of Physical Consistency in World Model-based Video Generation": {
-    "title": "Reference-Free Assessment of Physical Consistency in World Model-based Video Generation",
-    "link": "https://arxiv.org/abs/2606.22363v1",
-    "first_author": "Yun",
-    "year": "2026",
-    "summary": "We introduce reference-free measures for evaluating the physical consistency of generated videos, combining relative and absolute approaches to assess fidelity. Although tools like WorldGym or WorldEval enable robotic simulation via video generation, physical fidelity gaps often prevent these enviro"
-  },
-  "Human vs Machine Mathematical Difficulty on Project Euler: An Experimental Analysis": {
-    "title": "Human vs Machine Mathematical Difficulty on Project Euler: An Experimental Analysis",
-    "link": "https://arxiv.org/abs/2606.21972v1",
-    "first_author": "Schmitt",
-    "year": "2026",
-    "summary": "We study how the effort and success probability of frontier AI systems scale with human difficulty on problems from Project Euler, an online platform of computational mathematics problems. Our dataset, from the MathArena benchmark, consists of 3840 attempts across 50 problems and 26 model configurat"
-  },
-  "ChainWorld: Composing Long-Horizon Desktop Workloads from Atomic OSWorld Tasks": {
-    "title": "ChainWorld: Composing Long-Horizon Desktop Workloads from Atomic OSWorld Tasks",
-    "link": "https://arxiv.org/abs/2606.21654v1",
-    "first_author": "Wang",
-    "year": "2026",
-    "summary": "Computer use agents are evaluated almost exclusively on atomic desktop tasks, but realistic desktop work requires sustaining state across multiple objectives. We study this gap with ChainWorld, which composes atomic OSWorld tasks into long horizon desktop workloads through directional compatibility "
-  },
-  "AI Alignment From Social Choice Perspectives": {
-    "title": "AI Alignment From Social Choice Perspectives",
-    "link": "https://arxiv.org/abs/2606.21550v1",
-    "first_author": "Zhang",
-    "year": "2026",
-    "summary": "Alignment from human feedback uses human judgments about model outputs to steer the behavior of language models after pretraining. When those judgments reflect conflicting views of desirable behavior, the learned objective becomes an aggregate determination of what the model should prefer. We survey"
-  },
-  "Whistleblowing and the machine -- towards a considered position": {
-    "title": "Whistleblowing and the machine -- towards a considered position",
-    "link": "https://arxiv.org/abs/2606.21201v1",
-    "first_author": "Markovich",
-    "year": "2026",
-    "summary": "Artificial intelligent agents and autonomous systems are embedded in our environments. They are both a commercial product and a personal tool that generates a lot of data and can draw conclusions from it: machines generate and keep secrets. But should machines protect all secrets? It has been shown "
-  },
-  "Answer Engineering: Local Trajectory Editing for Protocol-Constrained Decision Making in Large Language Models": {
-    "title": "Answer Engineering: Local Trajectory Editing for Protocol-Constrained Decision Making in Large Language Models",
-    "link": "https://arxiv.org/abs/2606.21121v1",
-    "first_author": "Molodnitskaia",
-    "year": "2026",
-    "summary": "Large language models can produce confident but protocol-invalid answers in domains where procedural compliance is critical. This paper presents Answer Engineering, a deterministic runtime and authoring layer that applies localized rule-guided interventions to the visible reasoning trajectory during"
-  },
-  "Closure of Self-Determining System Based on Causal and Constitutive Relations": {
-    "title": "Closure of Self-Determining System Based on Causal and Constitutive Relations",
-    "link": "https://arxiv.org/abs/2606.21010v1",
-    "first_author": "Kuniyoshi",
-    "year": "2026",
-    "summary": "A self-determining system is defined as one in which causes originating within the system influence the system itself. This definition raises the question of how to specify system boundaries. Although the concept of \"closure\" is commonly used for this purpose, defining boundaries solely in terms of "
-  },
-  "Building Agent Harnesses for Scientific Curation from Multimodal Sources": {
-    "title": "Building Agent Harnesses for Scientific Curation from Multimodal Sources",
-    "link": "https://arxiv.org/abs/2606.21005v1",
-    "first_author": "Poon",
-    "year": "2026",
-    "summary": "Scientific discovery workflows often depend on structured curation from the literature. This is difficult for current agents because the key evidence is scattered across long text, dense tables, and figures, and the final records often require reasoning across multiple evidence fragments rather than"
-  },
-  "BioInsight: Multi-Agent Orchestration for Interactive Biomedical Knowledge Discovery": {
-    "title": "BioInsight: Multi-Agent Orchestration for Interactive Biomedical Knowledge Discovery",
-    "link": "https://arxiv.org/abs/2606.20997v1",
-    "first_author": "Zhao",
-    "year": "2026",
-    "summary": "Biomedical researchers increasingly use AI-generated analyses and reports to interpret protein-level signals, but static outputs are often insufficient for research decision-making, where users need to inspect evidence, assess uncertainty, compare mechanisms, and refine hypotheses. We present \\texts"
-  },
-  "Generative Responsible AI Data Evaluation Schema (GRAIDES) for AI Assurance in Local Government": {
-    "title": "Generative Responsible AI Data Evaluation Schema (GRAIDES) for AI Assurance in Local Government",
-    "link": "https://arxiv.org/abs/2606.20963v1",
-    "first_author": "Muctor",
-    "year": "2026",
-    "summary": "Trust in the application of generative Artificial Intelligence (AI) relies on well-governed measurable evidence of performance and safety. In practice, however, evaluation data is often fragmented across systems, inconsistently structured and difficult to compare. We introduce the Generative Respons"
-  },
-  "Power Systems Agent Benchmark: Executable Evaluation of AI Agents in Electric Power Engineering": {
-    "title": "Power Systems Agent Benchmark: Executable Evaluation of AI Agents in Electric Power Engineering",
-    "link": "https://arxiv.org/abs/2606.20950v1",
-    "first_author": "Trashchenkov",
-    "year": "2026",
-    "summary": "Executable evaluation -- checking the consequences of an agent's actions with a program rather than grading its prose -- has become a prominent way to assess tool-using AI agents in software settings. Electric power engineering has not yet had an analogous benchmark: language-model use is still domi"
-  },
-  "Root Cause Analysis with Latent Confounders using Partial Ancestral Graphs": {
-    "title": "Root Cause Analysis with Latent Confounders using Partial Ancestral Graphs",
-    "link": "https://arxiv.org/abs/2606.20912v1",
-    "first_author": "Maciel",
-    "year": "2026",
-    "summary": "Finding the source of failures, known as Root Cause Analysis (RCA), is essential for identifying the root causes of anomalies and maintaining the reliability of complex systems. While causal theory has advanced data-driven RCA, existing frameworks assume causal sufficiency, failing to account for th"
-  },
-  "Study on Quantitative Dynamic Epistemic Logic for Belief Revision": {
-    "title": "Study on Quantitative Dynamic Epistemic Logic for Belief Revision",
-    "link": "https://arxiv.org/abs/2606.20837v1",
-    "first_author": "Camargo",
-    "year": "2026",
-    "summary": "Belief revision is a process in which an agent begins to believe in something she previously did not. I begin the paper by presenting, based on (Gärdenfors, 1998; Hansson, 1999), postulates for belief revision that constitute the basis of the AGM theory. I will then briefly show the semantics of a m"
-  },
-  "Leveraging systems' non-linearity to tackle the scarcity of data in the design of Intelligent Fault Diagnosis Systems": {
-    "title": "Leveraging systems' non-linearity to tackle the scarcity of data in the design of Intelligent Fault Diagnosis Systems",
-    "link": "https://arxiv.org/abs/2606.20323v1",
-    "first_author": "Frisoli",
-    "year": "2026",
-    "summary": "Deep Transfer Learning (DTL) allows for the efficient building of Intelligent Fault Diagnosis Systems (IFDS). On the other hand, DTL methods still heavily rely on large amounts of labelled data. Obtaining such an amount of data can be challenging when dealing with machines or structures faults. This"
-  },
-  "Lagrange: An Open-Vocabulary, Energy-Based Sparse Framework for Generalized End-to-End Driving": {
-    "title": "Lagrange: An Open-Vocabulary, Energy-Based Sparse Framework for Generalized End-to-End Driving",
-    "link": "https://arxiv.org/abs/2606.20274v1",
-    "first_author": "Li",
-    "year": "2026",
-    "summary": "Scaling end-to-end autonomous driving to complex, open-world environments requires perceptual models that generalize to anomalous scenarios and planners that produce kinematically valid trajectories. Existing paradigms face a distinct dichotomy between representational efficiency and generalization "
-  },
-  "A Multi-Agent system for Multi-Objective constrained optimization": {
-    "title": "A Multi-Agent system for Multi-Objective constrained optimization",
-    "link": "https://arxiv.org/abs/2606.20236v1",
-    "first_author": "Filippini",
-    "year": "2026",
-    "summary": "Many decision-making problems in computing and networking systems can be naturally formulated as cost-minimization problems under performance constraints. In dynamic environments, reinforcement learning (RL) is often used to solve such problems at runtime by embedding both costs and constraint viola"
-  },
-  "Exit-and-Join Dynamics for Decentralized Coalition Formation": {
-    "title": "Exit-and-Join Dynamics for Decentralized Coalition Formation",
-    "link": "https://arxiv.org/abs/2606.19683v1",
+  "RelBall: Relation Ball with Quaternion Rotation for Knowledge Graph Completion": {
+    "title": "RelBall: Relation Ball with Quaternion Rotation for Knowledge Graph Completion",
+    "link": "https://arxiv.org/abs/2606.27967v1",
     "first_author": "Zhu",
     "year": "2026",
-    "summary": "This paper studies coalition formation as a decentralized dynamical process driven by unilateral exit-and-join decisions. Agents evaluate local moves using the Aumann-Dreze value, so payoffs are computed within the agent's current coalition rather than through a globally negotiated coalition structu"
+    "summary": "Real-world knowledge graphs are often incomplete, lacking many valid facts. Knowledge Graph Completion (KGC) aims to predict missing links using known triples, thereby enhancing graph coverage. A key challenge is modeling diverse relational patterns such as symmetry, antisymmetry, inversion, composi"
   },
-  "Denoising Implicit Feedback for Cold-start Recommendation": {
-    "title": "Denoising Implicit Feedback for Cold-start Recommendation",
-    "link": "https://arxiv.org/abs/2606.19658v1",
-    "first_author": "Zhang",
+  "NormAct: A Benchmark for Hidden Social Norm Compliance in Embodied Planning": {
+    "title": "NormAct: A Benchmark for Hidden Social Norm Compliance in Embodied Planning",
+    "link": "https://arxiv.org/abs/2606.27826v1",
+    "first_author": "Dai",
     "year": "2026",
-    "summary": "Implicit feedback is widely used in recommender systems due to its accessibility and generality, yet it usually presents noisy samples (e.g., clickbait, position bias). Meanwhile, recommenders inevitably face the item cold-start problem due to the continuous influx of new items. We identify that col"
+    "summary": "Multimodal large language models (MLLMs) are increasingly deployed as embodied planners in egocentric environments, where task success requires not only achieving instructed goals but also acting in socially appropriate ways. While explicit goals may render certain actions optimal, implicit social n"
   },
-  "Toten: Knowledge-Based Ontological Tokenization Of Physical Quantities And Technical Notation In Brazilian Portuguese": {
-    "title": "Toten: Knowledge-Based Ontological Tokenization Of Physical Quantities And Technical Notation In Brazilian Portuguese",
-    "link": "https://arxiv.org/abs/2606.19626v1",
-    "first_author": "Sousa",
-    "year": "2026",
-    "summary": "Byte-Pair Encoding tokenization is statistically efficient for vocabulary compression, but semantically blind to structured technical entities, fragmenting physical quantities, numbers, units, and symbolic expressions into lexically arbitrary subwords. We present TOTEN, a knowledge-based ontological"
-  },
-  "REVEAL++: Differentiable Phenotypic Grouping for Vision-Language Retinal Modeling of Alzheimer's Disease Risk": {
-    "title": "REVEAL++: Differentiable Phenotypic Grouping for Vision-Language Retinal Modeling of Alzheimer's Disease Risk",
-    "link": "https://arxiv.org/abs/2606.19522v1",
-    "first_author": "Fang",
-    "year": "2026",
-    "summary": "The retina offers a noninvasive window into neurodegenerative disease, capturing subtle structural patterns associated with a risk of future cognitive decline. Vision-language alignment frameworks such as REVEAL have shown that pairing retinal fundus images with structured clinical risk narratives i"
-  },
-  "X+Slides: Benchmarking Audience-Conditioned Slide Generation": {
-    "title": "X+Slides: Benchmarking Audience-Conditioned Slide Generation",
-    "link": "https://arxiv.org/abs/2606.19256v1",
-    "first_author": "Wu",
-    "year": "2026",
-    "summary": "Automatically generating slide decks from source documents is an important application of large language models (LLMs). Existing benchmarks primarily assess slide completeness and technical depth, while overlooking the target audience as a critical real-world factor. For instance, specialists demand"
-  },
-  "Analysing drivers and interdependencies in European electricity markets using XAI": {
-    "title": "Analysing drivers and interdependencies in European electricity markets using XAI",
-    "link": "https://arxiv.org/abs/2606.19118v1",
-    "first_author": "O'Sullivan",
-    "year": "2026",
-    "summary": "Electricity markets are inherently complex systems characterised by strong nonlinearities, high-dimensional interactions, and increasing interdependence across regions. While deep neural networks (DNNs) have demonstrated strong predictive capabilities for electricity prices, their lack of interpreta"
-  },
-  "SciRisk-Bench: A Risk-Dimension-Aware Benchmark for AI4Science Safety": {
-    "title": "SciRisk-Bench: A Risk-Dimension-Aware Benchmark for AI4Science Safety",
-    "link": "https://arxiv.org/abs/2606.18936v1",
-    "first_author": "Zeng",
-    "year": "2026",
-    "summary": "Large language models (LLMs) are increasingly embedded in AI for Science (AI4Science) workflows, from scientific question answering and literature analysis to laboratory planning and autonomous discovery. This progress creates an urgent need for safety benchmarks that evaluate not only scientific co"
-  },
-  "Skill-Guided Continuation Distillation for GUI Agents": {
-    "title": "Skill-Guided Continuation Distillation for GUI Agents",
-    "link": "https://arxiv.org/abs/2606.18890v1",
-    "first_author": "Jiang",
-    "year": "2026",
-    "summary": "Improving GUI agents typically relies on behavior cloning on expert trajectories. However, as the current policy deviates from the expert policy, it inevitably encounters policy-induced off-trajectory states during closed-loop execution, i.e., states that fall outside the expert trajectories. Since "
-  },
-  "Generative-Model Predictive Planning for Navigation in Partially Observable Environments": {
-    "title": "Generative-Model Predictive Planning for Navigation in Partially Observable Environments",
-    "link": "https://arxiv.org/abs/2606.18888v1",
-    "first_author": "Kaski",
-    "year": "2026",
-    "summary": "Navigation in partially observable environments presents a significant challenge for autonomous agents, requiring effective decision-making with limited sensory information in unknown environments. Belief-based methods, particularly those using neural networks to approximate the belief space, often "
-  },
-  "Optimizing Lithium Production Decisions under Geological, Demand, and Pricing Uncertainties: A POMDP Framework for Multi": {
-    "title": "Optimizing Lithium Production Decisions under Geological, Demand, and Pricing Uncertainties: A POMDP Framework for Multi-Objective Decision Making",
-    "link": "https://arxiv.org/abs/2606.18598v1",
-    "first_author": "Caers",
-    "year": "2026",
-    "summary": "Decision making in lithium production is challenging, whether from an investor's perspective or a strategic production standpoint. Determining which mines to open and when to open them involves not only geological and price uncertainties, but also complexities around the choice of extraction method,"
-  },
-  "CEO-Bench: Can Agents Play the Long Game?": {
-    "title": "CEO-Bench: Can Agents Play the Long Game?",
-    "link": "https://arxiv.org/abs/2606.18543v1",
-    "first_author": "Liu",
-    "year": "2026",
-    "summary": "Language model agents are becoming proficient executors at isolated, short-horizon tasks such as software engineering and customer service. Yet real-world challenges require a combination of sophisticated skills that remain largely untested in agents: (1) navigating long horizons amid uncertainty; ("
-  },
-  "When Web Agents Finish but Still Fail: Reproducible Triggers and Trace Diagnostics for Parallel Web Exploration": {
-    "title": "When Web Agents Finish but Still Fail: Reproducible Triggers and Trace Diagnostics for Parallel Web Exploration",
-    "link": "https://arxiv.org/abs/2606.20724v1",
-    "first_author": "Venkataraman",
-    "year": "2026",
-    "summary": "Long-horizon web agents often fail in ways hidden by final-answer evaluation: they may visit useful pages, produce a well-formed answer, and terminate confidently while still missing fields, over-including unsupported items, or relying on stale evidence. We study these failures with Parallel WebBenc"
-  },
-  "DRFLOW: A Deep Research Benchmark for Personalized Workflow Prediction": {
-    "title": "DRFLOW: A Deep Research Benchmark for Personalized Workflow Prediction",
-    "link": "https://arxiv.org/abs/2606.18191v2",
-    "first_author": "Laradji",
-    "year": "2026",
-    "summary": "Deep research (DR) systems are increasingly used for complex information-seeking tasks, but existing works mainly focus on generating reports and summaries. In contrast, many enterprise tasks instead require an agent to identify concrete workflows which is a sequence of action-steps. For example, ra"
-  },
-  "First Proof Second Batch": {
-    "title": "First Proof Second Batch",
-    "link": "https://arxiv.org/abs/2606.18119v1",
-    "first_author": "Williams",
-    "year": "2026",
-    "summary": "To assess the ability of current AI systems to correctly solve research-level mathematics problems, we tested several AI systems on a set of ten problems in a broad range of mathematical fields; these problems arose naturally in the research process of the contributors. This document includes the pr"
-  },
-  "Escape from Delusional Echo Trap: Symmetry Breaking, Stochastic Dynamics and Mathematical Mitigation Strategies for Algo": {
-    "title": "Escape from Delusional Echo Trap: Symmetry Breaking, Stochastic Dynamics and Mathematical Mitigation Strategies for Algorithmic Sycophancy",
-    "link": "https://arxiv.org/abs/2606.20718v1",
-    "first_author": "Chakrabarti",
-    "year": "2026",
-    "summary": "We propose a rigorous and systematic mathematical framework for tracking the cognitive trajectories of a user, in the context of algorithmic sycophancy and AI-driven delusional spiraling. Using tools from dynamical systems theory and stochastic differential equations, we explore how individuals perc"
-  },
-  "PreAct: Computer-Using Agents that Get Faster on Repeated Tasks": {
-    "title": "PreAct: Computer-Using Agents that Get Faster on Repeated Tasks",
-    "link": "https://arxiv.org/abs/2606.17929v1",
-    "first_author": "Li",
-    "year": "2026",
-    "summary": "Computer-using agents drive real software through the screen -- clicking and typing -- but they solve every task from scratch: asked to repeat a task, an agent re-reads the screen, re-reasons every tap, and pays the full cost again. We present PreAct, which lets such an agent get faster on tasks it "
-  },
-  "DiagFlowBench: Evaluating How Language Models Handle Off-Procedure Inputs in Grounded Diagnostic Dialogue": {
-    "title": "DiagFlowBench: Evaluating How Language Models Handle Off-Procedure Inputs in Grounded Diagnostic Dialogue",
-    "link": "https://arxiv.org/abs/2606.17904v1",
-    "first_author": "Emmanouilidis",
-    "year": "2026",
-    "summary": "Language models increasingly serve as advisory systems in maintenance operations. To prevent hallucination, recent systems ground these models in procedural documentation to constrain them to approved steps. In practice, however, operator queries frequently stray from this path, requiring models to "
-  },
-  "Structural Preservation and the Logical Expressiveness of Graph Neural Networks": {
-    "title": "Structural Preservation and the Logical Expressiveness of Graph Neural Networks",
-    "link": "https://arxiv.org/abs/2606.17882v1",
-    "first_author": "Grau",
-    "year": "2026",
-    "summary": "Bridges between graph neural networks (GNNs) and logical formalisms have been established by fixing architectural choices, such as the types of aggregation, combination, and activation functions. These choices define restricted classes of GNNs for which tight correspondences with logical formalisms "
-  },
-  "StepGuard: Guarding Web Navigation via Single-Step Calibration": {
-    "title": "StepGuard: Guarding Web Navigation via Single-Step Calibration",
-    "link": "https://arxiv.org/abs/2606.17871v1",
-    "first_author": "Wu",
-    "year": "2026",
-    "summary": "Web navigation requires agents to follow natural language goals, interact with web pages, and produce accurate answers. While recent advances leverage vision-language models and reinforcement learning, existing methods still suffer from single-step fragility due to reward misalignment and error prop"
-  },
-  "FlowRAG: Synergizing Explicit Reasoning via Frequency-Aware Multi-Granularity Graph Flow": {
-    "title": "FlowRAG: Synergizing Explicit Reasoning via Frequency-Aware Multi-Granularity Graph Flow",
-    "link": "https://arxiv.org/abs/2606.17856v1",
-    "first_author": "He",
-    "year": "2026",
-    "summary": "Graph-based retrieval-augmented generation (GraphRAG) is effective for knowledge-intensive and multi-hop query tasks; however, many existing methods primarily seed entity-based graphs and rely on implicit semantic relevance propagation. This often (i) under-retrieves when user queries are abstract a"
-  },
-  "WallZero: Mastering the Game of WallGo with Strategic Analysis": {
-    "title": "WallZero: Mastering the Game of WallGo with Strategic Analysis",
-    "link": "https://arxiv.org/abs/2606.17847v1",
-    "first_author": "Wu",
-    "year": "2026",
-    "summary": "WallGo is a recently introduced strategic board game popularized by the 2025 Netflix series The Devil's Plan. Although played on a small 7 x 7 board, its combination of stone movement and wall placement yields high game-tree complexity and intricate strategic interactions. Despite its growing popula"
-  },
-  "GeoFidelity-Bench: Evaluating Segment-Level Geographic Fidelity in Text-to-Image Street-View Generation": {
-    "title": "GeoFidelity-Bench: Evaluating Segment-Level Geographic Fidelity in Text-to-Image Street-View Generation",
-    "link": "https://arxiv.org/abs/2606.23669v1",
-    "first_author": "Tao",
-    "year": "2026",
-    "summary": "Text-to-image models can generate visually plausible city streets, but whether their outputs correspond to a requested road segment rather than a generic city prior remains unclear. We introduce GeoFidelity-Bench, a reference-panel benchmark for segment-conditioned geographic fidelity in street-view"
-  },
-  "Arbor: Explicit Geometric Conditioning for Controllable 3D Asset Generation": {
-    "title": "Arbor: Explicit Geometric Conditioning for Controllable 3D Asset Generation",
-    "link": "https://arxiv.org/abs/2606.23514v1",
-    "first_author": "Boss",
-    "year": "2026",
-    "summary": "Text and image conditioned 3D models now generate convincing assets, but they still offer little direct control over the space an object should occupy or avoid. In authoring, this spatial intent is often known before generation starts. A chair should fit a seating envelope, a prop should leave clear"
-  },
-  "From Reconstruction to Decision: A Post-Encoder Plug-in Adapter for Curvilinear Segmentation": {
-    "title": "From Reconstruction to Decision: A Post-Encoder Plug-in Adapter for Curvilinear Segmentation",
-    "link": "https://arxiv.org/abs/2606.23486v1",
-    "first_author": "Wu",
-    "year": "2026",
-    "summary": "Curvilinear object segmentation, including vessels and cracks, is challenging due to extreme spatial sparsity and topological fragility, where small local errors can cause severe structural disconnections. Meanwhile, modern segmentation pipelines increasingly rely on strong but hard-to-modify founda"
-  },
-  "MeGAS: Thermomechanical Dynamic Gaussian Splatting for Thermophysical Scene Editing": {
-    "title": "MeGAS: Thermomechanical Dynamic Gaussian Splatting for Thermophysical Scene Editing",
-    "link": "https://arxiv.org/abs/2606.23455v1",
-    "first_author": "Cui",
-    "year": "2026",
-    "summary": "Recent advances integrate physically grounded Newtonian dynamics with neural rendering frameworks, narrowing the gap between photorealistic scene reconstruction and physics-based animation. However, existing approaches focus on mechanically driven dynamics while neglecting temperature, a fundamental"
-  },
-  "Rethinking Object-Centric Representations for Video Dynamics Modeling": {
-    "title": "Rethinking Object-Centric Representations for Video Dynamics Modeling",
-    "link": "https://arxiv.org/abs/2606.23436v1",
-    "first_author": "Fink",
-    "year": "2026",
-    "summary": "Unsupervised video object tracking aims to decompose dynamic scenes into persistent, object-centric entities without manual annotations. Many recent approaches rely on slot-based representations, where a fixed set of latent variables (\"slots\") represent individual objects across frames. To preserve "
-  },
-  "Polynomial Dice Loss for Medical Image Segmentation": {
-    "title": "Polynomial Dice Loss for Medical Image Segmentation",
-    "link": "https://arxiv.org/abs/2606.23373v1",
-    "first_author": "Aizawa",
-    "year": "2026",
-    "summary": "Medical image segmentation is a fundamental task for medical image processing and computer-assisted intervention, yet data imbalance and small lesion detection pose significant challenges. Dice Loss, which measures the overlap between predicted and ground truth regions, is widely used to mitigate th"
-  },
-  "Faithful Grounded Visual Reasoning via Learned Proxy-Tokens": {
-    "title": "Faithful Grounded Visual Reasoning via Learned Proxy-Tokens",
-    "link": "https://arxiv.org/abs/2606.23354v1",
-    "first_author": "Loesch",
-    "year": "2026",
-    "summary": "Multimodal Large Language Models (MLLMs) have achieved remarkable success in Visual Question Answering (VQA), yet their \"black-box\" nature hinders deployment in critical domains. Grounded Visual Reasoning (GVR) approaches attempt to improve interpretability by explicitly couple textual rationales wi"
-  },
-  "Ocean4D: Generative Underwater 4D Reconstruction via Medium-Aware Video Diffusion": {
-    "title": "Ocean4D: Generative Underwater 4D Reconstruction via Medium-Aware Video Diffusion",
-    "link": "https://arxiv.org/abs/2606.23298v1",
-    "first_author": "Zhang",
-    "year": "2026",
-    "summary": "Underwater 4D reconstruction remains challenging due to the coupling between degraded light transport in participating media and dynamic water variations. Most existing Methods are developed under in-air assumptions and do not explicitly account for underwater absorption and backscatter. Additionall"
-  },
-  "Transfer learning-based method for automated ewaste recycling in smart cities": {
-    "title": "Transfer learning-based method for automated ewaste recycling in smart cities",
-    "link": "https://arxiv.org/abs/2606.23286v1",
-    "first_author": "Handmann",
-    "year": "2026",
-    "summary": "Sorting a huge stream of waste accurately within a short period can be done with the support of digitalization, particularly Artificial Intelligence, instead of traditional methods. The overlap of Artificial Intelligence and Circular Economy can flourish many services in the environmental technology"
-  },
-  "Temporally Aware Densification for Dynamic 3D Gaussian Splatting": {
-    "title": "Temporally Aware Densification for Dynamic 3D Gaussian Splatting",
-    "link": "https://arxiv.org/abs/2606.23212v1",
-    "first_author": "Soundararajan",
-    "year": "2026",
-    "summary": "Despite modeling temporal motion, dynamic 3D Gaussian Splatting (3DGS) methods still inherit a static densification strategy that is ill-suited for dynamic scenes. This neglect of temporal behavior leads to under-reconstructed and blurry dynamic regions, as short-lived Gaussians receive sparse super"
-  },
-  "CFPO: Counterfactual Policy Optimization for Multimodal Reasoning": {
-    "title": "CFPO: Counterfactual Policy Optimization for Multimodal Reasoning",
-    "link": "https://arxiv.org/abs/2606.23206v1",
-    "first_author": "Lao",
-    "year": "2026",
-    "summary": "Large Vision-Language Models (LVLMs) have demonstrated remarkable capabilities in multimodal reasoning. However, prevailing reinforcement learning (RL) paradigms lack explicit counterfactual enhancement and causal learning mechanisms. This fundamental deficiency results in severe grounding failures,"
-  },
-  "T-VSS: Test-Time Visual Subspace Steering for Adversarial Robustness of Vision-Language Models": {
-    "title": "T-VSS: Test-Time Visual Subspace Steering for Adversarial Robustness of Vision-Language Models",
-    "link": "https://arxiv.org/abs/2606.23132v1",
-    "first_author": "Kim",
-    "year": "2026",
-    "summary": "Vision-language models (VLMs) achieve strong zero-shot recognition, but they remain highly vulnerable to adversarial perturbations. Recent test-time adaptations improve robustness without retraining, but they do not directly adapt the corrupted visual representation itself. Prompt-based methods adap"
-  },
-  "Poisson2Gaussian: Noise Gaussianization to Enhance Image Denoising": {
-    "title": "Poisson2Gaussian: Noise Gaussianization to Enhance Image Denoising",
-    "link": "https://arxiv.org/abs/2606.23098v1",
-    "first_author": "Li",
-    "year": "2026",
-    "summary": "The quantum nature of light determines the inherent Poisson stochasticity of photon detection, which is ubiquitous in photography, microscopy, and astronomy. However, our controlled numerical studies reveal that the signal-dependency, heteroscedasticity, and statistical asymmetry of Poisson-mixed no"
-  },
-  "UECP: Uncertainty-Enhanced Collaborative Perception": {
-    "title": "UECP: Uncertainty-Enhanced Collaborative Perception",
-    "link": "https://arxiv.org/abs/2606.23046v1",
-    "first_author": "Wang",
-    "year": "2026",
-    "summary": "Collaborative perception serves as a pivotal solution to enhance the perception capability of individual agents in autonomous driving, where a core challenge lies in seeking reliable evidence to quantify and weight the contribution of each participating agent. Existing methods typically rely on a co"
-  },
-  "From Point Estimates to Distributions: GMM Pooling for MIL in Preterm Birth Prediction": {
-    "title": "From Point Estimates to Distributions: GMM Pooling for MIL in Preterm Birth Prediction",
-    "link": "https://arxiv.org/abs/2606.23005v1",
-    "first_author": "Yaqub",
-    "year": "2026",
-    "summary": "Preterm birth (PTB) prediction can enable targeted surveillance and timely intervention, yet most ultrasound-based models use a single selected transvaginal ultrasound (TVUS) frame per patient despite routine exams acquiring multiple cervical images. We formulate PTB prediction as a multiple instanc"
-  },
-  "Subject-Level Unknown-Identity Identification from Leap Motion Controller 2 Hand Landmarks": {
-    "title": "Subject-Level Unknown-Identity Identification from Leap Motion Controller 2 Hand Landmarks",
-    "link": "https://arxiv.org/abs/2606.22986v1",
-    "first_author": "Marsico",
-    "year": "2026",
-    "summary": "This work studies subject recognition from Leap Motion Controller 2 (LMC2) hand landmark data under a subject-level unknown-identity identification protocol on the Multi View Leap2 Hand Pose (ML2HP) dataset. Using only the landmark modality, we retain the original geometric representation and enrich"
-  },
-  "BEV-Denoise: Learning Intrinsic Noise for Accurate Bird's-Eye-View Semantic Segmentation": {
-    "title": "BEV-Denoise: Learning Intrinsic Noise for Accurate Bird's-Eye-View Semantic Segmentation",
-    "link": "https://arxiv.org/abs/2606.22931v1",
-    "first_author": "Min",
-    "year": "2026",
-    "summary": "In this paper, we present a framework dubbed \\textbf{BEV-Denoise} that estimates and removes intrinsic noise from learned Bird's-Eye-View (BEV) features to achieve accurate BEV semantic segmentation. Inspired by the noise estimation capability of Denoising Diffusion Probabilistic Models (DDPM), we d"
-  },
-  "Chains That See, Answers That Don't: A Multi-Aspect Evaluation Recipe for Forced Chain-of-Thought on Video-MME": {
-    "title": "Chains That See, Answers That Don't: A Multi-Aspect Evaluation Recipe for Forced Chain-of-Thought on Video-MME",
-    "link": "https://arxiv.org/abs/2606.22862v1",
-    "first_author": "Zhuang",
-    "year": "2026",
-    "summary": "Forced chain-of-thought (CoT) is widely assumed to make vision-language models more reliable on video question answering. We propose a small three-probe evaluation recipe to test that assumption: paired accuracy across direct, CoT, answer-first, and no-video conditions; a counterfactual video-swap d"
-  },
-  "DBT-Bleed: Dual-Branch Temporal Modeling with Key-Frame Selection for Surgical Bleeding Detection": {
-    "title": "DBT-Bleed: Dual-Branch Temporal Modeling with Key-Frame Selection for Surgical Bleeding Detection",
-    "link": "https://arxiv.org/abs/2606.22829v1",
-    "first_author": "Jin",
-    "year": "2026",
-    "summary": "Intraoperative Adverse Events (IAEs) detection is critical for improving surgical safety, with bleeding being among the most frequent events across many surgery types. Existing methods struggle to distinguish bleeding IAE from visually similar residual blood due to limited temporal reasoning. Moreov"
-  },
-  "CoVStream: Edge-Cloud Collaboration for Understanding of Long Video Streams": {
-    "title": "CoVStream: Edge-Cloud Collaboration for Understanding of Long Video Streams",
-    "link": "https://arxiv.org/abs/2606.22804v1",
-    "first_author": "Wang",
-    "year": "2026",
-    "summary": "Long, continuous video streams are an increasingly critical driver of multimedia intelligence. Existing efforts often handle long videos with a sample-encode-reason approach using large models. However, they overlook a crucial deployment fact: the stream is often produced by computationally constrai"
-  },
-  "LoCC: Detection and Localization of Lip-Syncing Deepfakes via Counterfactual Frame Consistency": {
-    "title": "LoCC: Detection and Localization of Lip-Syncing Deepfakes via Counterfactual Frame Consistency",
-    "link": "https://arxiv.org/abs/2606.22772v1",
-    "first_author": "Lyu",
-    "year": "2026",
-    "summary": "Lip-syncing deepfakes are among the most challenging forms of manipulated media because their artifacts are localized almost exclusively to the mouth region and evolve dynamically over time. Detecting such deepfakes requires precise temporal and spatial modeling of lip motion. In this paper, we prop"
-  },
-  "Generative Relightable Avatars": {
-    "title": "Generative Relightable Avatars",
-    "link": "https://arxiv.org/abs/2606.22718v1",
-    "first_author": "Dabral",
-    "year": "2026",
-    "summary": "We present Generative Relightable Avatars (GRA), a person-specific method for photorealistic free-view rendering and environment-map relighting of full-body humans. We postulate that modeling fine-grained appearance details is inherently a one-to-many problem that can benefit from a generative formu"
-  },
-  "MaRS: Robust Out-of-Distribution Detection via Mahalanobis Residual Scoring": {
-    "title": "MaRS: Robust Out-of-Distribution Detection via Mahalanobis Residual Scoring",
-    "link": "https://arxiv.org/abs/2606.22649v1",
-    "first_author": "Ledig",
-    "year": "2026",
-    "summary": "Foundation models provide highly descriptive representations for medical images, yet their reliability degrades under distribution shifts arising from changes in patients, devices, or acquisition conditions. Reliable out-of-distribution (OOD) detection is therefore essential for safe deployment. Rec"
-  },
-  "Trajectory Forcing: Structure-First Generation with Controllable Semantic Trajectories": {
-    "title": "Trajectory Forcing: Structure-First Generation with Controllable Semantic Trajectories",
-    "link": "https://arxiv.org/abs/2606.22527v1",
-    "first_author": "Geiger",
-    "year": "2026",
-    "summary": "Diffusion and flow-based generative models produce strong images, yet their controllability remains largely endpoint-centric: users specify conditions and receive final outputs, while the intermediate generative dynamics remain hidden. Recent methods have begun to exploit generation order and proces"
-  },
-  "Benchmarking Vision-Language Models for Microscopic Plant Image Understanding": {
-    "title": "Benchmarking Vision-Language Models for Microscopic Plant Image Understanding",
-    "link": "https://arxiv.org/abs/2606.22497v1",
-    "first_author": "Huang",
-    "year": "2026",
-    "summary": "Microscopic imaging provides essential visual evidence for studying plant biology and pathology at the cellular and subcellular levels. However, existing benchmarks on vision-language models primarily focus on macroscopic plant imagery, while the microscopic domain remains underexplored. To address "
-  },
-  "FetSelect: Task-Specific Architectures and Self-Supervised Learning for Automated Fetal Ultrasound Frame Selection": {
-    "title": "FetSelect: Task-Specific Architectures and Self-Supervised Learning for Automated Fetal Ultrasound Frame Selection",
-    "link": "https://arxiv.org/abs/2606.22487v1",
-    "first_author": "Agus",
-    "year": "2026",
-    "summary": "Automated frame selection for fetal biometry remains under addressed, with most prior work targeting generic quality assessment or downstream measurement pipelines that assume suitable frames are available. We introduce FetSelect, a task-specific framework that pairs a frozen vision foundation backb"
-  },
-  "Interest Entanglement: The Hidden Barrier to Blind Super-Resolution Optimization": {
-    "title": "Interest Entanglement: The Hidden Barrier to Blind Super-Resolution Optimization",
-    "link": "https://arxiv.org/abs/2606.22353v1",
-    "first_author": "Zhang",
-    "year": "2026",
-    "summary": "Fidelity and perceptual quality are two inherently competing and conflicting objectives in the image super-resolution (SR) task. Different loss functions focus on these objectives to varying extents. Regression losses enhance the model's fidelity but lack sufficient attention to high-frequency detai"
-  },
-  "Multi4D: High-Fidelity Dynamic Gaussian Splatting via Multi-Level Competitive Allocation": {
-    "title": "Multi4D: High-Fidelity Dynamic Gaussian Splatting via Multi-Level Competitive Allocation",
-    "link": "https://arxiv.org/abs/2606.22197v1",
-    "first_author": "Meboldt",
-    "year": "2026",
-    "summary": "Dynamic 3D Gaussian splatting faces a fundamental tension between motion consistency and visual fidelity. Deformation-based approaches preserve temporal correspondence but suffer from motion over-factorization, oversmoothing high-frequency dynamics. In contrast, 4D-primitive methods capture fine vis"
-  },
-  "Dual-Stream EEG Decoding for 3D Visual Perception": {
-    "title": "Dual-Stream EEG Decoding for 3D Visual Perception",
-    "link": "https://arxiv.org/abs/2606.22182v1",
-    "first_author": "Kosmyna",
-    "year": "2026",
-    "summary": "This paper explores a novel brain decoding model for 3D shape perception through a dual pathway architecture mirroring biological vision. Our bio-inspired approach implements separate decoding modules for object identity and spatial orientation, inspired by ventral and dorsal pathways, during contin"
-  },
-  "Cross-View Yaw Estimation in Location Uncertainty with Line-Aligning Yaw Scoring": {
-    "title": "Cross-View Yaw Estimation in Location Uncertainty with Line-Aligning Yaw Scoring",
-    "link": "https://arxiv.org/abs/2606.22094v1",
-    "first_author": "Lee",
-    "year": "2026",
-    "summary": "Accurate yaw estimation is a bottleneck in cross-view localization between ground view and Bird's Eye View (BEV). Existing methods couple yaw with translation and rely on height or projection assumptions that degrade under large yaw ambiguity. We disentangle yaw from location accuracy and introduce "
-  },
-  "CoDMD: Copula-aware Distribution Matching Distillation for Fast Video Generation": {
-    "title": "CoDMD: Copula-aware Distribution Matching Distillation for Fast Video Generation",
-    "link": "https://arxiv.org/abs/2606.21982v1",
-    "first_author": "Jia",
-    "year": "2026",
-    "summary": "Few-step distillation for video diffusion models has attracted significant attention, driven by the urgent demand for efficient deployment in real-world scenarios. However, Distribution Matching Distillation (DMD), a leading paradigm, tends to degrade under limited NFE budgets, manifesting in video "
-  },
-  "CapRiCorn-1K: A Comprehensive Benchmark for Video Captioning and Subject Referential Consistency Across Temporal Scales": {
-    "title": "CapRiCorn-1K: A Comprehensive Benchmark for Video Captioning and Subject Referential Consistency Across Temporal Scales",
-    "link": "https://arxiv.org/abs/2606.21949v1",
-    "first_author": "Tan",
-    "year": "2026",
-    "summary": "Accurate and comprehensive video captions with consistent subject references are critical for downstream understanding and generation tasks. However, few existing benchmarks can objectively and comprehensively evaluate these properties across diverse durations and scenarios, thereby hindering the ad"
-  },
-  "CoSA: Correlation-Guided Change Attention with Learnable Residual Gating for Remote Sensing Change Detection": {
-    "title": "CoSA: Correlation-Guided Change Attention with Learnable Residual Gating for Remote Sensing Change Detection",
-    "link": "https://arxiv.org/abs/2606.21932v1",
-    "first_author": "Park",
-    "year": "2026",
-    "summary": "Remote sensing change detection (CD) from bi-temporal imagery is critical for applications such as urban monitoring, disaster assessment, and environmental management, yet robust localization remains challenging under sparse changes, noisy labels, and appearance variations. In this paper, we propose"
-  },
-  "Zero-Shot Vision-Language Models for Classroom Engagement Recognition: A Benchmark Study of Prompt Sensitivity and Cross": {
-    "title": "Zero-Shot Vision-Language Models for Classroom Engagement Recognition: A Benchmark Study of Prompt Sensitivity and Cross-Dataset Generalization",
-    "link": "https://arxiv.org/abs/2606.21861v1",
-    "first_author": "Rao",
-    "year": "2026",
-    "summary": "Automated classroom engagement recognition holds substantial promise for scalable learning analytics, yet the suitability of modern Vision-Language Models (VLMs) for this task under zero-shot conditions remains largely unexplored. We present a systematic benchmark that evaluates five widely-used VLM"
-  },
-  "Beyond Flat Labels: Level-Restricted Contrastive Learning for Hierarchical Fine-Grained Vision Classification": {
-    "title": "Beyond Flat Labels: Level-Restricted Contrastive Learning for Hierarchical Fine-Grained Vision Classification",
-    "link": "https://arxiv.org/abs/2606.21838v1",
-    "first_author": "Gu",
-    "year": "2026",
-    "summary": "Multimodal contrastive learning has enabled zero-shot visual classification by aligning images with textual categories. However, in hierarchically structured label spaces, existing methods often produce predictions that are inconsistent across taxonomic levels. For example, a model may predict a fin"
-  },
-  "From Gradient Clipping to Structural Refinement: Improving DPSGD for Medical Image Segmentation": {
-    "title": "From Gradient Clipping to Structural Refinement: Improving DPSGD for Medical Image Segmentation",
-    "link": "https://arxiv.org/abs/2606.21763v1",
-    "first_author": "Wagner",
-    "year": "2026",
-    "summary": "Medical image segmentation is widely used for disease detection but relies on sensitive data, raising privacy concerns as trained models can leak information. Differential privacy, typically implemented via Differential Private Stochastic Gradient Descent (DPSGD), provides a solution, though at the "
-  },
-  "Quantile Adaptive Temperature Scaling for Confidence Calibration": {
-    "title": "Quantile Adaptive Temperature Scaling for Confidence Calibration",
-    "link": "https://arxiv.org/abs/2606.21749v1",
-    "first_author": "Dolz",
-    "year": "2026",
-    "summary": "Deep neural networks often produce poorly calibrated confidence estimates, overstating their certainty even when predictions are incorrect. Temperature Scaling remains the most widely used posthoc calibration method due to its simplicity and effectiveness, yet its global, uniform rescaling of logits"
-  },
-  "Chehre: An Emoji-Prompted Video Dataset for Perceptually Diverse Facial Expression Recognition": {
-    "title": "Chehre: An Emoji-Prompted Video Dataset for Perceptually Diverse Facial Expression Recognition",
-    "link": "https://arxiv.org/abs/2606.21657v1",
-    "first_author": "Lim",
-    "year": "2026",
-    "summary": "Facial expressions are nonverbal social signals used in human interaction, but facial expression recognition datasets often focus on static images, basic emotion categories, or single deterministic annotations. We introduce Chehre, an emoji-prompted video dataset for analyzing dynamic facial express"
-  },
-  "$μ$Match: Foundation Models for Semi-supervised Learning and Domain Adaptation in EM": {
-    "title": "$μ$Match: Foundation Models for Semi-supervised Learning and Domain Adaptation in EM",
-    "link": "https://arxiv.org/abs/2606.21605v1",
-    "first_author": "Pape",
-    "year": "2026",
-    "summary": "Vision foundation models have substantially advanced computer vision, enabling state-of-the-art performance in zero- and few-shot settings. They have been successfully applied to biomedical imaging tasks ranging from organ segmentation in computed tomography to cell segmentation in light microscopy."
-  },
-  "$φ$-Scene: Physically Grounded Image-to-3D Scene Reconstruction": {
-    "title": "$φ$-Scene: Physically Grounded Image-to-3D Scene Reconstruction",
-    "link": "https://arxiv.org/abs/2606.21596v1",
-    "first_author": "Chandraker",
-    "year": "2026",
-    "summary": "Reconstructing compositional 3D scenes from a single image is a fundamental challenge in 3D world modeling. Recent methods can recover high-fidelity, complete 3D objects and predict plausible scene arrangements, but most still treat scene reconstruction primarily as a visual and geometric prediction"
-  },
-  "A Smart Classroom Behavior Analysis Framework with a New Highly Congested Classroom Dataset": {
-    "title": "A Smart Classroom Behavior Analysis Framework with a New Highly Congested Classroom Dataset",
-    "link": "https://arxiv.org/abs/2606.21568v1",
-    "first_author": "Zhu",
-    "year": "2026",
-    "summary": "Student behavior detection is important for intelligent classroom analysis but remains challenging in large-class scenarios due to dense instance co-occurrence, asymmetric occlusion, depth-wise scale variation, and fine-grained semantic degradation in distant targets. Existing classroom behavior dat"
-  },
-  "Synergistic Dual-Branch Adaptation for Multi-modal Generalized Category Discovery": {
-    "title": "Synergistic Dual-Branch Adaptation for Multi-modal Generalized Category Discovery",
-    "link": "https://arxiv.org/abs/2606.21446v1",
-    "first_author": "Zhang",
-    "year": "2026",
-    "summary": "Generalized Category Discovery (GCD) aims to classify old categories and discover new ones from unlabeled data. Recent multi-modal approaches introduce retrieved or synthesized texts into a dual-branch architecture to provide semantic cues complementary to visual features. However, the cross-modal s"
-  },
-  "MIRCaps: A Large-Scale Mixed-Domain Dataset with Image-Level and Region-Level Captions for Fine-Grained Vision-Language ": {
-    "title": "MIRCaps: A Large-Scale Mixed-Domain Dataset with Image-Level and Region-Level Captions for Fine-Grained Vision-Language Learning",
-    "link": "https://arxiv.org/abs/2606.21419v1",
-    "first_author": "Kim",
-    "year": "2026",
-    "summary": "Despite recent progress in Vision-Language Models (VLMs), mixed-domain image-caption datasets for both general-purpose and CCTV-based video surveillance systems remain limited. To address this gap, we introduce a large-scale multimodal dataset comprising 141,364 images, 981,947 image-level captions,"
-  },
-  "Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification": {
-    "title": "Graph-of-Differences: Anatomy-Structured Difference Alignment for Medical Image Re-Identification",
-    "link": "https://arxiv.org/abs/2606.21368v1",
-    "first_author": "Mahapatra",
-    "year": "2026",
-    "summary": "Medical image re-identification (MedReID) enables longitudinal patient linkage but remains vulnerable to shortcut learning and often produces decisions that clinicians cannot audit against named anatomy. We propose Graph-of-Differences (GoD), which grounds identity comparisons in explicit anatomical"
-  },
-  "A Test-time Actor-Critic Approach to News Images Generation": {
-    "title": "A Test-time Actor-Critic Approach to News Images Generation",
-    "link": "https://arxiv.org/abs/2606.21304v1",
-    "first_author": "Mezaris",
-    "year": "2026",
-    "summary": "This paper introduces the CERTH-ITI solution for the MediaEval NewsImages 2026 challenge, which focuses on generating images related to news headlines. Inspired by the Actor-Critic paradigm in reinforcement learning, we present a test-time, model-agnostic Actor-Critic Image Generation approach (ACIG"
-  },
-  "Lightweight 3D Feature Pretraining by Bayesian Inversion of 2D Foundation Models": {
-    "title": "Lightweight 3D Feature Pretraining by Bayesian Inversion of 2D Foundation Models",
-    "link": "https://arxiv.org/abs/2606.21292v1",
-    "first_author": "Manzanera",
-    "year": "2026",
-    "summary": "We present Casper3D, a lightweight probabilistic framework for converting noisy multi-view 2D foundation-model embeddings into a latent 3D semantic representation. We model view-level semantic features as noisy observations of an underlying 3D semantic state and infer this state with a set-based var"
-  },
-  "NoduLoCC2026: Lung Nodule Localization and Classification Contest from Chest X-Ray Images": {
-    "title": "NoduLoCC2026: Lung Nodule Localization and Classification Contest from Chest X-Ray Images",
-    "link": "https://arxiv.org/abs/2606.21290v1",
-    "first_author": "Hammoudi",
-    "year": "2026",
-    "summary": "We propose NoduLoCC2026, a challenge on lung nodule detection and localization in chest X-ray images. We have provided a dataset for both tasks and received submissions from 5 international teams. The participating teams' solutions are presented in this work along with results on an external dataset"
-  },
-  "Unsupervised Domain Adaptation for Sim-to-Real Object Pose Estimation with Contrastive Alignment and Pseudo-Label Refine": {
-    "title": "Unsupervised Domain Adaptation for Sim-to-Real Object Pose Estimation with Contrastive Alignment and Pseudo-Label Refinement",
-    "link": "https://arxiv.org/abs/2606.21287v1",
-    "first_author": "Aouada",
-    "year": "2026",
-    "summary": "Unsupervised domain adaptation (UDA) enables robust transfer of knowledge from simulated to real environments while exploiting a subset of unlabeled target data to improve real-world performance. Existing UDA methods for Object pose estimation often rely on global feature matching, multi-stage large"
-  },
-  "Beyond Damage Assessment: Recyclable Material Detection in Aerial Disaster Imagery Using a Lightweight Patch-Based Frame": {
-    "title": "Beyond Damage Assessment: Recyclable Material Detection in Aerial Disaster Imagery Using a Lightweight Patch-Based Framework",
-    "link": "https://arxiv.org/abs/2606.21279v1",
-    "first_author": "Hammoudi",
-    "year": "2026",
-    "summary": "Nowadays, more and more disasters of different natures are appearing. Several disaster assessment approaches have been developed in order to identify damaged areas from aerial images. These damaged areas contain rich material that could be recycled towards several ecological purposes. In this paper,"
-  },
-  "Context-Aware Autoregressive Diffusion for Gloss-Wise Sign Language Production": {
-    "title": "Context-Aware Autoregressive Diffusion for Gloss-Wise Sign Language Production",
-    "link": "https://arxiv.org/abs/2606.21234v1",
-    "first_author": "Choi",
-    "year": "2026",
-    "summary": "To generate natural and accurate sentence-level sign language, synthesizing the \"gloss\", the fundamental semantic unit, is essential. However, most current sign-language production (SLP) methods generate entire sequences at once. While this end-to-end approach is often efficient, it is prone to temp"
-  },
-  "Extraction and Analysis of Multimodal Concepts in Vision Language Models through Sparse Autoencoders": {
-    "title": "Extraction and Analysis of Multimodal Concepts in Vision Language Models through Sparse Autoencoders",
-    "link": "https://arxiv.org/abs/2606.21197v1",
-    "first_author": "Wermter",
-    "year": "2026",
-    "summary": "Vision Language Models (VLMs) have demonstrated impressive performance in tasks requiring joint understanding of images and text, such as image captioning and Visual Question Answering (VQA), but our understanding of their internal processes remains limited. Recently, Sparse Autoencoders (SAEs) have"
-  },
-  "HERO: Hypothesis-Driven Evidence Retrieval from Omics for Multi-Task Breast Cancer Analysis": {
-    "title": "HERO: Hypothesis-Driven Evidence Retrieval from Omics for Multi-Task Breast Cancer Analysis",
-    "link": "https://arxiv.org/abs/2606.21174v1",
-    "first_author": "Su",
-    "year": "2026",
-    "summary": "Matched multi-omics can improve WSI-based biomarker and prognosis prediction, but most existing pipelines use omics as a paral lel feature stream or textual context rather than as an explicit retrieval constraint. HERO asks whether observed omics can be a testable mor phology hypothesis: a sparse pa"
-  },
-  "Contrastive and Adaptive Multi-modal Masked Autoencoder for Spatial Transcriptomics": {
-    "title": "Contrastive and Adaptive Multi-modal Masked Autoencoder for Spatial Transcriptomics",
-    "link": "https://arxiv.org/abs/2606.21156v1",
-    "first_author": "Hwang",
-    "year": "2026",
-    "summary": "The high cost of spatial transcriptomics (ST) has driven extensive studies into predicting gene expression directly from H&E histology images. However, this prediction task faces an inherent limitation, as tissue morphology alone provides insufficient information to fully resolve underlying gene exp"
-  },
-  "Odoriko: A Shape-Aware Multimodal Diffusion Framework for Human Motion": {
-    "title": "Odoriko: A Shape-Aware Multimodal Diffusion Framework for Human Motion",
-    "link": "https://arxiv.org/abs/2606.21135v1",
-    "first_author": "Mitsufuji",
-    "year": "2026",
-    "summary": "Human motion generation has been widely studied across diverse input modalities, text, music, and video, and recent efforts have unified these into single multimodal frameworks. However, while morphological factors such as gender and body shape are known to produce distinct kinematic signatures, no "
-  },
-  "MS-rPPG: Multi-spectral State Space Model for Remote Photoplethysmography in Driver Monitoring Systems": {
-    "title": "MS-rPPG: Multi-spectral State Space Model for Remote Photoplethysmography in Driver Monitoring Systems",
-    "link": "https://arxiv.org/abs/2606.21115v1",
-    "first_author": "Lee",
-    "year": "2026",
-    "summary": "Remote photoplethysmography (rPPG) is a camera-based technique for measuring physiological signals, particularly cardiac activity. From the remotely measured signals, heart rate can be estimated, which is crucial for health monitoring. In this study, we investigate a driver health monitoring system "
-  },
-  "SARIF: Segment Anything for Robust Image Forensics": {
-    "title": "SARIF: Segment Anything for Robust Image Forensics",
-    "link": "https://arxiv.org/abs/2606.21108v1",
-    "first_author": "Lee",
-    "year": "2026",
-    "summary": "Image forgery localization remains challenging due to diverse manipulation techniques and distribution shifts. Existing forgery localization models achieve high accuracy on benchmarks but often struggle with cross-domain generalization and robustness. In this paper, we propose SARIF (Segment Anythin"
-  },
-  "Sparse Point-Guided Fusion of Supervised and Self-Supervised Learning Model for Seaweed Segmentation": {
-    "title": "Sparse Point-Guided Fusion of Supervised and Self-Supervised Learning Model for Seaweed Segmentation",
-    "link": "https://arxiv.org/abs/2606.21026v1",
-    "first_author": "Sakai",
-    "year": "2026",
-    "summary": "The ocean plays a critical role in sustainable development, particularly in climate change mitigation. Among marine ecosystems, blue carbon ecosystems are recognized as important natural carbon sinks. In this context, this paper addresses precise seaweed classification for blue carbon quantification"
-  },
-  "Robusto-2: Benchmarking Humans & VLMs for Autonomous Driving in Lima & New York City": {
-    "title": "Robusto-2: Benchmarking Humans & VLMs for Autonomous Driving in Lima & New York City",
-    "link": "https://arxiv.org/abs/2606.20980v1",
-    "first_author": "Deza",
-    "year": "2026",
-    "summary": "As Self-Driving Cars continue to expand internationally and use multi-modal systems such as VLMs as a cognitive backbone for their Action models; how well will these systems generalize in new settings, in particular out-of-distribution (OOD) edge-case scenarios in new geographies? In this paper, we "
-  },
-  "GIM-ENDO: A Multimodal Endoscopic Image and Video Dataset for Gastric Intestinal Metaplasia Morphology and Pathology": {
-    "title": "GIM-ENDO: A Multimodal Endoscopic Image and Video Dataset for Gastric Intestinal Metaplasia Morphology and Pathology",
-    "link": "https://arxiv.org/abs/2606.20919v1",
-    "first_author": "Bolhasani",
-    "year": "2026",
-    "summary": "Gastric intestinal metaplasia (GIM) is a precursor lesion to gastric dysplasia and adenocarcinoma whose early detection is crucial for intervening in the carcinogenesis cascade. Artificial intelligence (AI) holds considerable promise for real-time endoscopic detection and characterization of GIM. Ho"
-  },
-  "BELDE: Building a Large-scale Earth-observation Land-cover Dataset for Europe": {
-    "title": "BELDE: Building a Large-scale Earth-observation Land-cover Dataset for Europe",
-    "link": "https://arxiv.org/abs/2606.20909v1",
-    "first_author": "Temizel",
-    "year": "2026",
-    "summary": "Earth observation imagery plays a critical role in environmental monitoring, urban planning, disaster assessment, and climate analysis. While multi-spectral sensors are increasingly available, true-color (RGB) imagery remains widely used due to the power, cost, and deployment constraints of many sat"
-  },
-  "Stochastic Signed Distance Processes": {
-    "title": "Stochastic Signed Distance Processes",
-    "link": "https://arxiv.org/abs/2606.20856v1",
-    "first_author": "Okutomi",
-    "year": "2026",
-    "summary": "Multi-view surface reconstruction is a core problem in computer vision. One prominent line of work represents the surface implicitly as a signed distance field (SDF), optimizing it based on the photometric loss between rendered and observed pixel colors. These approaches typically employ SDF-based v"
-  },
-  "From Uncertainty to Stability and Fidelity: Guiding Sparse-View 3D Gaussian Splatting with Fisher Information": {
-    "title": "From Uncertainty to Stability and Fidelity: Guiding Sparse-View 3D Gaussian Splatting with Fisher Information",
-    "link": "https://arxiv.org/abs/2606.20842v1",
-    "first_author": "Zhang",
-    "year": "2026",
-    "summary": "3D Gaussian Splatting (3DGS) has emerged as a promising technique for novel view synthesis. However, 3DGS requires dense input views to achieve high-quality rendering. In sparse-view scenarios, 3DGS often prones to overfitting, resulting in noticeable artifacts and degraded rendering quality. Previo"
-  },
-  "Current World Models Lack a Persistent State Core": {
-    "title": "Current World Models Lack a Persistent State Core",
-    "link": "https://arxiv.org/abs/2606.20545v1",
-    "first_author": "Ju",
-    "year": "2026",
-    "summary": "World models are increasingly regarded as a decisive step toward artificial general intelligence, yet modeling the physical world demands more than rendering convincing frames on demand: it requires an internal world state that keeps evolving over time, decoupled from observation, so that objects en"
-  },
-  "CalTennis: Large Multi-View Tennis Video Dataset and Benchmark of Monocular-to-3D Pose Estimation": {
-    "title": "CalTennis: Large Multi-View Tennis Video Dataset and Benchmark of Monocular-to-3D Pose Estimation",
-    "link": "https://arxiv.org/abs/2606.20542v1",
-    "first_author": "Perona",
-    "year": "2026",
-    "summary": "The Caltech Tennis Dataset (CalTennis) is a large-scale video benchmark for evaluating monocular-to-3D pose estimation in the wild. CalTennis comprises over 11 million frames (51 hours) of tennis practice and match play from 40 players, captured with 2-6 synchronized cameras at 60 Hz. It is 10 times"
-  },
-  "PCFootprint: A Large-Scale Dataset and Benchmark for Vectorized Building Footprint Extraction from Aerial LiDAR Point Cl": {
-    "title": "PCFootprint: A Large-Scale Dataset and Benchmark for Vectorized Building Footprint Extraction from Aerial LiDAR Point Clouds",
-    "link": "https://arxiv.org/abs/2606.20455v1",
-    "first_author": "Liu",
-    "year": "2026",
-    "summary": "Building footprint extraction is a fundamental task in photogrammetry, remote sensing, and computer vision. Recent image-based methods have achieved remarkable progress in extracting vectorized footprints from high-resolution optical imagery. However, optical imagery inherently susceptible to occlus"
-  },
-  "TriMotion: Modality-Agnostic Camera Control for Video Generation": {
-    "title": "TriMotion: Modality-Agnostic Camera Control for Video Generation",
-    "link": "https://arxiv.org/abs/2606.20774v1",
-    "first_author": "Deng",
-    "year": "2026",
-    "summary": "Camera motion control is essential for directing viewpoint changes in generative systems. However, existing methods typically condition the generation process on a single specific modality, such as explicit pose trajectories or reference videos, limiting their ability to support heterogeneous user i"
-  },
-  "BAFIS: Dataset + Framework to assess occupational Bias and Human Preference in modern Text-to-image Models": {
-    "title": "BAFIS: Dataset + Framework to assess occupational Bias and Human Preference in modern Text-to-image Models",
-    "link": "https://arxiv.org/abs/2606.20241v1",
-    "first_author": "Fu",
-    "year": "2026",
-    "summary": "Generative artificial intelligence has the potential to improve productivity and transform the production of creative content. However, existing research indicates that image generation models are significantly influenced by biases. This work investigates the inherent biases and language-induced bia"
-  },
-  "ARTEMIS: Agent-guided Reliability-aware Temporal Mask Evolution for Imperfectly Supervised Video Polyp Segmentation": {
-    "title": "ARTEMIS: Agent-guided Reliability-aware Temporal Mask Evolution for Imperfectly Supervised Video Polyp Segmentation",
-    "link": "https://arxiv.org/abs/2606.20161v1",
-    "first_author": "Xie",
-    "year": "2026",
-    "summary": "Imperfectly supervised video polyp segmentation (VPS) aims to learn dense, temporally consistent masks from inexpensive supervision, including weak annotations (points, scribbles) and semi-supervision with few densely labeled frames. This setting is clinically valuable but challenging due to weak co"
-  },
-  "HEad and neCK TumOR (HECKTOR) 2025: Benchmark of Segmentation, Diagnosis, and Prognosis in Multimodal PET/CT": {
-    "title": "HEad and neCK TumOR (HECKTOR) 2025: Benchmark of Segmentation, Diagnosis, and Prognosis in Multimodal PET/CT",
-    "link": "https://arxiv.org/abs/2606.20143v1",
-    "first_author": "Yaqub",
-    "year": "2026",
-    "summary": "Head and neck cancers (HNC) represent a significant global health burden, with accurate tumor delineation being essential for effective radiotherapy planning. The complexity of the oropharyngeal anatomy, combined with the heterogeneous appearance of tumors on imaging, makes manual segmentation time-"
-  },
-  "TriFlow: Generating Artist-Like 3D Mesh Topology via Nearest-Vertex Vector Fields": {
-    "title": "TriFlow: Generating Artist-Like 3D Mesh Topology via Nearest-Vertex Vector Fields",
-    "link": "https://arxiv.org/abs/2606.20131v2",
-    "first_author": "Nießner",
-    "year": "2026",
-    "summary": "We present TriFlow, a new generative approach for producing compact 3D meshes with artist-like triangle topology directly from input geometry conditions such as signed distance fields. Our key insight is to represent mesh topology as a nearest-vertex vector field (NVF) defined over the surface, wher"
-  },
-  "WeGenBench: A Multidimensional Diagnostic Benchmark towards Text-to-Image Model Optimization": {
-    "title": "WeGenBench: A Multidimensional Diagnostic Benchmark towards Text-to-Image Model Optimization",
-    "link": "https://arxiv.org/abs/2606.20100v1",
-    "first_author": "Li",
-    "year": "2026",
-    "summary": "Recent text-to-image generation models have demonstrated remarkable capabilities in synthesizing highly realistic images from text inputs alone. Although existing benchmarks can evaluate the generation capabilities of various models to some extent, they struggle to comprehensively and accurately mea"
-  },
-  "Holo-World: Unified Camera, Object and Weather Control for Video World Model": {
-    "title": "Holo-World: Unified Camera, Object and Weather Control for Video World Model",
-    "link": "https://arxiv.org/abs/2606.20083v2",
-    "first_author": "Sun",
-    "year": "2026",
-    "summary": "Video world models are moving toward preserving an observed world under controllable camera and object motion while allowing its environmental state to change. Yet these controls remain isolated, and weather generation typically relies on a source video or reconstructed scene that already specifies "
-  },
-  "See-and-Reach: Precise Vision-Language Navigation for UAVs within the Field of View": {
-    "title": "See-and-Reach: Precise Vision-Language Navigation for UAVs within the Field of View",
-    "link": "https://arxiv.org/abs/2606.20045v1",
-    "first_author": "Sun",
-    "year": "2026",
-    "summary": "UAV Vision-Language Navigation (UAV-VLN) is typically formulated as a holistic search-and-reach problem, where long-range target discovery and final target approach are optimized and evaluated jointly. This formulation makes it difficult to assess a critical capability of aerial embodied agents, nam"
-  },
-  "FUSE: Frequency-domain Unification and Spectral Energy Alignment for Multi-modal Object Re-Identification": {
-    "title": "FUSE: Frequency-domain Unification and Spectral Energy Alignment for Multi-modal Object Re-Identification",
-    "link": "https://arxiv.org/abs/2606.20044v1",
-    "first_author": "Tan",
-    "year": "2026",
-    "summary": "Despite significant progress in multi-modal Re-Identification (ReID), existing methods tend to emphasize low-frequency cues. Consequently, they focus on attributes such as color, illumination, and coarse appearance, while overlooking mid and high-frequency structures that encode geometric, textural,"
-  },
-  "Vision-Reasoning-Guided Occlusion Removal from Light Fields": {
-    "title": "Vision-Reasoning-Guided Occlusion Removal from Light Fields",
-    "link": "https://arxiv.org/abs/2606.19985v1",
-    "first_author": "Bimber",
-    "year": "2026",
-    "summary": "Occlusion-robust scene recovery remains a major challenge in computational imaging, particularly in natural environments where dense foreground vegetation severely limits visibility. We propose a vision-reasoning-guided light field occlusion removal framework that combines the visibility recovery ca"
-  },
-  "Semantic-Anchored Evidential Fusion for Domain-Robust Whole-Slide Survival Analysis": {
-    "title": "Semantic-Anchored Evidential Fusion for Domain-Robust Whole-Slide Survival Analysis",
-    "link": "https://arxiv.org/abs/2606.19966v1",
-    "first_author": "Feng",
-    "year": "2026",
-    "summary": "Whole-slide images (WSIs) are widely used for computational cancer prognosis. However, most existing methods primarily focus on in-domain performance and fail to generalize across clinical centers. This limitation stems from their reliance on pixel-derived representations that are highly susceptible"
-  },
-  "SketchKeyAnime: Reference-anchored Sparse Key-Sketch Animation Synthesis": {
-    "title": "SketchKeyAnime: Reference-anchored Sparse Key-Sketch Animation Synthesis",
-    "link": "https://arxiv.org/abs/2606.19958v1",
-    "first_author": "Li",
-    "year": "2026",
-    "summary": "Traditional animation production relies heavily on manual drawing and iterative refinement, particularly for key-pose design, in-betweening, and character coloring. While existing animation and video generation methods have made notable progress, they typically depend on RGB boundary frames, dense f"
-  },
-  "PSCT-Net: Geometry-Aware Pediatric Skull CT Reconstruction via Differentiable Back-Projection and Attention-Guided Refin": {
-    "title": "PSCT-Net: Geometry-Aware Pediatric Skull CT Reconstruction via Differentiable Back-Projection and Attention-Guided Refinement",
-    "link": "https://arxiv.org/abs/2606.19867v1",
-    "first_author": "Kim",
-    "year": "2026",
-    "summary": "Computed Tomography (CT) is essential for diagnosing pediatric craniofacial abnormalities, yet poses radiation risks to developing anatomies. Reconstructing 3D CT from sparse bi-planar X-rays offers a low-dose alternative but is severely ill-posed. Existing methods employ geometry-agnostic feature l"
-  },
-  "OTCHA: Optimal Transport-driven Confidence-aware Latent Hub Alignment for Multi-View Medical Image Classification": {
-    "title": "OTCHA: Optimal Transport-driven Confidence-aware Latent Hub Alignment for Multi-View Medical Image Classification",
-    "link": "https://arxiv.org/abs/2606.19838v1",
-    "first_author": "Jang",
-    "year": "2026",
-    "summary": "Multi-view imaging, such as mammography and chest radiography, is a standard component of clinical practice. However, medical images are often unregistered and contain view-specific artifacts or irrelevant background cues that can obscure diagnostically relevant findings. Many existing methods direc"
-  },
-  "ParaScale: Scale-Calibrated Camera-Motion Transfer via a Gauge-Invariant Parallax Number": {
-    "title": "ParaScale: Scale-Calibrated Camera-Motion Transfer via a Gauge-Invariant Parallax Number",
-    "link": "https://arxiv.org/abs/2606.19805v1",
-    "first_author": "Meng",
-    "year": "2026",
-    "summary": "Transferring the camera motion of a reference video to a freshly generated one lets creators reuse cinematic moves. Yet reference and target often live at incompatible scales -- a sweep across a galaxy versus a nudge across a desk -- and naively reusing the recovered trajectory yields either imperce"
-  },
-  "One-Shot Novel View and Pose Human Image Synthesis via 3D Prior Guided Diffusion Model": {
-    "title": "One-Shot Novel View and Pose Human Image Synthesis via 3D Prior Guided Diffusion Model",
-    "link": "https://arxiv.org/abs/2606.19718v1",
+  "MER-R1: Multimodal Emotion Reasoning via Slow-Fast Thinking Synergy": {
+    "title": "MER-R1: Multimodal Emotion Reasoning via Slow-Fast Thinking Synergy",
+    "link": "https://arxiv.org/abs/2606.27652v1",
     "first_author": "Yang",
     "year": "2026",
-    "summary": "This paper addresses the challenge of one-shot novel view and pose human image synthesis. The existing methods transfer the reference human image to a target pose using a set of 2D pose keypoints or synthesize human images based on generalizable human NeRF which uses human model priors to extract po"
+    "summary": "We find that explicit reasoning does not necessarily translate into better multimodal emotion recognition (MER) accuracy, even though it makes predictions more interpretable. Specifically, for reasoning-based MLLMs, fast thinking by triggering direct answers often outperforms slow thinking after del"
   },
-  "Vortex: Multi-Modal Fusion System for Intelligent Video Retrieval": {
-    "title": "Vortex: Multi-Modal Fusion System for Intelligent Video Retrieval",
-    "link": "https://arxiv.org/abs/2606.19682v1",
+  "StructSplat: Generalizable 3D Gaussian Splatting from Uncalibrated Sparse Views": {
+    "title": "StructSplat: Generalizable 3D Gaussian Splatting from Uncalibrated Sparse Views",
+    "link": "https://arxiv.org/abs/2606.28321v1",
+    "first_author": "Nie",
+    "year": "2026",
+    "summary": "We present StructSplat, a feed-forward and generalizable 3D Gaussian reconstruction framework that operates directly on uncalibrated images without requiring camera parameters. Existing methods either rely on per-scene optimization or assume known camera poses, and often entangle geometry and appear"
+  },
+  "Toward Robust In-Context Segmentation via Concept Guidance": {
+    "title": "Toward Robust In-Context Segmentation via Concept Guidance",
+    "link": "https://arxiv.org/abs/2606.28149v1",
+    "first_author": "Ji",
+    "year": "2026",
+    "summary": "In-context segmentation (ICS) requires a model to segment target regions in a query image using only a few reference images and their corresponding masks, without updating any parameters. Despite recent progress, prior ICS studies have largely overlooked a critical aspect: system robustness, ie, whe"
+  },
+  "AirGroundBench: Probing Spatial Intelligence in Multimodal Large Models under Heterogeneous Multi-View Embodied Collabor": {
+    "title": "AirGroundBench: Probing Spatial Intelligence in Multimodal Large Models under Heterogeneous Multi-View Embodied Collaboration",
+    "link": "https://arxiv.org/abs/2606.28049v1",
+    "first_author": "He",
+    "year": "2026",
+    "summary": "In recent years, multimodal large language models (MLLMs) have shown strong potential for embodied intelligence, yet their ability to maintain geometrically consistent spatial understanding across heterogeneous views remains under-evaluated. Existing benchmarks largely focus on single-agent, single-"
+  },
+  "Mind the Gap: Quantifying the Domain Gap in Cross-Sensor Diffusion Super-Resolution": {
+    "title": "Mind the Gap: Quantifying the Domain Gap in Cross-Sensor Diffusion Super-Resolution",
+    "link": "https://arxiv.org/abs/2606.28039v1",
+    "first_author": "Zięba",
+    "year": "2026",
+    "summary": "Demand for high-resolution satellite imagery has increased interest in super-resolution (SR) to bridge the spatial resolution gap between freely available missions such as Sentinel-2 and commercial systems like PlanetScope. Because no sensor provides true paired low- and high-resolution observations"
+  },
+  "Latent Visual Diffusion Reasoning with Monte Carlo Tree Search": {
+    "title": "Latent Visual Diffusion Reasoning with Monte Carlo Tree Search",
+    "link": "https://arxiv.org/abs/2606.27988v1",
+    "first_author": "Yuan",
+    "year": "2026",
+    "summary": "Analyzing fine-grained skill activities (e.g., sports, surgery) requires not only recognizing visual patterns but also performing step-by-step visual reasoning that leads to the final judgment. While recent advances in action quality assessment have achieved remarkable progress in evaluating perform"
+  },
+  "Understanding How MLLMs Describe Artworks Using Token Activation Maps": {
+    "title": "Understanding How MLLMs Describe Artworks Using Token Activation Maps",
+    "link": "https://arxiv.org/abs/2606.27947v1",
+    "first_author": "Castellano",
+    "year": "2026",
+    "summary": "Multimodal Large Language Models (MLLMs) describe artworks with remarkable fluency, yet the visual reasoning behind their outputs remains opaque. When an MLLM names a style, identifies a subject, or recognizes an iconographic symbol, does it ground each claim in the relevant region of the canvas, dr"
+  },
+  "TRUST: Efficient Abdominal Trauma Recognition via Image-to-Ultrasound-Video Transfer Learning": {
+    "title": "TRUST: Efficient Abdominal Trauma Recognition via Image-to-Ultrasound-Video Transfer Learning",
+    "link": "https://arxiv.org/abs/2606.27777v1",
+    "first_author": "Zhou",
+    "year": "2026",
+    "summary": "Abdominal ultrasound is indispensable for rapid, noninvasive trauma triage. However, interpreting the subtle dynamic cues embedded in continuous scanning is time-intensive and operator-dependent. Parameter-Efficient Image-to-Video Transfer Learning (PEIVTL), which efficiently adapts pre-trained imag"
+  },
+  "An Embedded Real-Time License Plate Recognition System for Complex Traffic Scenes": {
+    "title": "An Embedded Real-Time License Plate Recognition System for Complex Traffic Scenes",
+    "link": "https://arxiv.org/abs/2606.27772v1",
+    "first_author": "Thanthrige",
+    "year": "2026",
+    "summary": "Vehicle license plate recognition is an integral component of intelligent transportation systems. In this work, we present an embedded real-time license plate recognition system customized for developing countries. We address the challenge of handling complex, unstructured traffic scenes with divers"
+  },
+  "MASS: Motion-Aligned Selective Scan for Refinement in Flow-Based Video Frame Interpolation": {
+    "title": "MASS: Motion-Aligned Selective Scan for Refinement in Flow-Based Video Frame Interpolation",
+    "link": "https://arxiv.org/abs/2606.27718v1",
+    "first_author": "Jung",
+    "year": "2026",
+    "summary": "Video frame interpolation (VFI) remains a challenging task, particularly when dealing with large, non-linear motions and complex occlusions. While flow-based methods are prevalent, they often struggle with ambiguous correspondences. Recent VFI methods based on selective State Space Models (SSMs) are"
+  },
+  "Two-Stage Cross-Domain Cervical Abnormality Screening with Cytopathological Image Synthesis and Knowledge Distillation": {
+    "title": "Two-Stage Cross-Domain Cervical Abnormality Screening with Cytopathological Image Synthesis and Knowledge Distillation",
+    "link": "https://arxiv.org/abs/2606.27678v1",
+    "first_author": "Zhao",
+    "year": "2026",
+    "summary": "Cross-domain diagnosis remains a major challenge in cervical cell pathology due to pronounced domain shifts across institutions and the subtle visual differences among disease stages, which jointly impair model generalization. To address these issues, this paper proposes a two-stage framework for cr"
+  },
+  "Explainable AI for Biodiversity Monitoring and Ecological Image Analysis": {
+    "title": "Explainable AI for Biodiversity Monitoring and Ecological Image Analysis",
+    "link": "https://arxiv.org/abs/2606.27667v1",
+    "first_author": "Johnston",
+    "year": "2026",
+    "summary": "Artificial intelligence is transforming biodiversity monitoring by enabling automated analysis of ecological imagery collected from camera traps, drones, satellites, underwater platforms, and other sensing systems. These tools can expand the scale and speed of conservation assessments, yet many comp"
+  },
+  "Temporal-Emerged Prompting for Segment Anything in Multiframe Infrared Small Target Detection": {
+    "title": "Temporal-Emerged Prompting for Segment Anything in Multiframe Infrared Small Target Detection",
+    "link": "https://arxiv.org/abs/2606.27655v1",
+    "first_author": "Xu",
+    "year": "2026",
+    "summary": "Accurately localizing and segmenting small targets in low signal-to-noise ratio (SNR) infrared sequences remains a challenging task. Since targets are often indistinguishable from the background in individual frames, existing methods, even when equipped with advanced foundation model and powerful in"
+  },
+  "VLM-Aware Meta-Optic Front-End Design for Frozen Vision-Language Models": {
+    "title": "VLM-Aware Meta-Optic Front-End Design for Frozen Vision-Language Models",
+    "link": "https://arxiv.org/abs/2606.27646v1",
+    "first_author": "Chung",
+    "year": "2026",
+    "summary": "Conventional machine-vision pipelines typically rely on high-quality optics that produce clean, human-interpretable images, and optical design has therefore been driven by image-level criteria such as resolution, aberration correction, and pixel fidelity. However, such optics are often impractical f"
+  },
+  "CascadeOcc: Rethinking 3D Occupancy World Models with Cascaded VQ Representations": {
+    "title": "CascadeOcc: Rethinking 3D Occupancy World Models with Cascaded VQ Representations",
+    "link": "https://arxiv.org/abs/2606.27644v1",
+    "first_author": "Im",
+    "year": "2026",
+    "summary": "This letter proposes CascadeOcc, a novel occupancy world model that prioritizes intrinsic structural hierarchy over extrinsic auxiliary modalities for autonomous driving. Occupancy world models -- forecasting the future driving environment and planning the driving trajectory -- effectively bridge pe"
+  },
+  "AI-Generated Image Recognition via Fusion of CNNs and Vision Transformers": {
+    "title": "AI-Generated Image Recognition via Fusion of CNNs and Vision Transformers",
+    "link": "https://arxiv.org/abs/2606.27637v1",
     "first_author": "Le",
     "year": "2026",
-    "summary": "This paper presents Vortex, the multimodal video retrieval system developed by our team, FocusOnFun, for the Ho Chi Minh City AI Challenge 2025, designed to advance intelligent multimedia search and temporal reasoning. The system integrates adaptive keyframe extraction, multimodal metadata generatio"
+    "summary": "Recent advancements in synthetic data technology have opened a new era where images of remarkable quality are generated, blurring the lines between real-life images and those produced by Artificial Intelligence (AI). This evolution poses a significant challenge to ensuring the reliability and authen"
   },
-  "Scaling Generative Foundation Models for Chest Radiography with Rectified Flow Transformers": {
-    "title": "Scaling Generative Foundation Models for Chest Radiography with Rectified Flow Transformers",
-    "link": "https://arxiv.org/abs/2606.19460v1",
-    "first_author": "Glocker",
-    "year": "2026",
-    "summary": "We introduce the first generative foundation model for chest radiograph synthesis trained from scratch at the billion-parameter scale. Existing radiographic AI models often suffer from poor generalisation across patient subpopulations, institutions, and acquisition settings, resulting in limited rea"
-  },
-  "Confidence is Not Reliability: Rethinking MC Dropout in Brain Tumour Segmentation": {
-    "title": "Confidence is Not Reliability: Rethinking MC Dropout in Brain Tumour Segmentation",
-    "link": "https://arxiv.org/abs/2606.19300v1",
-    "first_author": "Ravikumar",
-    "year": "2026",
-    "summary": "Glioma segmentation in multiparametric MRI is a critical component of treatment planning. A segmentation model that fails silently on treatment-critical sub-regions represents a patient safety risk that overlap-based metrics such as Dice scores cannot expose. We ask whether voxel-level uncertainty e"
-  },
-  "A Multi-Domain Benchmark for Detecting AI-Generated Text-Rich Images from GPT-Image-2": {
-    "title": "A Multi-Domain Benchmark for Detecting AI-Generated Text-Rich Images from GPT-Image-2",
-    "link": "https://arxiv.org/abs/2606.19259v1",
-    "first_author": "Ouyang",
-    "year": "2026",
-    "summary": "Text-rich images often contain privacy-sensitive, transactional, or decision-relevant information. As recent multimodal image generation models become increasingly capable of synthesizing realistic textual content and structured visual designs, detecting AI-generated text-rich images has become an i"
-  },
-  "When AUC Misleads: Polarization-Aware Evaluation of Deepfake Detectors under Domain Shift": {
-    "title": "When AUC Misleads: Polarization-Aware Evaluation of Deepfake Detectors under Domain Shift",
-    "link": "https://arxiv.org/abs/2606.19184v1",
-    "first_author": "Aouada",
-    "year": "2026",
-    "summary": "Recent advances in generative AI, such as diffusion models and face-swapping tools, have enabled the creation of highly realistic deepfakes, leading to real-world harms including financial fraud and non-consensual explicit content. In response, deepfake detection has become an active research area, "
-  },
-  "Urdu Katib Handwritten Dataset: A Historical Document Dataset for Offline Urdu Handwritten Text Recognition with CRNN-Ba": {
-    "title": "Urdu Katib Handwritten Dataset: A Historical Document Dataset for Offline Urdu Handwritten Text Recognition with CRNN-Based Baseline Evaluation",
-    "link": "https://arxiv.org/abs/2606.19139v1",
-    "first_author": "Ali",
-    "year": "2026",
-    "summary": "Automatic Handwritten Text Recognition (HTR) is inherently a challenging task, and its complexity is further increased when dealing with cursive scripts. Although significant efforts have been made on various cursive scripts, research regarding Urdu Handwritten Text Recognition (UHTR) has been relat"
-  },
-  "DREAM: Extending Vision-Language Models with Dual-Objective Encoding for Cross-Modal Retrieval": {
-    "title": "DREAM: Extending Vision-Language Models with Dual-Objective Encoding for Cross-Modal Retrieval",
-    "link": "https://arxiv.org/abs/2606.19062v1",
-    "first_author": "Baik",
-    "year": "2026",
-    "summary": "In today's media-driven world, the exponential growth of video content across domains such as surveillance, education, and entertainment has made retrieving semantically relevant videos via natural language queries increasingly critical. Early video retrieval systems relied on handcrafted features o"
-  },
-  "Low-Rank Tensor Completion Based on Fractional Regularization with Ky Fan p-k Norm": {
-    "title": "Low-Rank Tensor Completion Based on Fractional Regularization with Ky Fan p-k Norm",
-    "link": "https://arxiv.org/abs/2606.19046v1",
-    "first_author": "Huang",
-    "year": "2026",
-    "summary": "This paper addresses low-rank tensor completion (LRTC) by proposing a novel nonconvex surrogate, namely the ratio of the tensor nuclear norm to the tensor Ky Fan p-k norm (TNPK), to accurately approximate the tensor tubal rank. The TNPK possesses appealing properties, including scale invariance, par"
-  },
-  "Show, Don't Ask: Generative Visual Disambiguation for Composed Image Retrieval with Turn-Valid Coverage": {
-    "title": "Show, Don't Ask: Generative Visual Disambiguation for Composed Image Retrieval with Turn-Valid Coverage",
-    "link": "https://arxiv.org/abs/2606.18992v1",
-    "first_author": "Guang",
-    "year": "2026",
-    "summary": "Composed image retrieval (CIR) uses a reference image and a text modification to search for a target image. However, such queries often describe several possible images rather than one exact target, making the user's intent ambiguous. Recent methods address this by using conformal prediction to esti"
-  },
-  "Physics-IQ Verified": {
-    "title": "Physics-IQ Verified",
-    "link": "https://arxiv.org/abs/2606.18943v1",
-    "first_author": "Lüth",
-    "year": "2026",
-    "summary": "Video generative models ( VGMs) have become a new frontier that can be used not just for video generation but for a multitude of downstream tasks, including world modeling. To advance these tasks, a good video model must understand the physical reality of the world. Evaluating this understanding is "
-  },
-  "BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing": {
-    "title": "BindEdit: Taming Attention Leakage for Precise Multi-Object Image Editing",
-    "link": "https://arxiv.org/abs/2606.18906v1",
-    "first_author": "Hong",
-    "year": "2026",
-    "summary": "Real image editing enables precise manipulation of visual content, yet existing methods often fail in complex multi-object scenarios, causing semantic blending, object duplication, or incomplete edits. We attribute these failures to attention leakage, where signals across spatial regions and text to"
-  },
-  "Automatic ply-specific analyses of CFRP micrographs using shortest-path-based ply distinction": {
-    "title": "Automatic ply-specific analyses of CFRP micrographs using shortest-path-based ply distinction",
-    "link": "https://arxiv.org/abs/2606.18894v1",
-    "first_author": "Brauer",
-    "year": "2026",
-    "summary": "We present an automated approach to distinguish between ply instances in semantic segmentation masks of high-resolution carbon-fiber reinforced polymer micrographs. Interpreting the segmentation mask as a graph with pixels as vertices, enables us to use a shortest-path algorithm yielding the ply-sep"
-  },
-  "DINO-Med3D: Bridging Dimension and Domain Gaps in Volumetric Segmentation via Progressive Adaptation": {
-    "title": "DINO-Med3D: Bridging Dimension and Domain Gaps in Volumetric Segmentation via Progressive Adaptation",
-    "link": "https://arxiv.org/abs/2606.18886v1",
-    "first_author": "Hou",
-    "year": "2026",
-    "summary": "Although DINOv3 has demonstrated remarkable semantic discrimination in natural imagery, its direct application to volumetric medical segmentation is hindered by inherent dimension and domain disparities. To resolve these issues, we propose DINO-Med3D, a two-stage progressive framework that repurpose"
-  },
-  "Learning to Distort: Weakly-Supervised Image Quality Transfer for Prostate DWI Correction": {
-    "title": "Learning to Distort: Weakly-Supervised Image Quality Transfer for Prostate DWI Correction",
-    "link": "https://arxiv.org/abs/2606.18869v1",
-    "first_author": "Hu",
-    "year": "2026",
-    "summary": "Single-shot echo-planar prostate diffusion-weighted imaging (DWI) is frequently complicated by geometric distortions, which impact the ability to derive reliable diagnoses from such images. Developing automated correction methods is challenged by the absence of paired distorted and undistorted clini"
-  },
-  "Rethinking Air-Ground Collaboration: A Progressive Cross-Task Benchmark and Socialized Learning Framework": {
-    "title": "Rethinking Air-Ground Collaboration: A Progressive Cross-Task Benchmark and Socialized Learning Framework",
-    "link": "https://arxiv.org/abs/2606.18841v1",
-    "first_author": "Zhu",
-    "year": "2026",
-    "summary": "Air-ground collaborative perception is crucial for robust visual understanding in real-world dynamic environments. However, existing studies typically formulate collaboration as single-task cross-view fusion, overlooking the functional dependencies among localization, target association, and fine-gr"
-  },
-  "Fuzzy-Geometric Branch-Point Modeling for Structure-Aware Augmentation of Handwritten Chinese Characters": {
-    "title": "Fuzzy-Geometric Branch-Point Modeling for Structure-Aware Augmentation of Handwritten Chinese Characters",
-    "link": "https://arxiv.org/abs/2606.18793v1",
-    "first_author": "Yan",
-    "year": "2026",
-    "summary": "Data scarcity and structural distortion significantly limit handwriting recognition in high-security authentication. Existing augmentation methods often cause topological and morphological damage, particularly when processing complex Chinese characters where stroke intersections, ligatures, and shar"
-  },
-  "Learned Radius Estimation for UDF-Based Point Cloud Reconstruction": {
-    "title": "Learned Radius Estimation for UDF-Based Point Cloud Reconstruction",
-    "link": "https://arxiv.org/abs/2606.18787v1",
-    "first_author": "Watanabe",
-    "year": "2026",
-    "summary": "Surface reconstruction from point clouds is important for consumer-grade 3D capture, including AR/VR and indoor scanning. Local-patch Unsigned Distance Field (UDF) methods are lightweight and generalizable, but their accuracy depends on the support radius, traditionally fixed or selected by a one-di"
-  },
-  "SpectralDiT: Timestep-Conditioned Spectral Residual Correction for Flow-Matching DiTs": {
-    "title": "SpectralDiT: Timestep-Conditioned Spectral Residual Correction for Flow-Matching DiTs",
-    "link": "https://arxiv.org/abs/2606.18765v1",
-    "first_author": "Tian",
-    "year": "2026",
-    "summary": "We propose SpectralDiT, a lightweight modification to flow-matching Diffusion Transformers that adds timestep-conditioned spectral correction to the MLP residual branch. The module decomposes each residual update into low- and high-frequency components on the patch-token grid, then learns a zero-ini"
-  },
-  "SMART: A Flexible, Interpretable, and Scalable Spatio-temporal Brain Atlas from High-Resolution Imaging Data": {
-    "title": "SMART: A Flexible, Interpretable, and Scalable Spatio-temporal Brain Atlas from High-Resolution Imaging Data",
-    "link": "https://arxiv.org/abs/2606.18753v1",
-    "first_author": "Lorenzi",
-    "year": "2026",
-    "summary": "We introduce SMART, a framework for learning a flexible, interpretable, and scalable spatio-temporal brain atlas from longitudinal high-resolution 3D medical images. Existing approaches to spatio-temporal atlas construction rely on black-box generative models that lack flexibility, limit interpretab"
-  },
-  "Spatially Stratified Distillation for Heterogeneous Radar Place Recognition": {
-    "title": "Spatially Stratified Distillation for Heterogeneous Radar Place Recognition",
-    "link": "https://arxiv.org/abs/2606.18687v1",
-    "first_author": "Moghadam",
-    "year": "2026",
-    "summary": "Scalable, all-weather place recognition increasingly relies on heterogeneous radar place recognition to bridge diverse hardware platforms. A notable application is matching queries from cost-effective 4D automotive radars against high-fidelity reference maps built by dense spinning radars. This proc"
-  },
-  "On-Manifold Variational Learning with Heat-Kernel Priors": {
-    "title": "On-Manifold Variational Learning with Heat-Kernel Priors",
-    "link": "https://arxiv.org/abs/2606.18658v2",
-    "first_author": "Wang",
-    "year": "2026",
-    "summary": "Learning unsupervised representations of medical imaging cohorts can reveal clinically meaningful prototypes without expert labels, which are often noisy and fail to capture true pathological heterogeneity. However, existing deep latent-variable models estimate Gaussian mixture priors via Euclidean "
-  },
-  "Spiking Pyramid Wavelet Transformation for High-efficient and Low-energy Image Restoration": {
-    "title": "Spiking Pyramid Wavelet Transformation for High-efficient and Low-energy Image Restoration",
-    "link": "https://arxiv.org/abs/2606.18644v1",
-    "first_author": "Tai",
-    "year": "2026",
-    "summary": "Spiking neural networks (SNNs) have garnered significant interest in computer vision due to their potential for efficiency and biological inspiration. While spiking CNN-based methods have shown promise for image restoration (IR) tasks, their performance is constrained by the inherent receptive field"
-  },
-  "Evaluation of Medical Vision Language Models HuluMed and MedGemma, and general purpose chatbots Gemma 3, ChatGPT Plus, a": {
-    "title": "Evaluation of Medical Vision Language Models HuluMed and MedGemma, and general purpose chatbots Gemma 3, ChatGPT Plus, and Claude Pro on real previously unseen wound images",
-    "link": "https://arxiv.org/abs/2606.20723v1",
-    "first_author": "Roshan",
-    "year": "2026",
-    "summary": "Chronic wound assessment remains a clinically challenging task that requires accurate interpretation of wound morphology, tissue composition, vascular characteristics, and infection risk. Recent advances in Vision-Language Models (VLMs) have introduced the possibility of automated multimodal wound a"
-  },
-  "Neural Phase Correlation": {
-    "title": "Neural Phase Correlation",
-    "link": "https://arxiv.org/abs/2606.18496v1",
-    "first_author": "Reynolds",
-    "year": "2026",
-    "summary": "Correspondence is fundamentally relational: it seeks the unknown transformation between two observations of a common scene, not the content of either. Yet the dominant learning-based methods do not represent the transformation as a first-class object in the architecture. They encode each image indep"
-  },
-  "CAOA -- Completion-Assisted Object-CAD Alignment": {
-    "title": "CAOA -- Completion-Assisted Object-CAD Alignment",
-    "link": "https://arxiv.org/abs/2606.18429v2",
-    "first_author": "Prabhakaran",
-    "year": "2026",
-    "summary": "Accurately aligning CAD models to their corresponding objects in indoor RGB-D scans is a central challenge in 3D semantic reconstruction. The task requires estimating a 9-Degree-of-Freedom (DoF) pose-position, rotation, and scale along three axes-but is hindered by noisy and incomplete scans, as wel"
-  },
-  "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion": {
-    "title": "Future Dynamic 3D Reconstruction: A 3D World Model with Disentangled Ego-Motion",
-    "link": "https://arxiv.org/abs/2606.18250v1",
-    "first_author": "Gasperini",
-    "year": "2026",
-    "summary": "Forecasting the evolution of dynamic environments is crucial for autonomous agents. While generative world models have recently achieved high photorealism in 2D video synthesis by mixing ego-motion and environmental dynamics within the image plane, they exhibit physical inconsistencies, such as morp"
-  },
-  "SP-TransientBench: A Real-Captured Single Photon Perception Benchmark": {
-    "title": "SP-TransientBench: A Real-Captured Single Photon Perception Benchmark",
-    "link": "https://arxiv.org/abs/2606.18952v1",
-    "first_author": "Ren",
-    "year": "2026",
-    "summary": "Single-photon LiDAR (SPL) based on single-photon avalanche diode (SPAD) sensing enables time-resolved photon measurements with extreme sensitivity, offering unique potential for active 3D perception in photon-starved scenarios.However, real-world single photon perception remains fundamentally challe"
-  },
-  "EgoCS-400K: An Egocentric Gameplay Dataset for World Models": {
-    "title": "EgoCS-400K: An Egocentric Gameplay Dataset for World Models",
-    "link": "https://arxiv.org/abs/2606.18180v1",
-    "first_author": "Lau",
-    "year": "2026",
-    "summary": "The shift from video generation to interactive world modeling places new demands on data: beyond captioned videos, world models require temporally aligned video-action-language trajectories grounded in the actions, camera motion, states, and events that drive future scene changes. However, such data"
-  },
-  "ReAge3D: Re-Aging 3D Faces with View Consistency": {
-    "title": "ReAge3D: Re-Aging 3D Faces with View Consistency",
-    "link": "https://arxiv.org/abs/2606.18156v1",
-    "first_author": "Kalantari",
-    "year": "2026",
-    "summary": "We present a novel framework for realistic and controllable 3D face re-aging which produces highly detailed, identity-preserving results. Existing 3D editing methods, while effective for coarse semantic changes, are not well suited for re-aging, as even small inconsistencies across re-aged 2D views "
-  },
-  "Neural Tree Reconstruction for the Open Forest Observatory": {
-    "title": "Neural Tree Reconstruction for the Open Forest Observatory",
-    "link": "https://arxiv.org/abs/2606.18153v1",
-    "first_author": "Young",
-    "year": "2026",
-    "summary": "The Open Forest Observatory (OFO) is a collaboration across universities and other partners to make low-cost forest mapping accessible to ecologists, land managers, and the general public. The OFO is building both a database of geospatial forest data as well as open-source methods and tools for fore"
-  },
-  "PhaseWin: An Efficient Search Algorithm for Faithful Visual Attribution": {
-    "title": "PhaseWin: An Efficient Search Algorithm for Faithful Visual Attribution",
-    "link": "https://arxiv.org/abs/2606.18008v1",
+  "Direct Observation of X-ray Double-Slit Interference in Momentum Space": {
+    "title": "Direct Observation of X-ray Double-Slit Interference in Momentum Space",
+    "link": "https://arxiv.org/abs/2606.28176v1",
     "first_author": "Zhang",
     "year": "2026",
-    "summary": "Visual attribution is a fundamental tool for interpreting modern vision and vision-language models, particularly when their decisions must be inspected, diagnosed, or audited. Its goal is to explain how a model's decision depends on local regions of the visual input, typically by assigning an import"
+    "summary": "Young's double-slit experiment is conventionally deemed a spatial phenomenon emerging from free-space transport. In this Letter, we invert this perspective to demonstrate that Young's interference can be accessed directly as a pure momentum-space observable. Using a perfect-crystal diffraction to pr"
   },
-  "Recover Semantics First, Generate Better: Improved Latent Modeling for 3D MRI Reconstruction and Cross-Contrast Synthesi": {
-    "title": "Recover Semantics First, Generate Better: Improved Latent Modeling for 3D MRI Reconstruction and Cross-Contrast Synthesis",
-    "link": "https://arxiv.org/abs/2606.17989v1",
-    "first_author": "Zhu",
+  "Unidirectional Guided Resonances Enabled by Competing Fourier Harmonics near the Fourth Stop Band": {
+    "title": "Unidirectional Guided Resonances Enabled by Competing Fourier Harmonics near the Fourth Stop Band",
+    "link": "https://arxiv.org/abs/2606.27920v1",
+    "first_author": "Lee",
     "year": "2026",
-    "summary": "Multi-contrast magnetic resonance imaging (MRI) provides complementary information for clinical diagnosis. However, acquiring all MRI sequences is often time-consuming and costly. Recent generative models perform cross-contrast synthesis to address this issue by inferring absent contrasts from the a"
+    "summary": "Unidirectional guided resonances (UGRs) have attracted considerable attention owing to their remarkable ability to radiate exclusively in one direction from single-layer planar photonic lattices without metallic components. Conventionally, UGRs have been understood to require either broken in-plane "
   },
-  "SegDINO: Introducing Multi-Scale Structure into DINO for Efficient Medical Image Segmentation": {
-    "title": "SegDINO: Introducing Multi-Scale Structure into DINO for Efficient Medical Image Segmentation",
-    "link": "https://arxiv.org/abs/2606.17972v1",
-    "first_author": "Zhu",
+  "Quantum frequency comb with pump-selectable bin pairing and extraction-aware loading in a lithium niobate microresonator": {
+    "title": "Quantum frequency comb with pump-selectable bin pairing and extraction-aware loading in a lithium niobate microresonator",
+    "link": "https://arxiv.org/abs/2606.27911v1",
+    "first_author": "Seo",
     "year": "2026",
-    "summary": "Self-supervised DINO models provide strong transferable visual representations, yet applying them directly to image segmentation remains challenging. Existing approaches commonly rely on heavy decoders with complex upsampling, introducing substantial parameter and computational overhead. We observe "
+    "summary": "Integrated quantum photonics requires bright, high-fidelity photon-pair sources capable of spectral multiplexing, correlation control, and circuit-compatible extraction. Cavity-enhanced spontaneous parametric down-conversion (SPDC) enhances pair generation, but triply resonant operation imposes stri"
   },
-  "Beyond Visual Cues: CoT-Enhanced Reasoning for Semi-supervised Medical Image Segmentation": {
-    "title": "Beyond Visual Cues: CoT-Enhanced Reasoning for Semi-supervised Medical Image Segmentation",
-    "link": "https://arxiv.org/abs/2606.17958v1",
-    "first_author": "Zhou",
+  "Vibrational high-harmonics and period-doubling bifurcation probed by time-resolved electron diffraction": {
+    "title": "Vibrational high-harmonics and period-doubling bifurcation probed by time-resolved electron diffraction",
+    "link": "https://arxiv.org/abs/2606.27891v1",
+    "first_author": "Schäfer",
     "year": "2026",
-    "summary": "Semi-supervised medical image segmentation has emerged as a dominant research problem in medical image analysis, mitigating annotation scarcity by leveraging consistency regularization on unlabeled data. However, existing approaches operate predominantly via visual pattern matching, relying heavily "
-  },
-  "MoonSplat: Monocular Online Gaussian Splatting with Sim(3) Global Optimization": {
-    "title": "MoonSplat: Monocular Online Gaussian Splatting with Sim(3) Global Optimization",
-    "link": "https://arxiv.org/abs/2606.17935v1",
-    "first_author": "Lian",
-    "year": "2026",
-    "summary": "Online 3D reconstruction from monocular image sequences is a challenging and ongoing research topic. 3D Gaussian Splatting (3DGS), leveraging its high-quality real-time rendering capability, empowers online 3D reconstruction to represent dense scenes with enhanced expressiveness, and thus holds grea"
-  },
-  "A Quantitative Analysis of Multimodal Biomarkers in Alzheimer's Disease": {
-    "title": "A Quantitative Analysis of Multimodal Biomarkers in Alzheimer's Disease",
-    "link": "https://arxiv.org/abs/2606.17867v1",
-    "first_author": "Ravì",
-    "year": "2026",
-    "summary": "Despite increasing adoption of multimodal approaches in Alzheimer's Disease (AD) research -- aimed at integrating molecular, structural, clinical, and genetic biomarkers to enhance disease characterization -- the relationships among these modalities remain poorly understood. A systematic analysis of"
-  },
-  "Video2Code: Generating Interactive Webpages from UI Videos via Action-Aware Revisit": {
-    "title": "Video2Code: Generating Interactive Webpages from UI Videos via Action-Aware Revisit",
-    "link": "https://arxiv.org/abs/2606.20711v1",
-    "first_author": "Tang",
-    "year": "2026",
-    "summary": "UI videos provide a natural input for generating interactive webpages, as they capture both webpage appearance and action-triggered state transitions. However, directly applying video-capable vision-language models to this task remains insufficient. Existing models typically rely on sparse sampling "
-  },
-  "Million-scale multimodal pollen microscopy with expert-guided foundation models": {
-    "title": "Million-scale multimodal pollen microscopy with expert-guided foundation models",
-    "link": "https://arxiv.org/abs/2606.17809v1",
-    "first_author": "Csabai",
-    "year": "2026",
-    "summary": "Automated pollen identification from microscopy remains a bottleneck in aerobiology, palaeoecology and biodiversity monitoring, because scalable systems must generalise across specimen preparation, scanner settings and geographic origins while retaining palynological interpretability. To address thi"
-  },
-  "TeleStyle V2: Beyond Content-Preserving Style Transfer with Self-Distillation and Distribution-Matching-Distillation": {
-    "title": "TeleStyle V2: Beyond Content-Preserving Style Transfer with Self-Distillation and Distribution-Matching-Distillation",
-    "link": "https://arxiv.org/abs/2606.20709v1",
-    "first_author": "Li",
-    "year": "2026",
-    "summary": "Given a content reference and a style reference, content-preserving style transfer requires the model to generate stylized outputs with content and style consistency. We introduced TeleStyle V1 to tackle this problem. However, TeleStyle V1 is trained with photorealistic content reference and artisti"
-  },
-  "BrainWorld: A Structural-Prior-Conditioned Generative Model for Whole-Brain 4D fMRI Dynamics": {
-    "title": "BrainWorld: A Structural-Prior-Conditioned Generative Model for Whole-Brain 4D fMRI Dynamics",
-    "link": "https://arxiv.org/abs/2606.17742v1",
-    "first_author": "Liu",
-    "year": "2026",
-    "summary": "Whole-brain 4D fMRI generation is valuable for modeling functional brain dynamics, yet existing fMRI foundation models mainly target representation learning and downstream prediction rather than conditional predictive generation. We introduce BrainWorld, a structural-prior-conditioned generative mod"
-  },
-  "Heterogeneous SAR-optical fusion for near-real-time land use and land cover mapping under cloud contamination: A novel f": {
-    "title": "Heterogeneous SAR-optical fusion for near-real-time land use and land cover mapping under cloud contamination: A novel framework and global benchmark dataset",
-    "link": "https://arxiv.org/abs/2606.17713v1",
-    "first_author": "Wang",
-    "year": "2026",
-    "summary": "Optical remote sensing imagery is frequently degraded by cloud and cloud-shadow contamination, which limits its reliability for near-real-time land use and land cover (LULC) mapping. Although synthetic aperture radar (SAR) can provide cloud-penetrating structural information, existing SAR-optical fu"
-  },
-  "MambaCount: Efficient Text-guided Open-vocabulary Object Counting with Spatial Sparse State Space Duality Block": {
-    "title": "MambaCount: Efficient Text-guided Open-vocabulary Object Counting with Spatial Sparse State Space Duality Block",
-    "link": "https://arxiv.org/abs/2606.17650v1",
-    "first_author": "Gao",
-    "year": "2026",
-    "summary": "Text-guided Open-vocabulary Object Counting (TOOC) aims to estimate the number of objects described by text prompts, which is particularly challenging in dense scenes with large scale variations. Existing TOOC approaches predominantly rely on Transformers, whose quadratic complexity with respect to "
-  },
-  "Bounding Box Label Propagation for Re-Annotation of Document Layout Analysis Datasets": {
-    "title": "Bounding Box Label Propagation for Re-Annotation of Document Layout Analysis Datasets",
-    "link": "https://arxiv.org/abs/2606.17644v1",
-    "first_author": "Stricker",
-    "year": "2026",
-    "summary": "Datasets in practical document processing scenarios typically grow over time, and their class annotations undergo continuous refinement. This creates significant re-annotation efforts, which are time-consuming and costly. A promising remedy is to re-annotate only a small subset of available document"
-  },
-  "RAVA: Retrieval-Augmented Viewpoint Alignment for Subject-Driven Image Generation": {
-    "title": "RAVA: Retrieval-Augmented Viewpoint Alignment for Subject-Driven Image Generation",
-    "link": "https://arxiv.org/abs/2606.17619v1",
-    "first_author": "Zhou",
-    "year": "2026",
-    "summary": "Reference-driven image generation has made rapid progress on identity preservation, but reliable viewpoint control across different subjects remains poorly understood. The difficulty is not merely generating a new image of the target subject: the model must infer the implicit viewpoint of one subjec"
-  },
-  "Flux-Guard: Facial Identity Protection using diffusion models": {
-    "title": "Flux-Guard: Facial Identity Protection using diffusion models",
-    "link": "https://arxiv.org/abs/2606.17606v1",
-    "first_author": "Liu",
-    "year": "2026",
-    "summary": "The widespread deployment of face recognition (FR) systems exposes personal images shared on social media and public platforms to identity linkage and privacy risks. Existing adversarial privacy protection methods can degrade unauthorized FR performance but are not compatible with generative face ed"
-  },
-  "TivTok: Broadcasting Time-Invariant Tokens for Scalable Video Tokenization": {
-    "title": "TivTok: Broadcasting Time-Invariant Tokens for Scalable Video Tokenization",
-    "link": "https://arxiv.org/abs/2606.17590v1",
-    "first_author": "Duan",
-    "year": "2026",
-    "summary": "Video tokenization is fundamental to scalable video generation, as the number of tokens directly determines the computational cost and the length of videos that can be modeled. Existing tokenizers mainly improve scalability by compressing videos into fewer tokens, but they often continue to represen"
+    "summary": "Nanoscale mechanical oscillators exhibit a plethora of nonlinear phenomena with promising applications for the sensing and clocking of processes down to atomic length scales. Oscillator dynamics are typically probed by electrical or optical means, providing only limited access to the spatial profile"
   }
 }

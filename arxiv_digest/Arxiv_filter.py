@@ -6,13 +6,20 @@ Pipeline:  fetch → filter → select → digest → send
 模块:       fetch    filter    digest   digest   emailer
 
 Usage:
-    python3 Arxiv_filter.py              dry-run (不发送邮件)
-    python3 Arxiv_filter.py --send       fetch + filter + send
-    python3 Arxiv_filter.py --send-only  仅重发已有 digest
-    python3 Arxiv_filter.py --wait       遇到 429 限流时等待 5 分钟后自动重试
+    python3 arxiv_digest/Arxiv_filter.py                dry-run (不发送邮件)
+    python3 arxiv_digest/Arxiv_filter.py --send          fetch + filter + send
+    python3 arxiv_digest/Arxiv_filter.py --send-only     仅重发已有 digest
+    python3 arxiv_digest/Arxiv_filter.py --wait          遇到 429 限流时等待 5 分钟后自动重试
 """
 
 import sys
+from pathlib import Path
+
+# Ensure the project root is on sys.path so `arxiv_digest` is importable
+# when this script is run directly (python3 arxiv_digest/Arxiv_filter.py).
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
 
 from arxiv_digest import config
 from arxiv_digest import fetch
