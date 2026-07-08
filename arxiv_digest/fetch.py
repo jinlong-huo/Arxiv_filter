@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""ArXiv API 获取：构造查询、拉取 feed、带重试和错误分类。"""
+"""ArXiv API 获取：构造查询、拉取 feed、带重试和错误分类。
+
+每个分类独立请求（max 200 results each），请求间延时 API_DELAY 秒，
+避免单次大查询触发 arXiv 限流。
+"""
 
 import random
 import time
@@ -11,22 +15,20 @@ import feedparser
 from arxiv_digest import config
 
 
-def _build_combined_url():
-    """构造合并查询 URL — 所有分类用 OR 串成一次请求，限定最近 3 天。
+def _build_category_url(category):
+    """构造单个分类的查询 URL，限定最近 3 天。
 
-    不加日期过滤会命中整个历史归档，cs.AI + cs.CV 就有几十万条，
-    排序极慢且容易超时/空响应，arXiv 官方明确建议控制结果集大小。
-    3 天窗口吸收 BJT/GMT 时区差和 arXiv 的 24h 索引延迟。
+    每个分类独立请求（max_results = MAX_PER_CATEGORY），而非把所有分类
+    OR 成一次大查询。arXiv 对 max_results 过大的请求更容易触发 429 限流。
     """
-    categories = " OR ".join(f"cat:{c}" for c in config.CATEGORIES)
     now = config.bj_now()
     date_to = now.strftime("%Y%m%d2359")
     date_from = (now - timedelta(days=3)).strftime("%Y%m%d0000")
-    search_query = f"({categories}) AND submittedDate:[{date_from} TO {date_to}]"
+    search_query = f"cat:{category} AND submittedDate:[{date_from} TO {date_to}]"
     params = {
         "search_query": search_query,
         "start": "0",
-        "max_results": str(config.MAX_PER_CATEGORY * len(config.CATEGORIES)),
+        "max_results": str(config.MAX_PER_CATEGORY),
         "sortBy": "submittedDate",
         "sortOrder": "descending",
     }
@@ -160,52 +162,46 @@ def _do_fetch(url):
     return feed, status_int, bozo, is_429, is_503, fatal
 
 
-def fetch_all(wait_on_429=False):
-    """拉取全部 CATEGORIES 的论文（单次合并查询），返回 (entries_by_category, stats)。
+def _fetch_one_url(url, wait_on_429, label):
+    """Fetch a single URL with full retry logic.
 
-    entries_by_category: list of (category, [feedparser entries])
-    stats: dict[category] = {total, skipped, already_seen, selected, ocs_selected}
+    Returns list of feedparser entries, or empty list on failure/skip.
+    Prints progress using ``label`` (e.g. the category name).
 
-    wait_on_429: if True, wait 5 min and retry when rate-limited instead of aborting.
+    Handles: HTTP 429 (rate-limit), HTTP 503 (unavailable), parse errors,
+    fatal errors (SSL/DNS), and arXiv "Error" pseudo-entries.
     """
-    # Pre-fetch jitter — avoid hitting the API at predictable instants
-    pre_jitter = random.uniform(1.0, config.API_DELAY)
-    time.sleep(pre_jitter)
-
-    url = _build_combined_url()
-    print(f"  [fetch] {url[:120]}...")
-
     # ── Attempt 1 ──────────────────────────────────────────────
     feed, status_int, bozo, is_429, is_503, fatal = _do_fetch(url)
 
-    # Debug: surface arXiv "Error" entry (Bug 3 — malformed query masquerading as success)
+    # Debug: surface arXiv "Error" entry (malformed query masquerading as success)
     error_msg = _is_arxiv_error_feed(feed)
     if error_msg:
-        print(f"\n⛔ {error_msg}")
-        print("   This is NOT a rate-limit — the query itself is invalid.")
-        print(f"   URL: {url}")
-        return [], _empty_stats()
+        print(f"\n  [{label}] ⛔ {error_msg}")
+        print(f"         This is NOT a rate-limit — the query itself is invalid.")
+        print(f"         URL: {url}")
+        return []
 
     # Success on first attempt
     if feed.entries:
-        grouped = _group_by_category(feed.entries)
-        return _build_result(grouped)
+        print(f"  [{label}] ✓ {len(feed.entries)} entries")
+        return feed.entries
 
     # ── No entries — classify the failure ─────────────────────
     if is_429:
         wait_sec = 300 + random.randint(0, 60)
         if wait_on_429:
-            print(f"\n⛔ arXiv is rate-limiting this IP (HTTP 429). "
+            print(f"\n  [{label}] ⛔ HTTP 429 rate-limit. "
                   f"Waiting {wait_sec}s ({wait_sec // 60}min) then retrying...")
             time.sleep(wait_sec)
-            return fetch_all(wait_on_429=False)
-        if _prompt_retry("arXiv is rate-limiting this IP (HTTP 429).", wait_sec):
-            return fetch_all(wait_on_429=False)
-        return [], _empty_stats()
+            return _fetch_one_url(url, wait_on_429=False, label=label)
+        if _prompt_retry(f"[{label}] arXiv is rate-limiting this IP (HTTP 429).", wait_sec):
+            return _fetch_one_url(url, wait_on_429=False, label=label)
+        return []
 
     if fatal:
-        print(f"⛔ [FATAL] non-retryable error: {str(bozo)[:200]}")
-        return [], _empty_stats()
+        print(f"  [{label}] ⛔ [FATAL] non-retryable error: {str(bozo)[:200]}")
+        return []
 
     if is_503:
         retry_reason = "HTTP 503 — arXiv API is temporarily unavailable"
@@ -213,52 +209,47 @@ def fetch_all(wait_on_429=False):
         retry_reason = f"HTTP 200 but feed parse failed" \
                        f"{f' — {str(bozo)[:100]}' if bozo else ''}"
     else:
-        # Bug 1 fix: previously this case (timeout, connection refused,
-        # weird status, 200-with-zero-entries-and-no-error) left
-        # retry_reason = None, which the loop treated as "succeeded."
         retry_reason = f"HTTP {status_int} — empty response (no entries)"
 
     # ── Retry loop ────────────────────────────────────────────
     for attempt in range(config.MAX_RETRIES):
-        # 503 退避比解析错误退避更长
         base = config.RETRY_BACKOFF_503_BASE if is_503 else config.RETRY_BACKOFF_BASE
         if attempt < len(base):
             delay = base[attempt] * (0.75 + random.random() * 0.5)
         else:
             delay = base[-1] * (0.75 + random.random() * 0.5)
-        print(f"  [retry] {retry_reason[:80]} — "
+        print(f"  [{label}] [retry] {retry_reason[:80]} — "
               f"attempt {attempt + 2}/{config.MAX_RETRIES + 1}, "
               f"waiting {delay:.1f}s...")
         time.sleep(delay)
 
-        # Bug 2 fix: use _do_fetch which always passes User-Agent
         feed, status_int2, bozo2, is_429_2, is_503_2, fatal2 = _do_fetch(url)
 
         # Check for arXiv error entry on retry too
         error_msg = _is_arxiv_error_feed(feed)
         if error_msg:
-            print(f"\n⛔ {error_msg}")
-            print(f"   URL: {url}")
-            return [], _empty_stats()
+            print(f"\n  [{label}] ⛔ {error_msg}")
+            print(f"         URL: {url}")
+            return []
 
         if feed.entries:
-            grouped = _group_by_category(feed.entries)
-            return _build_result(grouped)
+            print(f"  [{label}] ✓ {len(feed.entries)} entries (after retry)")
+            return feed.entries
 
         if is_429_2:
             wait_sec = 300 + random.randint(0, 60)
             if wait_on_429:
-                print(f"  [RATE-LIMITED] HTTP 429 on retry — "
+                print(f"  [{label}] [RATE-LIMITED] HTTP 429 on retry — "
                       f"waiting {wait_sec}s ({wait_sec // 60}min) then retrying...")
                 time.sleep(wait_sec)
-                return fetch_all(wait_on_429=False)
-            if _prompt_retry("HTTP 429 on retry — arXiv is rate-limiting.", wait_sec):
-                return fetch_all(wait_on_429=False)
-            return [], _empty_stats()
+                return _fetch_one_url(url, wait_on_429=False, label=label)
+            if _prompt_retry(f"[{label}] HTTP 429 on retry — arXiv is rate-limiting.", wait_sec):
+                return _fetch_one_url(url, wait_on_429=False, label=label)
+            return []
 
         if fatal2:
-            print(f"  [FATAL] non-retryable error on retry — aborting")
-            return [], _empty_stats()
+            print(f"  [{label}] [FATAL] non-retryable error on retry — aborting")
+            return []
 
         # Update retry_reason for next iteration
         if is_503_2:
@@ -273,17 +264,69 @@ def fetch_all(wait_on_429=False):
 
     # ── After all retries ──
     if feed.entries:
-        grouped = _group_by_category(feed.entries)
-        return _build_result(grouped)
+        print(f"  [{label}] ✓ {len(feed.entries)} entries (final)")
+        return feed.entries
 
-    # All attempts exhausted, no data
+    # All attempts exhausted, no data — one last prompt
     status_final = getattr(feed, 'status', 'N/A')
-    print(f"\n⛔ arXiv API returned 0 entries after "
+    print(f"\n  [{label}] ⛔ 0 entries after "
           f"{config.MAX_RETRIES + 1} attempt(s) (HTTP {status_final}).")
     if not wait_on_429:
-        if _prompt_retry(f"All {config.MAX_RETRIES + 1} attempts exhausted (HTTP {status_final})."):
-            return fetch_all(wait_on_429=False)
-    return [], _empty_stats()
+        if _prompt_retry(f"[{label}] All {config.MAX_RETRIES + 1} attempts exhausted "
+                         f"(HTTP {status_final})."):
+            return _fetch_one_url(url, wait_on_429=False, label=label)
+    return []
+
+
+def fetch_all(wait_on_429=False):
+    """拉取全部 CATEGORIES 的论文（每个分类独立请求），返回 (entries_by_category, stats)。
+
+    每个分类单独请求（max_results = MAX_PER_CATEGORY），请求间延时
+    API_DELAY 秒 + jitter。相比单次大查询（max_results = 1800），
+    小请求更不容易触发 arXiv 的 429 限流。
+
+    entries_by_category: list of (category, [feedparser entries])
+    stats: dict[category] = {total, skipped, already_seen, selected, ocs_selected}
+
+    wait_on_429: if True, wait 5 min and retry when rate-limited instead of prompting.
+    """
+    # Pre-fetch jitter — avoid hitting the API at predictable instants
+    pre_jitter = random.uniform(1.0, config.API_DELAY)
+    time.sleep(pre_jitter)
+
+    all_grouped = {}   # {primary_category: [entries]}
+    failed_categories = []
+
+    for i, cat in enumerate(config.CATEGORIES):
+        # Delay between categories (skip the very first one; pre_jitter covers it)
+        if i > 0:
+            delay = config.API_DELAY * (0.75 + random.random() * 0.5)
+            print(f"  [wait] {delay:.1f}s before next category...")
+            time.sleep(delay)
+
+        url = _build_category_url(cat)
+        print(f"  [fetch] {cat} {url[:100]}...")
+
+        entries = _fetch_one_url(url, wait_on_429=wait_on_429, label=cat)
+
+        if entries:
+            # Group entries by their *actual* primary category (arXiv cross-lists
+            # papers, so a paper fetched under cs.AI may have primary cs.CV).
+            for e in entries:
+                actual_cat = _parse_primary_category(e)
+                all_grouped.setdefault(actual_cat, []).append(e)
+        else:
+            failed_categories.append(cat)
+
+    # ── Report ────────────────────────────────────────────────
+    total_entries = sum(len(v) for v in all_grouped.values())
+    succeeded = len(config.CATEGORIES) - len(failed_categories)
+    print(f"\n  Summary: {succeeded}/{len(config.CATEGORIES)} categories returned data, "
+          f"{total_entries} total entries")
+    if failed_categories:
+        print(f"  Failed: {', '.join(failed_categories)}")
+
+    return _build_result(all_grouped)
 
 
 def _empty_stats():

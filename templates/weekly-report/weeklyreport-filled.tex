@@ -31,20 +31,13 @@
 
 \section{一、本周工作概要}
 
-\subsection*{1.1\quad 讨论回顾和周报概要}
+\subsection*{1.1\quad MoE训练阶段建模}
+针对上周存在的问题即:
+\item \textbf{token在训练侧的分布情况不清晰},本周从模型的训练角度出发,讨论了token在不同阶段的分布.
 
-基于此前讨论：
-\begin{enumerate}
-  \item Mixnet文献中对于计算和通信的overlap问题；
-  \item vLLM学习；
-  \item 故障恢复和OCS损耗建模。
-\end{enumerate}
-
-\subsection*{1.2\quad MixNet计算和通信掩盖解决思路}
-
-在前向传播中，提供了两种处理策略：在首次All-to-All通信前，阻塞网络约25ms以等待OCS物理重构完成；第二个是文章提出的MixNet-Copilot 流量预测。利用历史迭代的流量记录和时序加权平均，在上一层的注意力计算阶段提前预测当前层的流量需求。若预测准确则完美隐藏延迟；若存在偏差，则在第二次 All-to-All 时进行微调校准。
-
-\textbf{问题在于} MixNet 在预测失败或首次 All-to-All 时，会将 OCS 重构视为阻塞屏障，导致网络闲置。且依赖历史 Epoch 或上一层的数据进行流量预测本质上是一种“猜测”，在训练初期或数据分布漂移时准确率受限，并且无法为推理阶段重构提供合理支持。最后，MixNet 仅作用于物理/拓扑层，而类似 DeepEP 的优化作用于 CUDA/算子层，两者目前处于割裂状态。\textbf{这些点,可以作为后续研究的内容.}
+\item 
+\subsection*{1.2\quad 故障恢复和损耗建模}
+参考
 
 \subsection*{1.3\quad vLLM学习}
 
@@ -138,7 +131,7 @@ OCS &
 \section{二、遇到的问题与讨论}
 
 \begin{enumerate}
-  \item \textbf{token在训练侧的分布情况不清晰}：\texttt{moe\_run.py} 当前的问题主要集中在，是使用已有的模型权重进行推理侧的验证，即使是token在不同专家中的分布，仍然是推理侧，应该转向，训练端，从数据的角度出发，首先在训练侧了解数据的偏好分布，之后利用有效预测，在推理端验证。
+  
   \item \textbf{Qwen3.5-MoE 模型结构差异}：Qwen3.5-MoE 的 decoder layers 嵌套在 \texttt{language\_model} 子模块中（区别于 Qwen1.5-MoE 的扁平结构），在 \texttt{model\_utils.py} 中通过 \texttt{\_find\_decoder\_layers()} 适配，但后续新增 MoE 架构变体时仍需维护适配逻辑。
 \end{enumerate}
 

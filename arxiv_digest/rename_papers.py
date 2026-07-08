@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Rename PDF papers to Zotero format: Author_Year_Title.pdf"""
 
+import json
 import os
 import re
 import sys
@@ -13,10 +14,14 @@ import xml.etree.ElementTree as ET
 ROOT = '/Users/Vir-G/Downloads/Paper'
 EXCLUDE_DIR = '_archive_seismic'
 DRY_RUN = False  # Set to False to actually rename
+INTERACTIVE = False  # Prompt user for metadata on remaining unknowns
 
-# Track arXiv API calls for rate limiting
+# Track API calls for rate limiting
 _arxiv_last_call = 0
-_ARXIV_DELAY = 1.0  # seconds between API calls
+_ARXIV_DELAY = 1.0  # seconds between arXiv API calls
+_S2_LAST_CALL = 0
+_S2_DELAY = 1.0  # seconds between Semantic Scholar calls
+_S2_LIMIT = 90  # S2 allows ~100 per 5 min, be conservative
 
 def sanitize(s):
     """Convert string to safe filename component"""
@@ -65,6 +70,295 @@ def extract_arxiv_id(filename):
     if m:
         return m.group(0).split('v')[0]  # return full ID without version
     return None
+
+
+def extract_candidate_title(filename):
+    """Extract a plausible paper title from a filename stem for search queries.
+
+    Handles several patterns:
+      - Unknown_YYYY_Unknown_YYYY_Author_et_al_YYYY_Actual_Title  (bad prior rename)
+      - Author_et_al_2025_Title_With_Underscores                  (download_papers output)
+      - Author - Year - Title                                     (descriptive filename)
+      - Title with arXiv ID suffix (e.g. Title_2606.12345)
+      - Generic PDF filename (use as-is)
+    """
+    stem = filename.rsplit('.', 1)[0]
+    stem = re.sub(r'v\d+$', '', stem)  # strip version suffix
+
+    # --- Strip "Unknown_YYYY_Unknown_YYYY_" prefix from prior bad renames ---
+    m = re.match(r'^Unknown_\d{4}_Unknown_\d{4}_(.+)$', stem, re.IGNORECASE)
+    if m:
+        stem = m.group(1)
+
+    # --- Strip leading arXiv ID ---
+    stem = re.sub(r'^\d{4}\.\d{4,5}v?\d*_', '', stem)
+
+    # --- Pattern: Author_et_al_YYYY_Rest -> keep Rest as title ---
+    # Handles: De_Marchi_et_al_2025_Title..., GLM_Team_2024_Title..., Author_2023_Title...
+    m = re.match(r'^[A-Za-z][a-zA-Z\-]+(?:_[a-zA-Z][a-zA-Z\-]*)*(?:_et_al)?_(\d{4})_(.+)$', stem)
+    if m:
+        return m.group(2)  # the title portion after year
+
+    # --- Pattern: Author - Year - Venue - Title or Author - Year - Title ---
+    m = re.match(r'^.+?\s+-\s+\d{4}\s+-\s+(?:[^-]+?\s+-\s+)?(.+)$', stem)
+    if m:
+        return m.group(1).strip()
+
+    # --- Pattern: words with a year embedded (e.g. kleyko2018Title) ---
+    m = re.match(r'^[a-zA-Z]+\d{4}(.+)$', stem)
+    if m:
+        return m.group(1)
+
+    # --- Fallback: use the whole stem, strip common noise ---
+    stem = re.sub(r'\b\d{4}\.\d{4,5}v?\d*\b', '', stem)  # remove arXiv IDs
+    stem = re.sub(r'_{2,}', '_', stem).strip('_')
+    return stem if len(stem) > 10 else None
+
+
+def query_semantic_scholar(title, max_retries=1):
+    """Search Semantic Scholar by title. Returns (author, year, title) or (None, None, None).
+
+    Free tier: ~100 requests per 5 minutes. Handles 429 with backoff.
+    """
+    global _S2_LAST_CALL
+
+    if not title or len(title) < 10:
+        return None, None, None
+
+    # Rate limiting
+    elapsed = time.time() - _S2_LAST_CALL
+    if elapsed < _S2_DELAY:
+        time.sleep(_S2_DELAY - elapsed)
+
+    query = urllib.parse.quote(title[:300].replace('_', ' '))
+    url = (f'https://api.semanticscholar.org/graph/v1/paper/search'
+           f'?query={query}&limit=3&fields=title,year,authors')
+
+    for attempt in range(max_retries + 1):
+        _S2_LAST_CALL = time.time()
+        try:
+            req = urllib.request.Request(url, headers={'User-Agent': 'PaperRenamer/2.0'})
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                data = json.loads(resp.read().decode('utf-8'))
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                print(f"  S2 rate-limited, skipping remaining S2 calls", file=sys.stderr)
+                return ('__RATELIMITED__', None, None)
+            return None, None, None
+        except Exception as e:
+            if attempt < max_retries:
+                print(f"  S2 error: {e}, retrying...", file=sys.stderr)
+                time.sleep(3)
+                continue
+            return None, None, None
+
+        papers = data.get('data', [])
+        if not papers:
+            return None, None, None
+
+        # Score each result: title similarity + year validity
+        best = None
+        best_score = -1
+        query_words = set(re.sub(r'[^a-z0-9\s]', '', title.lower().replace('_', ' ')).split())
+
+        for paper in papers:
+            p_title = paper.get('title', '')
+            if not p_title:
+                continue
+            p_words = set(re.sub(r'[^a-z0-9\s]', '', p_title.lower()).split())
+            overlap = len(query_words & p_words)
+            jaccard = overlap / max(len(query_words | p_words), 1)
+
+            year = paper.get('year')
+            year_str = str(year) if year else ''
+            is_recent = year and 1990 <= year <= 2030
+
+            score = jaccard * 3 + (1.0 if is_recent else 0)
+            if score > best_score and jaccard > 0.12:
+                best_score = score
+                best = paper
+
+        if not best:
+            return None, None, None
+
+        p_title = best.get('title', '')
+        year = str(best.get('year', '')) if best.get('year') else ''
+        authors = best.get('authors', [])
+
+        if authors:
+            last_name = authors[0].get('name', '').split()[-1]
+            last_name = re.sub(r'[^a-zA-Z\-]', '', last_name)
+            if len(authors) > 2:
+                last_name += '_et_al'
+        else:
+            last_name = 'Unknown'
+
+        return last_name, year, p_title
+
+    return None, None, None
+
+
+def extract_pdf_text_first_page(filepath):
+    """Extract first-page text and font sizes using pdfplumber or PyPDF2 fallback."""
+    lines = []
+    font_sizes = {}  # line_index -> max_font_size
+
+    # Try pdfplumber first (better text + font info)
+    try:
+        import pdfplumber
+        with pdfplumber.open(filepath) as pdf:
+            if pdf.pages:
+                page = pdf.pages[0]
+                words = page.extract_words(keep_blank_chars=False, extra_attrs=['fontname', 'size'])
+                if words:
+                    # Group words into lines by Y-coordinate
+                    line_map = {}
+                    for w in words:
+                        y_key = round(w['top'], 1)
+                        if y_key not in line_map:
+                            line_map[y_key] = {'text': [], 'max_size': 0}
+                        line_map[y_key]['text'].append(w['text'])
+                        sz = w.get('size', 0) or 0
+                        if sz > line_map[y_key]['max_size']:
+                            line_map[y_key]['max_size'] = sz
+
+                    for y_key in sorted(line_map.keys()):
+                        entry = line_map[y_key]
+                        line_text = ' '.join(entry['text']).strip()
+                        if line_text:
+                            lines.append(line_text)
+                            font_sizes[len(lines) - 1] = entry['max_size']
+                    return lines, font_sizes
+
+                # Fallback: plain text extraction
+                text = page.extract_text()
+                if text:
+                    lines = [l.strip() for l in text.split('\n') if l.strip()]
+                    return lines, {}
+    except Exception:
+        pass
+
+    # PyPDF2 fallback
+    try:
+        import PyPDF2
+        reader = PyPDF2.PdfReader(filepath)
+        page = reader.pages[0]
+        text = page.extract_text()
+        if text:
+            lines = [l.strip() for l in text.split('\n') if l.strip()]
+    except Exception:
+        pass
+
+    return lines, {}
+
+
+def extract_pdf_metadata_enhanced(filepath):
+    """Enhanced PDF metadata extraction using pdfplumber font sizes + heuristics."""
+    lines, font_sizes = extract_pdf_text_first_page(filepath)
+    if not lines or len(lines) < 3:
+        return None, None, None
+
+    title = None
+    author = None
+    year = None
+
+    # --- Title: find line with largest font size in top half of first page ---
+    if font_sizes:
+        # Only consider first 20 lines for title
+        title_candidates = [(i, sz) for i, sz in font_sizes.items() if i < min(20, len(lines))]
+        title_candidates.sort(key=lambda x: x[1], reverse=True)
+        for idx, sz in title_candidates:
+            line = lines[idx]
+            if len(line) < 5 or len(line) > 400:
+                continue
+            if _is_bad_title_line(line):
+                continue
+            if _is_bad_author_line(line):
+                continue
+            title = line
+            break
+
+    # Without font sizes, use first non-bad line
+    if not title:
+        for line in lines[:8]:
+            if len(line) < 5 or len(line) > 400:
+                continue
+            if _is_bad_title_line(line):
+                continue
+            if _is_bad_author_line(line):
+                continue
+            title = line
+            break
+
+    # ── Author extraction ──────────────────────────────────────
+    title_words = set()
+    title_font_size = 0
+    if title:
+        title_words = {w.lower() for w in title.split()
+                       if len(w) > 2 and w.lower() not in
+                       {'the', 'and', 'for', 'with', 'via', 'its'}}
+        # Find font size of the title line for continuation detection
+        for i, line in enumerate(lines):
+            if line == title and i in font_sizes:
+                title_font_size = font_sizes[i]
+                break
+
+    # Determine where the title ends in the line list
+    title_end = 0
+    if title:
+        for i, line in enumerate(lines):
+            if line == title:
+                title_end = i
+                break
+
+    for i in range(title_end + 1, min(title_end + 20, len(lines))):
+        line = lines[i]
+        if len(line) < 5 or len(line) > 400:
+            continue
+        if _is_bad_author_line(line):
+            continue
+        if _is_bad_title_line(line):
+            continue
+        # Skip title-continuation lines (same font size as title)
+        if title_font_size > 0 and i in font_sizes:
+            if abs(font_sizes[i] - title_font_size) < title_font_size * 0.1:
+                continue
+        if title_words:
+            line_words = {w.lower() for w in line.split()
+                          if len(w) > 2 and w.lower() not in
+                          {'the', 'and', 'for', 'with', 'via', 'its'}}
+            if line_words:
+                overlap = len(line_words & title_words) / max(len(line_words), 1)
+                if overlap >= 0.4:
+                    continue
+        if _looks_like_author_line(line):
+            author = line
+            break
+
+    # ── Year extraction (header area only, before abstract) ────
+    for line in lines[:8]:
+        m = re.search(r'\b((?:19|20)\d{2})\b', line)
+        if m:
+            year = m.group(1)
+            break
+    if not year:
+        for line in lines[:30]:
+            m = re.search(r'\b((?:19|20)\d{2})\b', line)
+            if m:
+                year = m.group(1)
+                break
+
+    # Clean title
+    if title:
+        title = title.replace('\n', ' ').strip()
+        title = re.sub(r'\s+', ' ', title)
+        title = re.sub(r'\s*arXiv:\s*\d{4}\.\d{4,5}v?\d*\s*$', '', title)
+
+    last_name = None
+    if author:
+        last_name = _extract_author_last_name(author)
+
+    return last_name, year, title
 
 
 def query_arxiv_batch(arxiv_ids):
@@ -242,7 +536,7 @@ def _is_bad_author_line(line):
     if re.search(r'\b(University|Institute|College|Laboratory|School|Department|Division|Center|Centre|Research|Academy|Corporation|Limited|Ltd|Inc)\b', line) and len(line.split()) <= 5:
         return True
     # Single-entity lines (just company names)
-    if re.match(r'^(University|Department|Institute|College|School|Laboratory|Research|Google|Meta|Microsoft|DeepMind|OpenAI|Amazon|Apple|IBM|Intel|NVIDIA|DeepSeek-AI|arXiv|Cornell|Stanford|MIT|UC\s|Skolkovo|Skolktech)$', line.strip()):
+    if re.match(r'^(University|Department|Institute|College|School|Laboratory|Research|Google|Meta|Microsoft|OpenAI|Amazon|Apple|IBM|Intel|NVIDIA|arXiv|Cornell|Stanford|MIT|UC\s|Skolkovo|Skolktech)$', line.strip()):
         return True
     return False
 
@@ -251,13 +545,17 @@ def _looks_like_author_line(line):
     """Check if a line looks like it could contain author names"""
     # Clean superscripts first
     cleaned = re.sub(r'[\d*†‡§¶#©®™★✉\d]+', ' ', line).strip()
-    words = cleaned.split()
+    # Split by commas, semicolons, AND spaces for concatenated-name detection
+    words = re.split(r'[,\s]+', cleaned)
+    words = [w for w in words if w and w[0].isupper()]
     if len(words) < 2:
+        # Also check for CamelCase concatenation: "SamyamRajbhandari" has uppercase words
+        camel = re.findall(r'[A-Z][a-z]+', line)
+        if len(camel) >= 2:
+            return True
         return False
     # Count capitalized words (names)
-    cap_words = sum(1 for w in words if w and w[0].isupper())
-    # Author lines typically have 2-8+ capitalized words
-    return cap_words >= 2 and cap_words >= len(words) * 0.6
+    return len(words) >= 2 and len(words) >= min(len(cleaned.split()), 3) * 0.5
 
 
 def _extract_author_last_name(author_text):
@@ -437,8 +735,17 @@ def extract_pdf_metadata(filepath):
         return None, None, None
 
 
-def get_new_name(filepath, arxiv_batch_cache):
-    """Determine new filename for a single PDF"""
+def get_new_name(filepath, arxiv_batch_cache, s2_count=None):
+    """Determine new filename for a single PDF.
+
+    Strategy chain:
+      1. arXiv API          — most reliable, needs arXiv ID in filename
+      2. PDF text (enhanced) — pdfplumber + font-size heuristics (fast, local)
+      3. Semantic Scholar   — title search fallback (rate-limited, ~100/5min)
+      4. PDF text (legacy)  — PyPDF2 metadata + basic text (covers edge cases)
+      5. Filename parsing   — regex matching on descriptive filenames
+      6. Year fallbacks     — file mtime, arXiv ID prefix, regex
+    """
     dirname = os.path.dirname(filepath)
     filename = os.path.basename(filepath)
 
@@ -449,12 +756,46 @@ def get_new_name(filepath, arxiv_batch_cache):
     year = None
     title = None
 
-    # Strategy 1: arXiv API (for arXiv ID files) - most reliable
+    # ── Strategy 1: arXiv API (for arXiv ID files) ──────────────
     arxiv_id = extract_arxiv_id(filename)
     if arxiv_id and arxiv_id in arxiv_batch_cache:
         author, year, title = arxiv_batch_cache[arxiv_id]
 
-    # Strategy 2: PDF embedded metadata (if not already set from arXiv)
+    # ── Strategy 2: Enhanced PDF text (pdfplumber + heuristics) ──
+    if not (author and title) or not year:
+        a, y, t = extract_pdf_metadata_enhanced(filepath)
+        if not author:
+            author = a
+        if not year:
+            year = y
+        if not title:
+            title = t
+
+    # ── Strategy 3: Semantic Scholar (title search) ──────────────
+    if not (author and title):
+        can_title = extract_candidate_title(filename)
+        if not can_title and title:
+            can_title = title
+        if can_title:
+            quota_ok = s2_count is None or s2_count[0] < _S2_LIMIT
+            if quota_ok:
+                a, y, t = query_semantic_scholar(can_title)
+                if s2_count is not None:
+                    s2_count[0] += 1
+                if a == '__RATELIMITED__':
+                    # S2 rate-limited — skip all remaining S2 calls this run
+                    if s2_count is not None:
+                        s2_count[0] = _S2_LIMIT
+                elif a and t:
+                    author = a
+                    if not year:
+                        year = y
+                    title = t
+            else:
+                print(f"  S2 quota ({_S2_LIMIT}/5min) reached, skipping",
+                      file=sys.stderr)
+
+    # ── Strategy 4: Legacy PDF metadata (PyPDF2) ─────────────────
     if not (author and title) or not year:
         a, y, t = extract_pdf_metadata(filepath)
         if not author:
@@ -464,7 +805,7 @@ def get_new_name(filepath, arxiv_batch_cache):
         if not title:
             title = t
 
-    # Strategy 3: Parse descriptive filename
+    # ── Strategy 5: Parse descriptive filename ───────────────────
     if not (author and title):
         a, y, t = parse_author_year_title(filename)
         if not author:
@@ -523,6 +864,30 @@ def get_new_name(filepath, arxiv_batch_cache):
     return new_name, 'OK'
 
 
+def interactive_prompt(filepath):
+    """Ask the user for metadata on a paper that couldn't be auto-renamed."""
+    filename = os.path.basename(filepath)
+    print(f"\n  Couldn't auto-detect metadata for:")
+    print(f"    {filename}")
+    print(f"  Enter metadata (leave blank to skip):")
+    try:
+        author = input("    Author (last name): ").strip()
+        if not author:
+            return None
+        year = input("    Year (YYYY): ").strip()
+        title = input("    Title: ").strip()
+        if not title:
+            title = filename.rsplit('.', 1)[0]
+        if not year:
+            year = '0000'
+        author_s = sanitize(author)
+        title_s = sanitize(title)
+        year_s = re.sub(r'[^0-9]', '', year)[:4] or '0000'
+        return f"{author_s}_{year_s}_{title_s}.pdf"
+    except (EOFError, KeyboardInterrupt):
+        return None
+
+
 def main():
     # Collect all arXiv IDs first
     arxiv_ids = set()
@@ -571,8 +936,10 @@ def main():
     # Sort: newest first (descending mtime)
     file_entries.sort(key=lambda x: x[1], reverse=True)
 
+    s2_count = [0]  # mutable counter for Semantic Scholar rate limiting
+
     for fp, mtime in file_entries:
-        new_name, status = get_new_name(fp, arxiv_cache)
+        new_name, status = get_new_name(fp, arxiv_cache, s2_count)
         ts = time.strftime('%Y-%m-%d', time.localtime(mtime)) if mtime else 'unknown'
         if status == 'SKIP_ALREADY_OK':
             results['skip_ok'].append(fp)
@@ -584,6 +951,12 @@ def main():
                     print(f"  [{ts}] {basename[:80]}")
                     print(f"         -> {new_name}")
         else:
+            # Interactive fallback for remaining unknowns
+            if INTERACTIVE and not DRY_RUN:
+                manual_name = interactive_prompt(fp)
+                if manual_name:
+                    results['rename'].append((fp, manual_name))
+                    continue
             results['error'].append(fp)
 
     # Summary
@@ -645,4 +1018,8 @@ if __name__ == '__main__':
         if resp.lower() != 'yes':
             print("Aborted.")
             sys.exit(0)
+    if '--interactive' in sys.argv:
+        INTERACTIVE = True
+        DRY_RUN = False
+        print("*** INTERACTIVE MODE — will prompt for unknown papers ***")
     main()
