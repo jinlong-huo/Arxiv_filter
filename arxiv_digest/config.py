@@ -18,10 +18,19 @@ except ImportError:
 # ── Timezone (Beijing) ─────────────────────────────────────────
 TZ = timezone(timedelta(hours=8))
 
+# Set by --date flag for backfilling a specific day.
+# When non-None, bj_now() and bj_today_str() return this date instead of "now".
+DATE_OVERRIDE: str | None = None
+
 def bj_now():
+    if DATE_OVERRIDE is not None:
+        d = datetime.strptime(DATE_OVERRIDE, "%Y-%m-%d")
+        return d.replace(hour=23, minute=59, second=59, tzinfo=TZ)
     return datetime.now(TZ)
 
 def bj_today_str():
+    if DATE_OVERRIDE is not None:
+        return DATE_OVERRIDE
     return bj_now().strftime("%Y-%m-%d")
 
 # ── arXiv API ──────────────────────────────────────────────────
@@ -36,6 +45,8 @@ CATEGORIES = [
     "cs.CV",
     "cs.SY",
     "physics.optics",   # device/hardware OCS papers live here, not cross-listed to cs.*
+    "physics.app-ph",   # applied physics — optical device / photonic integration
+    "eess.SP",          # signal processing — optical comms / fiber transmission
 ]
 
 MAX_PER_CATEGORY = 200
@@ -182,6 +193,57 @@ OCS_KEYWORDS = {
     # 光网络调度
     "optical scheduling": 6,
     "optical resource allocation": 5,
+    # OCS 器件 / 波长选择开关
+    "wavelength selective switch": 6,
+    "wavelength-selective switch": 6,
+    "arrayed waveguide grating": 5,
+    "arrayed-waveguide grating": 5,
+    "micro-ring resonator": 5,
+    "microring resonator": 5,
+    "microresonator": 4,
+    "optical resonator": 3,
+    "mach-zehnder modulator": 5,
+    "mach zehnder modulator": 5,
+    "mach-zehnder interferometer": 4,
+    "optical frequency comb": 4,
+    "frequency comb": 3,
+    "sagnac": 3,
+    # 光交换范式
+    "optical burst switching": 6,
+    "optical packet switching": 6,
+    "optical label switching": 5,
+    "optical flow switching": 5,
+    "hybrid optical-electrical": 5,
+    "optical-electrical switch": 5,
+    "optoelectronic switch": 5,
+    "free-space optical": 4,
+    "free space optical": 4,
+    "visible light communication": 3,
+    # 数据中心光网络
+    "optical data center network": 6,
+    "optical datacenter network": 6,
+    "optical dcn": 5,
+    "intra-datacenter optical": 5,
+    "intra-data center optical": 5,
+    "intra-datacenter optical": 5,
+    # 波分复用 / 网格
+    "dense wavelength division": 5,
+    "wdm": 3,
+    "optical grid": 4,
+    "flex-rate": 4,
+    "flex rate": 4,
+    # 光网络 AI/ML 控制面
+    "optical network control": 5,
+    "software-defined optical": 5,
+    "sdn optical": 4,
+    "optical network security": 5,
+    "optical network survivability": 5,
+    "optical network resilience": 5,
+    "quality of transmission": 4,
+    "optical performance monitoring": 5,
+    # 量子 / 光网络融合
+    "quantum optical network": 4,
+    "entanglement distribution optical": 5,
 }
 
 OCS_NEGATIVE_KEYWORDS = {
@@ -190,17 +252,18 @@ OCS_NEGATIVE_KEYWORDS = {
     "comprehensive survey": -8,
     "this survey": -6,
     "tutorial": -6,
-    # CV / medical 噪声
+    # CV / medical 噪声（完全无关，保留重罚）
     "optical flow": -8,
     "optical coherence tomography": -8,
     "optical character recognition": -8,
-    "optical sensor": -6,
-    "fiber sensor": -6,
-    "optical camera": -6,
-    "optical image": -6,
+    # 传感 / 成像（降低权重 — 光网络论文偶尔会提及，不应一票否决）
+    "optical sensor": -4,
+    "fiber sensor": -4,
+    "optical camera": -4,
+    "optical image": -4,
 }
 
-OCS_MIN_SCORE = 5
+OCS_MIN_SCORE = 3
 MAX_OCS_PAPERS = 10
 
 # ── 路径 ───────────────────────────────────────────────────────
