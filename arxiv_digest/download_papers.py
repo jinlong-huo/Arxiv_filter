@@ -3,9 +3,10 @@
 Download arXiv papers listed in daily_digest.md to a target folder.
 
 Usage:
-    python3 arxiv_digest/download_papers.py                          # downloads to ~/Downloads/Paper
+    python3 arxiv_digest/download_papers.py                          # downloads to ~/Downloads/Paper (LLM/ and OCS/ subdirs)
     python3 arxiv_digest/download_papers.py --dest /some/folder      # custom destination
     python3 arxiv_digest/download_papers.py --dry-run                # list what would be downloaded
+    python3 arxiv_digest/download_papers.py --digest path/to/digest.md  # use a custom digest file
     make download ARGS="--dry-run"                                    # via Makefile
 """
 
@@ -19,7 +20,7 @@ from pathlib import Path
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 DIGEST_FILE = SCRIPT_DIR / "daily_digest.md"
-DEFAULT_DEST = Path.home() / "Downloads" / "Paper" / "LLM"
+DEFAULT_DEST = Path.home() / "Downloads" / "Paper"
 ARXIV_DELAY = 3.0  # seconds between downloads, be polite
 MAX_TITLE_CHARS = 80   # max chars of title in filename
 
@@ -37,7 +38,7 @@ def sanitize_title(title: str, max_chars: int = MAX_TITLE_CHARS) -> str:
 
 def extract_paper_ids(digest_path: Path) -> list[tuple[str, str, str, str, str]]:
     """Parse daily_digest.md and return list of (paper_id, title, author, year, section)
-    tuples. Section is 'LLM' or 'LLM/OCS-Infra'.
+    tuples. Section is 'LLM' or 'OCS'.
     """
     if not digest_path.exists():
         print(f"Digest file not found: {digest_path}")
@@ -58,7 +59,7 @@ def extract_paper_ids(digest_path: Path) -> list[tuple[str, str, str, str, str]]
         section_body = sections[i + 1] if i + 1 < len(sections) else ""
 
         if "ocs" in section_title.lower() or "optical" in section_title.lower():
-            current_section = "LLM/OCS-Infra"
+            current_section = "OCS"
         else:
             current_section = "LLM"
 
@@ -123,9 +124,15 @@ def main():
     parser = argparse.ArgumentParser(description="Download arXiv papers from daily_digest.md")
     parser.add_argument("--dest", type=Path, default=DEFAULT_DEST, help=f"Destination folder (default: {DEFAULT_DEST})")
     parser.add_argument("--dry-run", action="store_true", help="List papers without downloading")
+    parser.add_argument("--digest", type=Path, default=DIGEST_FILE, help=f"Path to digest file (default: {DIGEST_FILE})")
     args = parser.parse_args()
 
-    papers = extract_paper_ids(DIGEST_FILE)
+    digest_path = args.digest
+    if not digest_path.exists():
+        print(f"Digest file not found: {digest_path}")
+        return
+
+    papers = extract_paper_ids(digest_path)
 
     if not papers:
         print("No papers found in digest.")

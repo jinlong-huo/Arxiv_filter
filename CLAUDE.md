@@ -31,11 +31,11 @@ onboarding/ / offboarding/ # Join/leave procedures
 
 ## Pipeline
 
-1. **fetch.py** — Pulls 8 CS categories from `export.arxiv.org/api/query`, 200 papers each. Retry with exponential backoff; fatal-error detection for SSL/DNS failures.
+1. **fetch.py** — Pulls 8 categories from `export.arxiv.org/api/query`, 200 papers per page with auto-pagination. Default window: last 3 days; `--from`/`--to` backfill a date range (chunked into 3-day windows). Retry with exponential backoff; fatal-error detection for SSL/DNS failures.
 2. **filter.py** — Scores each paper against two independent keyword filters: main (LLM/GPU/RDMA/scheduling) and OCS spotlight (optical switching).
 3. **digest.py** — Selects top-15 main + top-10 OCS, writes `daily_digest.md`. Manages `seen_papers.json` and `digest_papers.json` state.
 4. **emailer.py** — Sends multipart email (plain + HTML) via Gmail SMTP.
-5. **Arxiv_filter.py** — Orchestrates the pipeline. `--send` triggers email; `--send-only` re-sends existing digest.
+5. **Arxiv_filter.py** — Orchestrates the pipeline. `--send` triggers email; `--send-only` re-sends existing digest; `--from YYYY-MM-DD --to YYYY-MM-DD` backfills a period (use after long gaps).
 
 All knobs live in `config.py`: `CATEGORIES`, `KEYWORDS`, `OCS_KEYWORDS`, `MIN_SCORE`, `MAX_PAPERS`.
 

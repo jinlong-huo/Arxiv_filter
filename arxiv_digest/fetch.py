@@ -1,33 +1,51 @@
 #!/usr/bin/env python3
 """ArXiv API 获取：构造查询、拉取 feed、带重试和错误分类。
 
-每个分类独立请求（max 200 results each），请求间延时 API_DELAY 秒，
+每个分类独立请求（每页 max 200 results，自动翻页），请求间延时 API_DELAY 秒，
 避免单次大查询触发 arXiv 限流。
+
+支持区间回填：fetch_all(date_from=..., date_to=...) 按 RANGE_WINDOW_DAYS 天
+分窗口逐窗口拉取，用于长时间未运行后补拉漏掉的论文。
 """
 
 import random
+import sys
 import time
 import urllib.parse
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 import feedparser
 
 from arxiv_digest import config
+from arxiv_digest import filter as flt
 
 
-def _build_category_url(category):
-    """构造单个分类的查询 URL，限定最近 3 天。
+def _parse_date_arg(s):
+    """'YYYY-MM-DD' → datetime.date。格式错误抛 ValueError。"""
+    return datetime.strptime(s, "%Y-%m-%d").date()
 
-    每个分类独立请求（max_results = MAX_PER_CATEGORY），而非把所有分类
-    OR 成一次大查询。arXiv 对 max_results 过大的请求更容易触发 429 限流。
+
+def _iter_date_windows(d_from, d_to):
+    """(from, to) 日期窗口生成器：新→旧，每个窗口最多 RANGE_WINDOW_DAYS 天（含端点）。"""
+    step = timedelta(days=config.RANGE_WINDOW_DAYS - 1)
+    cur_end = d_to
+    while cur_end >= d_from:
+        cur_start = max(d_from, cur_end - step)
+        yield cur_start, cur_end
+        cur_end = cur_start - timedelta(days=1)
+
+
+def _build_category_url(category, date_from, date_to, start=0):
+    """构造单个分类的查询 URL。
+
+    date_from/date_to: datetime.date（闭区间）。
+    start: 翻页偏移（每页 max_results = MAX_PER_CATEGORY）。
     """
-    now = config.bj_now()
-    date_to = now.strftime("%Y%m%d2359")
-    date_from = (now - timedelta(days=3)).strftime("%Y%m%d0000")
-    search_query = f"cat:{category} AND submittedDate:[{date_from} TO {date_to}]"
+    search_query = (f"cat:{category} AND submittedDate:"
+                    f"[{date_from:%Y%m%d}0000 TO {date_to:%Y%m%d}2359]")
     params = {
         "search_query": search_query,
-        "start": "0",
+        "start": str(start),
         "max_results": str(config.MAX_PER_CATEGORY),
         "sortBy": "submittedDate",
         "sortOrder": "descending",
@@ -79,28 +97,12 @@ def _classify_status(feed):
     return status_int, bozo, is_429, is_503, fatal
 
 
-def _parse_primary_category(entry):
-    """从 feedparser entry 提取主分类标签（如 cs.NI）。"""
-    # arXiv Atom feed 的 arxiv_primary_category 字段
-    primary = entry.get('arxiv_primary_category', {})
-    if isinstance(primary, dict) and primary.get('term'):
-        return primary['term']
-    # fallback: tags 的第一个
-    tags = entry.get('tags', [])
-    if tags:
-        tag0 = tags[0]
-        if isinstance(tag0, dict) and tag0.get('term'):
-            return tag0['term']
-    return 'unknown'
-
-
-def _group_by_category(entries):
-    """将 entries 按主分类分组，返回 {category: [entries], ...}。"""
-    grouped = {}
-    for e in entries:
-        cat = _parse_primary_category(e)
-        grouped.setdefault(cat, []).append(e)
-    return grouped
+def _feed_total(feed):
+    """arXiv feed 的总命中数（opensearch_totalresults），未知时为 None。"""
+    try:
+        return int(feed.feed.get('opensearch_totalresults'))
+    except (AttributeError, TypeError, ValueError):
+        return None
 
 
 def _prompt_retry(reason, wait_sec=None):
@@ -109,6 +111,12 @@ def _prompt_retry(reason, wait_sec=None):
         wait_sec = 300 + random.randint(0, 60)
     mins = wait_sec // 60
     secs = wait_sec % 60
+
+    # 非交互环境（管道 / cron）：不要卡在 input() 上
+    if not sys.stdin.isatty():
+        print(f"\n  {reason}")
+        print("  (non-interactive — skipping retry; use --wait for auto-retry)")
+        return False
 
     print(f"\n{'─'*55}")
     print(f"  {reason}")
@@ -162,10 +170,11 @@ def _do_fetch(url):
     return feed, status_int, bozo, is_429, is_503, fatal
 
 
-def _fetch_one_url(url, wait_on_429, label):
-    """Fetch a single URL with full retry logic.
+def _fetch_one_page(url, wait_on_429, label):
+    """Fetch a single page URL with full retry logic.
 
-    Returns list of feedparser entries, or empty list on failure/skip.
+    Returns (entries, total): list of feedparser entries (empty on
+    failure/skip) and arXiv's opensearch_totalresults (None if unknown).
     Prints progress using ``label`` (e.g. the category name).
 
     Handles: HTTP 429 (rate-limit), HTTP 503 (unavailable), parse errors,
@@ -180,12 +189,17 @@ def _fetch_one_url(url, wait_on_429, label):
         print(f"\n  [{label}] ⛔ {error_msg}")
         print(f"         This is NOT a rate-limit — the query itself is invalid.")
         print(f"         URL: {url}")
-        return []
+        return [], None
 
     # Success on first attempt
     if feed.entries:
         print(f"  [{label}] ✓ {len(feed.entries)} entries")
-        return feed.entries
+        return feed.entries, _feed_total(feed)
+
+    # HTTP 200 + 干净解析 + 0 条目 = 该窗口确实没有论文（如周末 / 冷门分类）
+    if status_int == 200 and bozo is None:
+        print(f"  [{label}] ✓ 0 entries (no papers in this window)")
+        return [], _feed_total(feed)
 
     # ── No entries — classify the failure ─────────────────────
     if is_429:
@@ -194,14 +208,14 @@ def _fetch_one_url(url, wait_on_429, label):
             print(f"\n  [{label}] ⛔ HTTP 429 rate-limit. "
                   f"Waiting {wait_sec}s ({wait_sec // 60}min) then retrying...")
             time.sleep(wait_sec)
-            return _fetch_one_url(url, wait_on_429=False, label=label)
+            return _fetch_one_page(url, wait_on_429=False, label=label)
         if _prompt_retry(f"[{label}] arXiv is rate-limiting this IP (HTTP 429).", wait_sec):
-            return _fetch_one_url(url, wait_on_429=False, label=label)
-        return []
+            return _fetch_one_page(url, wait_on_429=False, label=label)
+        return [], None
 
     if fatal:
         print(f"  [{label}] ⛔ [FATAL] non-retryable error: {str(bozo)[:200]}")
-        return []
+        return [], None
 
     if is_503:
         retry_reason = "HTTP 503 — arXiv API is temporarily unavailable"
@@ -230,11 +244,16 @@ def _fetch_one_url(url, wait_on_429, label):
         if error_msg:
             print(f"\n  [{label}] ⛔ {error_msg}")
             print(f"         URL: {url}")
-            return []
+            return [], None
 
         if feed.entries:
             print(f"  [{label}] ✓ {len(feed.entries)} entries (after retry)")
-            return feed.entries
+            return feed.entries, _feed_total(feed)
+
+        # 重试后仍 200 + 空：该窗口确实没有论文
+        if status_int2 == 200 and bozo2 is None:
+            print(f"  [{label}] ✓ 0 entries (no papers in this window)")
+            return [], _feed_total(feed)
 
         if is_429_2:
             wait_sec = 300 + random.randint(0, 60)
@@ -242,14 +261,14 @@ def _fetch_one_url(url, wait_on_429, label):
                 print(f"  [{label}] [RATE-LIMITED] HTTP 429 on retry — "
                       f"waiting {wait_sec}s ({wait_sec // 60}min) then retrying...")
                 time.sleep(wait_sec)
-                return _fetch_one_url(url, wait_on_429=False, label=label)
+                return _fetch_one_page(url, wait_on_429=False, label=label)
             if _prompt_retry(f"[{label}] HTTP 429 on retry — arXiv is rate-limiting.", wait_sec):
-                return _fetch_one_url(url, wait_on_429=False, label=label)
-            return []
+                return _fetch_one_page(url, wait_on_429=False, label=label)
+            return [], None
 
         if fatal2:
             print(f"  [{label}] [FATAL] non-retryable error on retry — aborting")
-            return []
+            return [], None
 
         # Update retry_reason for next iteration
         if is_503_2:
@@ -265,7 +284,7 @@ def _fetch_one_url(url, wait_on_429, label):
     # ── After all retries ──
     if feed.entries:
         print(f"  [{label}] ✓ {len(feed.entries)} entries (final)")
-        return feed.entries
+        return feed.entries, _feed_total(feed)
 
     # All attempts exhausted, no data — one last prompt
     status_final = getattr(feed, 'status', 'N/A')
@@ -274,75 +293,132 @@ def _fetch_one_url(url, wait_on_429, label):
     if not wait_on_429:
         if _prompt_retry(f"[{label}] All {config.MAX_RETRIES + 1} attempts exhausted "
                          f"(HTTP {status_final})."):
-            return _fetch_one_url(url, wait_on_429=False, label=label)
-    return []
+            return _fetch_one_page(url, wait_on_429=False, label=label)
+    return [], None
 
 
-def fetch_all(wait_on_429=False):
+def _fetch_window(category, date_from, date_to, wait_on_429):
+    """拉取单个分类在 [date_from, date_to] 窗口内的全部论文（自动翻页）。
+
+    逐页请求（每页 MAX_PER_CATEGORY），直到页不满一页或达到
+    opensearch_totalresults / MAX_PAGES 上限。返回 entries 列表。
+    """
+    label = category
+    all_entries = []
+    start = 0
+    total = None
+
+    for page in range(config.MAX_PAGES):
+        url = _build_category_url(category, date_from, date_to, start=start)
+        entries, total = _fetch_one_page(url, wait_on_429=wait_on_429, label=label)
+        if not entries:
+            break
+        all_entries.extend(entries)
+        start += len(entries)
+
+        if (total is not None and start >= total) or len(entries) < config.MAX_PER_CATEGORY:
+            break
+
+        delay = config.API_DELAY * (0.75 + random.random() * 0.5)
+        print(f"  [{label}] [next page] waiting {delay:.1f}s...")
+        time.sleep(delay)
+    else:
+        # for 循环未被 break → 翻页上限
+        if total is None or start < total:
+            print(f"  [{label}] ⚠ page cap reached ({config.MAX_PAGES} pages) — "
+                  f"got {len(all_entries)} entries; consider a smaller range")
+
+    return all_entries
+
+
+def fetch_all(wait_on_429=False, date_from=None, date_to=None):
     """拉取全部 CATEGORIES 的论文（每个分类独立请求），返回 (entries_by_category, stats)。
 
-    每个分类单独请求（max_results = MAX_PER_CATEGORY），请求间延时
-    API_DELAY 秒 + jitter。相比单次大查询（max_results = 1800），
-    小请求更不容易触发 arXiv 的 429 限流。
+    date_from/date_to: 'YYYY-MM-DD' 字符串（闭区间）。缺省时只拉最近
+    3 天（或 --date 覆盖日的前 3 天）；给定区间时按 RANGE_WINDOW_DAYS 天
+    分窗口、逐窗口逐分类拉取（用于长时间未运行后的补拉）。
+
+    结果按 arxiv id 全局去重（arXiv 跨列表：同一论文可能出现在多个分类
+    的查询结果中）。
 
     entries_by_category: list of (category, [feedparser entries])
     stats: dict[category] = {total, skipped, already_seen, selected, ocs_selected}
 
     wait_on_429: if True, wait 5 min and retry when rate-limited instead of prompting.
     """
+    # ── 决定拉取窗口 ────────────────────────────────────────
+    if date_from or date_to:
+        try:
+            d_to = _parse_date_arg(date_to) if date_to else config.bj_now().date()
+            d_from = _parse_date_arg(date_from) if date_from else d_to
+        except ValueError:
+            print("[error] 日期格式应为 YYYY-MM-DD")
+            return _empty_result()
+        if d_from > d_to:
+            print("[error] --from 不能晚于 --to")
+            return _empty_result()
+        windows = list(_iter_date_windows(d_from, d_to))
+    else:
+        d_to = config.bj_now().date()
+        d_from = d_to - timedelta(days=3)
+        windows = [(d_from, d_to)]
+
+    print(f"  Plan: {len(windows)} window(s), {d_from} → {d_to} "
+          f"across {len(config.CATEGORIES)} categories")
+
     # Pre-fetch jitter — avoid hitting the API at predictable instants
     pre_jitter = random.uniform(1.0, config.API_DELAY)
     time.sleep(pre_jitter)
 
-    all_grouped = {}   # {primary_category: [entries]}
-    failed_categories = []
+    entries_by_cat = {cat: [] for cat in config.CATEGORIES}
+    seen_ids = set()   # 跨窗口 / 跨分类去重
 
-    for i, cat in enumerate(config.CATEGORIES):
-        # Delay between categories (skip the very first one; pre_jitter covers it)
-        if i > 0:
-            delay = config.API_DELAY * (0.75 + random.random() * 0.5)
-            print(f"  [wait] {delay:.1f}s before next category...")
-            time.sleep(delay)
+    first_request = True
+    for w_from, w_to in windows:
+        print(f"\n  [window] {w_from} → {w_to}")
+        for cat in config.CATEGORIES:
+            # Delay between requests (skip the very first one; pre_jitter covers it)
+            if not first_request:
+                delay = config.API_DELAY * (0.75 + random.random() * 0.5)
+                print(f"  [wait] {delay:.1f}s before next category...")
+                time.sleep(delay)
+            first_request = False
 
-        url = _build_category_url(cat)
-        print(f"  [fetch] {cat} {url[:100]}...")
+            win_entries = _fetch_window(cat, w_from, w_to, wait_on_429)
 
-        entries = _fetch_one_url(url, wait_on_429=wait_on_429, label=cat)
-
-        if entries:
-            # Group entries by their *actual* primary category (arXiv cross-lists
-            # papers, so a paper fetched under cs.AI may have primary cs.CV).
-            for e in entries:
-                actual_cat = _parse_primary_category(e)
-                all_grouped.setdefault(actual_cat, []).append(e)
-        else:
-            failed_categories.append(cat)
+            for e in win_entries:
+                eid = flt.normalize_arxiv_id(e.id)
+                if eid not in seen_ids:
+                    seen_ids.add(eid)
+                    entries_by_cat[cat].append(e)
 
     # ── Report ────────────────────────────────────────────────
-    total_entries = sum(len(v) for v in all_grouped.values())
-    succeeded = len(config.CATEGORIES) - len(failed_categories)
+    total_entries = sum(len(v) for v in entries_by_cat.values())
+    succeeded = sum(1 for v in entries_by_cat.values() if v)
     print(f"\n  Summary: {succeeded}/{len(config.CATEGORIES)} categories returned data, "
-          f"{total_entries} total entries")
-    if failed_categories:
-        print(f"  Failed: {', '.join(failed_categories)}")
+          f"{total_entries} total entries (deduped)")
+    empty_cats = [cat for cat in config.CATEGORIES if not entries_by_cat[cat]]
+    if empty_cats:
+        print(f"  Empty: {', '.join(empty_cats)}")
 
-    return _build_result(all_grouped)
-
-
-def _empty_stats():
-    """全部分类 stats 归零。"""
-    return {cat: {"total": 0, "skipped": 0, "already_seen": 0,
-                  "selected": 0, "ocs_selected": 0}
-            for cat in config.CATEGORIES}
+    return _build_result(entries_by_cat)
 
 
-def _build_result(grouped):
-    """将分组好的 {cat: [entries]} 转为 (entries_by_category, stats)。"""
-    entries_by_cat = []
+def _empty_result():
+    """无数据时的空结果。"""
+    return ([(cat, []) for cat in config.CATEGORIES],
+            {cat: {"total": 0, "skipped": 0, "already_seen": 0,
+                   "selected": 0, "ocs_selected": 0}
+             for cat in config.CATEGORIES})
+
+
+def _build_result(entries_by_cat):
+    """将 {cat: [entries]} 转为 (entries_by_category, stats)。"""
+    entries_by_category = []
     stats = {}
     for cat in config.CATEGORIES:
-        cat_entries = grouped.get(cat, [])
-        entries_by_cat.append((cat, cat_entries))
+        cat_entries = entries_by_cat.get(cat, [])
+        entries_by_category.append((cat, cat_entries))
         stats[cat] = {"total": len(cat_entries), "skipped": 0,
                        "already_seen": 0, "selected": 0, "ocs_selected": 0}
-    return entries_by_cat, stats
+    return entries_by_category, stats

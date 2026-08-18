@@ -10,6 +10,10 @@ Usage:
     python3 arxiv_digest/Arxiv_filter.py --send          fetch + filter + send
     python3 arxiv_digest/Arxiv_filter.py --send-only     仅重发已有 digest
     python3 arxiv_digest/Arxiv_filter.py --wait          遇到 429 限流时等待 5 分钟后自动重试
+    python3 arxiv_digest/Arxiv_filter.py --date YYYY-MM-DD  回填指定日期的论文（如 --date 2026-07-10）
+    python3 arxiv_digest/Arxiv_filter.py --from YYYY-MM-DD [--to YYYY-MM-DD]
+                                                          补拉一段时间内的论文（长时间未运行后用，
+                                                          如 --from 2026-07-01 --to 2026-08-17）
 """
 
 import sys
@@ -28,10 +32,79 @@ from arxiv_digest import digest
 from arxiv_digest import emailer
 
 
+def _arg_value(flag):
+    """取 --flag 之后的参数；flag 未出现返回 None，出现但缺值抛 IndexError。"""
+    if flag not in sys.argv:
+        return None
+    idx = sys.argv.index(flag)
+    if idx + 1 >= len(sys.argv):
+        raise IndexError(f"{flag} requires a value: {flag} YYYY-MM-DD")
+    return sys.argv[idx + 1]
+
+
+def _parse_range_args():
+    """解析 --from / --to，返回 (date_from, date_to) 或 (None, None)。
+
+    格式错误 / --from 晚于 --to 时打印错误并返回哨兵 (False, False)。
+    """
+    if "--from" not in sys.argv and "--to" not in sys.argv:
+        return None, None
+
+    from datetime import datetime as _dt
+    try:
+        range_from = _arg_value("--from")
+        range_to = _arg_value("--to")
+    except IndexError as ex:
+        print(f"[error] {ex}")
+        return False, False
+
+    for name, val in (("--from", range_from), ("--to", range_to)):
+        if val is None:
+            continue
+        try:
+            _dt.strptime(val, "%Y-%m-%d")
+        except ValueError:
+            print(f"[error] Invalid date format: {val}. Use YYYY-MM-DD.")
+            return False, False
+
+    if range_from and range_to and range_from > range_to:
+        print("[error] --from must be on or before --to.")
+        return False, False
+
+    print(f"[backfill] Range: {range_from or '(unbounded)'} → {range_to or 'today'}")
+    if range_to:
+        # digest 标题 / 台账日期以区间终点为准
+        config.DATE_OVERRIDE = range_to
+    return range_from, range_to
+
+
 def main():
     do_send = "--send" in sys.argv
     send_only = "--send-only" in sys.argv
     do_wait = "--wait" in sys.argv
+
+    # ── --date YYYY-MM-DD：回填指定日期的论文 ──
+    if "--date" in sys.argv:
+        idx = sys.argv.index("--date")
+        if idx + 1 < len(sys.argv):
+            date_arg = sys.argv[idx + 1]
+            # Validate format
+            try:
+                from datetime import datetime as _dt
+                _dt.strptime(date_arg, "%Y-%m-%d")
+            except ValueError:
+                print(f"[error] Invalid date format: {date_arg}. Use YYYY-MM-DD.")
+                return
+            config.DATE_OVERRIDE = date_arg
+            print(f"[backfill] Targeting date: {date_arg}")
+        else:
+            print("[error] --date requires a value: --date YYYY-MM-DD")
+            return
+
+    # ── --from / --to：区间回填（优先于 --date 的 3 天窗口）──
+    range_from, range_to = _parse_range_args()
+    if range_from is False:
+        return
 
     # ── --send-only：仅重发已有 digest ──
     if send_only:
@@ -46,7 +119,9 @@ def main():
 
     # ── Stage 1: Fetch ─────────────────────────────────────
     print("Fetching from arXiv...")
-    entries_by_cat, stats = fetch.fetch_all(wait_on_429=do_wait)
+    entries_by_cat, stats = fetch.fetch_all(wait_on_429=do_wait,
+                                            date_from=range_from,
+                                            date_to=range_to)
 
     total_in_feeds = sum(s["total"] for s in stats.values())
     if total_in_feeds == 0:

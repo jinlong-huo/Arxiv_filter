@@ -38,12 +38,9 @@ def bj_today_str():
 CATEGORIES = [
     "cs.NI",
     "cs.DC",
-    "cs.OS",
     "cs.AR",
     "cs.PF",
     "cs.AI",
-    "cs.CV",
-    "cs.SY",
     "physics.optics",   # device/hardware OCS papers live here, not cross-listed to cs.*
     "physics.app-ph",   # applied physics — optical device / photonic integration
     "eess.SP",          # signal processing — optical comms / fiber transmission
@@ -54,6 +51,10 @@ API_DELAY = 5.0
 RETRY_BACKOFF_BASE = [20.0, 60.0]       # 解析错误退避
 RETRY_BACKOFF_503_BASE = [60.0, 120.0]  # 503 服务端故障退避（更长，尊重 arXiv 恢复时间）
 MAX_RETRIES = 2
+
+# ── 区间回填（--from / --to）───────────────────────────────────
+RANGE_WINDOW_DAYS = 3   # 每个拉取窗口的天数（含端点），逐窗口分页拉取
+MAX_PAGES = 10          # 每个窗口每分类最多翻页数（2000 篇上限保护）
 
 # ── 主关键词权重 ────────────────────────────────────────────────
 
