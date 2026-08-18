@@ -1,0 +1,70 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% ================================================
+%  工作周报
+%  编译: xelatex → bibtex → xelatex → xelatex
+% ================================================
+
+\documentclass{sjtuweekly}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+
+% ========== 图表编号: 独立递增 (图1, 表1, ...) ==========
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+
+% ========== 参考文献库 ==========
+\bibfile{bib/database}
+
+% ========== 基本信息 ==========
+\member{霍锦龙}
+% \weeknum{xx}
+
+\begin{document}
+
+\makeweeklytitle   % 封面（第1页）
+
+% ================================================
+%  正文从第2页开始
+% ================================================
+
+\section{一、本周工作}
+
+% \subsection*{1.\quad MoE下Pretrigger影响讨论}
+
+\textbf{真实模型权重 + OCS 仿真结合。}
+此前分别完成了两件事：(1) 基于合成专家的 MoE+OCS 通信测试床；(2) Qwen3.6-35B-A3B-4bit router gate 的 LoRA 微调与路由 trace 捕获。本周将二者合并，进行 OCS 仿真，替换合成专家，在真实路由 trace 驱动并讨论 8 专家; 32 专家的完整 OCS配置; 双批次重叠，重配置隐藏于计算窗口. 主要目的是在真实模型权重和路由分布下评估 OCS 预触发的通信收益与电路复用率，解决此前合成专家的结论可信度问题。合成专家完成 OCS与 EPS 对比：
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{指标} & \textbf{EPS} & \textbf{OCS} & \textbf{变化} \\
+\midrule
+通信时间        & 23,269 µs  & 17,091 µs  & --26.6\% \\
+OCS 额外开销    & —          & 333 µs     & — \\
+电路复用率      & —          & 96.7\%     & — \\
+重配置时间      & —          & 150 µs (3 次冷启动) & — \\
+\bottomrule
+\end{tabular}
+\caption{合成专家 + OCS 对比：电路建立后 87/90 走光路，较EPS 延迟优势明显。}
+\label{tab:ocs_eps}
+\end{table}
+
+结论：OCS 电路复用率高；OCS pipeline 模式下重配置与计算重叠，DBO 模式下完全隐藏。
+
+% ================================================
+\section{二、工作计划}
+
+\begin{enumerate}
+  \item 在 Qwen+OCS 测试床上完成多 batch、多拓扑的完整 benchmark，重标定真实权重下 OCS 收益.
+  \item 对比 LoRA 微调前后的路由 trace 在 OCS 仿真中的表现差异，验证路由可学习性对 OCS 预触发的实际增益.
+  \item 结合 vLLM prefill/decode 阶段通信模式，讨论 OCS 预触发在推理服务场景中的适配粒度.
+\end{enumerate}
+
+% ================================================
+\printbib
+
+\end{document}

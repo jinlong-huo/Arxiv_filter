@@ -28,7 +28,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 
-\lhead{\zihao{-5}\songti 上海交通大学\enspace 工作周报}
+\lhead{\zihao{-5}\songti \enspace 工作周报}
 \rhead{\zihao{-5}\songti\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -41,8 +41,8 @@
 \newcommand{\@reportdate}{\today}
 
 % 校徽
-\newcommand{\sjtuLogo}{sjtubannerblue.png}
-\newcommand{\setLogo}[1]{\renewcommand{\sjtuLogo}{#1}}
+% \newcommand{\sjtuLogo}{sjtubannerblue.png}
+% \newcommand{\setLogo}[1]{\renewcommand{\sjtuLogo}{#1}}
 
 % 不显示章节编号（但加入目录）
 \AtBeginDocument{\setcounter{secnumdepth}{0}}
@@ -54,9 +54,11 @@
 \newcommand{\makeweeklytitle}{%
   \thispagestyle{empty}
   % logo 左上角（贴顶）
-  \vspace*{-1.2cm}
-  \noindent\includegraphics[height=2cm]{\sjtuLogo}
-  \vspace{2.0cm}
+  \ifdefined\sjtuLogo
+    \vspace*{-1.2cm}
+    \noindent\includegraphics[height=2cm]{\sjtuLogo}
+    \vspace{2.0cm}
+  \fi
   % 标题
   \begin{center}
     {\zihao{2}\songti\bfseries 工作汇报}
@@ -67,7 +69,7 @@
     {\zihao{4}\songti
       \begin{tabular}{r@{\quad}l}
         成员 & \@member \\[0.35cm]
-        周次 & 第\@weeknum 周 \\[0.35cm]
+        % 周次 & 第\@weeknum 周 \\[0.35cm]
         日期 & \@reportdate \\
       \end{tabular}
     }
