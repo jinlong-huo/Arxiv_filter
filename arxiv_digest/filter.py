@@ -36,6 +36,11 @@ def _kw_match(kw, text):
     return bool(re.search(r'\b' + re.escape(kw) + r'\b', text))
 
 
+def _has_context(text, required):
+    """文本是否包含任一上下文词（用于易冲突缩写的门控匹配）。"""
+    return any(w in text for w in required)
+
+
 def score_main(title, summary):
     """主关键词打分。返回 (score, max_single, matched_keywords)。"""
     text = clean_text(title + " " + summary)
@@ -50,6 +55,15 @@ def score_main(title, summary):
             matched.append((kw, value))
             if value > max_single:
                 max_single = value
+
+    # 易冲突缩写：需 LLM serving 上下文才计分
+    if _has_context(text, config.MAIN_CONTEXT_REQUIRED):
+        for kw, value in config.MAIN_CONTEXT_KEYWORDS.items():
+            if _kw_match(kw, text):
+                score += value
+                matched.append((kw, value))
+                if value > max_single:
+                    max_single = value
 
     for kw, value in config.NEGATIVE_KEYWORDS.items():
         if _kw_match(kw, text):
@@ -72,6 +86,13 @@ def score_ocs(title, summary):
         if _kw_match(kw, text):
             score += value
             matched.append((kw, value))
+
+    # 易冲突缩写（cpo/lpo/npo）：需光通信上下文才计分
+    if _has_context(text, config.OCS_CONTEXT_REQUIRED):
+        for kw, value in config.OCS_CONTEXT_KEYWORDS.items():
+            if _kw_match(kw, text):
+                score += value
+                matched.append((kw, value))
 
     for kw, value in config.OCS_NEGATIVE_KEYWORDS.items():
         if _kw_match(kw, text):

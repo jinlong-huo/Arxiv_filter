@@ -68,14 +68,14 @@ group-toolkit/
 
 ## 目录可见性
 
-| 目录 | 可见范围 | 离组时 |
-|---|---|---|
-| `templates/` `onboarding/` `survival-guide/` `knowledge-base/` | **全组共享** | 留在 repo |
-| `paper-notes/template.md` `repro/template/` | **全组共享** | 留在 repo |
-| `projects.md` | **全组共享**（仅标题+阶段，无细节） | 更新 owner 后留 repo |
-| `members/<name>/paper-notes/` | **组内** | 导出带走 |
-| `members/<name>/repro/` | **组内** | 导出带走 |
-| `members/<name>/projects/` | **本人 + 导师** | 导出带走或交接 |
+| 目录                                                                   | 可见范围                                  | 离组时               |
+| ---------------------------------------------------------------------- | ----------------------------------------- | -------------------- |
+| `templates/` `onboarding/` `survival-guide/` `knowledge-base/` | **全组共享**                        | 留在 repo            |
+| `paper-notes/template.md` `repro/template/`                        | **全组共享**                        | 留在 repo            |
+| `projects.md`                                                        | **全组共享**（仅标题+阶段，无细节） | 更新 owner 后留 repo |
+| `members/<name>/paper-notes/`                                        | **组内**                            | 导出带走             |
+| `members/<name>/repro/`                                              | **组内**                            | 导出带走             |
+| `members/<name>/projects/`                                           | **本人 + 导师**                     | 导出带走或交接       |
 
 ---
 
@@ -115,11 +115,11 @@ python3 arxiv_digest/Arxiv_filter.py --send
 
 ### 调参
 
-| 参数 | 默认值 | 作用 |
-|---|---|---|
-| `MIN_SCORE` | 5 | 初筛门槛，越低越多 |
-| `MAX_PAPERS` | 15 | 主 digest 最多显示几篇 |
-| `MAX_OCS_PAPERS` | 10 | OCS spotlight 最多显示几篇 |
+| 参数               | 默认值 | 作用                       |
+| ------------------ | ------ | -------------------------- |
+| `MIN_SCORE`      | 5      | 初筛门槛，越低越多         |
+| `MAX_PAPERS`     | 15     | 主 digest 最多显示几篇     |
+| `MAX_OCS_PAPERS` | 10     | OCS spotlight 最多显示几篇 |
 
 ---
 
@@ -183,14 +183,14 @@ cp paper-notes/template.md members/<your-name>/paper-notes/2026/作者-关键词
 
 ## 📋 Templates
 
-| 模板 | 用途 | 频率 |
-|---|---|---|
-| [weekly-report/](templates/weekly-report/) | 周报 | 每周五 |
-| [meeting-notes.md](templates/meeting-notes.md) | 会议记录 | 每次会议 |
-| [paper-presentation.md](templates/paper-presentation.md) | 组会讲论文 | 轮到你 |
-| [internal-review.md](templates/internal-review.md) | 投稿前组内预审 | 每次投稿前 |
-| [writing-checklist.md](templates/writing-checklist.md) | 论文投稿前自查 | 每次投稿前 |
-| [figure-guide.md](templates/figure-guide.md) | Figure 规范 | 画图前看一眼 |
+| 模板                                                    | 用途           | 频率         |
+| ------------------------------------------------------- | -------------- | ------------ |
+| [weekly-report/](templates/weekly-report/)               | 周报           | 每周五       |
+| [meeting-notes.md](templates/meeting-notes.md)           | 会议记录       | 每次会议     |
+| [paper-presentation.md](templates/paper-presentation.md) | 组会讲论文     | 轮到你       |
+| [internal-review.md](templates/internal-review.md)       | 投稿前组内预审 | 每次投稿前   |
+| [writing-checklist.md](templates/writing-checklist.md)   | 论文投稿前自查 | 每次投稿前   |
+| [figure-guide.md](templates/figure-guide.md)             | Figure 规范    | 画图前看一眼 |
 
 ---
 
@@ -198,13 +198,13 @@ cp paper-notes/template.md members/<your-name>/paper-notes/2026/作者-关键词
 
 组员真正需要、但很少被写下来的东西。按需阅读：
 
-| 文档 | 什么时候读 |
-|---|---|
+| 文档                                                               | 什么时候读       |
+| ------------------------------------------------------------------ | ---------------- |
 | [how-to-choose-problem.md](survival-guide/how-to-choose-problem.md) | 不知道做什么方向 |
-| [how-to-write-paper.md](survival-guide/how-to-write-paper.md) | 第一次写 paper |
-| [how-to-give-talk.md](survival-guide/how-to-give-talk.md) | 下个月要讲 talk |
-| [conference-list.md](survival-guide/conference-list.md) | 选投稿目标 |
-| [career-advice.md](survival-guide/career-advice.md) | 考虑下一步 |
+| [how-to-write-paper.md](survival-guide/how-to-write-paper.md)       | 第一次写 paper   |
+| [how-to-give-talk.md](survival-guide/how-to-give-talk.md)           | 下个月要讲 talk  |
+| [conference-list.md](survival-guide/conference-list.md)             | 选投稿目标       |
+| [career-advice.md](survival-guide/career-advice.md)                 | 考虑下一步       |
 
 ---
 

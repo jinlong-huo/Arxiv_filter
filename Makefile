@@ -1,4 +1,4 @@
-.PHONY: help install run send wait all daily daily-nosend member-new member-export note-new download clean
+.PHONY: help install run wait test all daily member-new member-export note-new download clean
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -8,23 +8,20 @@ help: ## Show this help
 install: ## Install Python dependencies
 	pip install feedparser
 
-run: ## Run arXiv daily digest (dry-run, no email)
-	python3 arxiv_digest/Arxiv_filter.py
+run: ## Run arXiv daily digest (fetch + filter + digest)
+	python3 arxiv_digest/Arxiv_filter.py --wait
 
-send: ## Run arXiv daily digest + send email
-	python3 arxiv_digest/Arxiv_filter.py --send
+wait: ## Run with auto-retry on 429 rate-limit (5 min wait)
+	python3 arxiv_digest/Arxiv_filter.py --wait
 
-wait: ## Run + send, auto-retry on 429 rate-limit (5 min wait)
-	python3 arxiv_digest/Arxiv_filter.py --send --wait
+test: ## Run catch-up mechanism test (no network)
+	python3 arxiv_digest/test_catchup.py
 
-all: ## Full run: filter + send email + download PDFs + rename
-	python3 arxiv_digest/Arxiv_filter.py --send && make download
+all: ## Full run: filter + download PDFs + rename
+	python3 arxiv_digest/Arxiv_filter.py && make download
 
-daily: ## Fetch → verify → send → download (gated, recommended)
+daily: ## Fetch → verify → download (gated, recommended)
 	./arxiv_digest/run_daily.sh
-
-daily-nosend: ## Fetch → verify → download (skip email)
-	./arxiv_digest/run_daily.sh --skip-send
 
 
 # --- Members ---

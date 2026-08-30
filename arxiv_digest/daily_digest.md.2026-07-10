@@ -1,0 +1,315 @@
+# arXiv Daily Digest (2026-07-10)
+
+## Main Digest
+
+Showing top 15 of 68 matched
+
+### 1. SiFAR: Synchronization-Free All-Reduce for Low-Latency LLM Inference
+
+**Author:** Qureshi
+
+**Year:** 2026
+
+**Score:** 44
+
+**Keywords:** llm, inference, decode, all-reduce, agentic, gpu, throughput, latency, communication, parallelism
+
+**Link:** https://arxiv.org/abs/2607.08973v1
+
+**Abstract snippet:**
+
+The rise of reasoning models and agentic systems has made LLM token-generation latency a key bottleneck. Unlike chatbots, whose latency gains saturate at human reading speed, these systems generate intermediate reasoning tokens not consumed by humans. Thus, per-token latency directly determines end-to-end response time. Low-latency inference uses minimal batching, making token generation bandwidth
+
+---
+
+### 2. MORES: Mobile Reasoning-as-a-Service via Distributed LLM Inference-Time Scaling
+
+**Author:** Huang
+
+**Year:** 2026
+
+**Score:** 40
+
+**Keywords:** llm, inference, mixture-of-experts, moe, scheduling, throughput, distributed, communication, memory
+
+**Link:** https://arxiv.org/abs/2607.08116v1
+
+**Abstract snippet:**
+
+Inference-time scaling has emerged as an effective approach for enhancing the capabilities of Large Language Models (LLMs), addressing the growing demand for stronger reasoning without increasing model size. This novel form of LLM scaling comprises two representative approaches: explicit reasoning, which generates intermediate chain-of-thought tokens during an explicit thinking phase, and implicit
+
+---
+
+### 3. StreamDQ: Near-Memory Weight DeQuantization in Custom HBM for Scalable AI Inference Acceleration
+
+**Author:** Kim
+
+**Year:** 2026
+
+**Score:** 40
+
+**Keywords:** llm, inference, serving, decode, gpu, throughput, latency, pipeline, memory
+
+**Link:** https://arxiv.org/abs/2607.08993v1
+
+**Abstract snippet:**
+
+As large language models (LLMs) scale, their memory and computation demands have grown substantially, making weight-only quantization a widely adopted technique for reducing model size with minimal accuracy loss. However, on current GPUs, CUDA-core-based dequantization introduces substantial instruction overhead, on-chip traffic, and pipeline stalls, making it a major bottleneck for high-throughpu
+
+---
+
+### 4. On the Limitations of Non-GPU AI Accelerators for Large-Model Inference: A Field Study of MoE and Multimodal Serving on Huawei Ascend
+
+**Author:** Yu
+
+**Year:** 2026
+
+**Score:** 37
+
+**Keywords:** llm, inference, serving, moe, gpu, throughput, pipeline, parallelism
+
+**Link:** https://arxiv.org/abs/2607.08215v1
+
+**Abstract snippet:**
+
+Non-GPU AI accelerators are increasingly adopted as alternatives to general-purpose GPUs for large-model inference, but the real engineering cost of migrating demanding workloads beyond CUDA remains poorly documented. We present a field study of deploying two large inference workloads on a 16-device Huawei Ascend 910 system using CANN and vLLM-Ascend: an LLM-as-a-judge safety and alignment evaluat
+
+---
+
+### 5. SMetric: Rethink LLM Scheduling for Serving Agents with Balanced Session-centric Scheduling
+
+**Author:** Chen
+
+**Year:** 2026
+
+**Score:** 35
+
+**Keywords:** llm, serving, prefill, decode, scheduling, agentic, latency
+
+**Link:** https://arxiv.org/abs/2607.08565v1
+
+**Abstract snippet:**
+
+LLM scheduling is critical to serving, yet it remains unclear how well existing designs fit agentic serving--with LLM requests issued by agents instead of humans. This shifts the workload in two ways: (1) agents act only on complete responses, making the cluster's tokens per second (TPS) the primary goal and relaxing--not eliminating--per-token latency requirements; and (2) requests share much of 
+
+---
+
+### 6. CTA-Pipelining: A Latency-Oriented Spatial Scaling Method for Multi-GPU Systems
+
+**Author:** Kindratenko
+
+**Year:** 2026
+
+**Score:** 28
+
+**Keywords:** serving, nccl, gpu, throughput, latency, parallelism, memory
+
+**Link:** https://arxiv.org/abs/2607.07862v1
+
+**Abstract snippet:**
+
+The evolution of compute infrastructure has transformed multi-GPU systems into tightly integrated shared-memory structures. However, current software still mostly treats these coherent interconnects simply as high-speed networks. Simultaneously, the demand for serving Large Language Models under latency constraints has shifted GPU workload optimization from being throughput-driven to latency-bound
+
+---
+
+### 7. On the Design of Mixture-of-Experts for Dynamic Gaussian Splatting
+
+**Author:** Kong
+
+**Year:** 2026
+
+**Score:** 23
+
+**Keywords:** mixture of experts, mixture-of-experts, moe, training, pipeline
+
+**Link:** https://arxiv.org/abs/2607.08250v1
+
+**Abstract snippet:**
+
+Dynamic scene reconstruction remains challenging due to the heterogeneous and spatially varying nature of real-world motion. Although recent 3D Gaussian Splatting methods have introduced diverse deformation formulations for dynamic novel view synthesis, each method typically relies on a single deformation model within its representation, which limits robustness across diverse dynamic scenarios. In
+
+---
+
+### 8. Spatio-Temporal Scheduling Prediction Under Backhaul Delay for Resilient Coordinated Beamforming
+
+**Author:** Wang
+
+**Year:** 2026
+
+**Score:** 20
+
+**Keywords:** scheduling, throughput, latency, distributed, neural network, network
+
+**Link:** https://arxiv.org/abs/2607.08454v1
+
+**Abstract snippet:**
+
+Coordinated beamforming in distributed 5G networks relies on the timely exchange of inter-cell scheduling information, but backhaul latency makes this information stale. Even a single transmission time interval (TTI) of delay can reduce CBF-SLNR performance below the uncoordinated baseline, because the precoder suppresses interference toward users that are no longer active. Coordination on stale i
+
+---
+
+### 9. Who Needs DRAM? We Have Fiber
+
+**Author:** Kaxiras
+
+**Year:** 2026
+
+**Score:** 19
+
+**Keywords:** llm, large language model, data center, memory
+
+**Link:** https://arxiv.org/abs/2607.08407v1
+
+**Abstract snippet:**
+
+The rising pressure on DRAM availability and contract pricing reflects generative AI's massive high-performance memory requirements. This pressure is heavily compounded by hyperscale data center expansion, which now consumes a significant portion of global DRAM output. In this work, we propose a new architecture: Fiber Memory, which reimagines the role of optical fiber in a hyperscale data center,
+
+---
+
+### 10. OPSD-V: On-Policy Self-Distillation for Post-Training Few-Step Autoregressive Video Generators
+
+**Author:** Chen
+
+**Year:** 2026
+
+**Score:** 19
+
+**Keywords:** inference, kv cache, latency, training
+
+**Link:** https://arxiv.org/abs/2607.08766v1
+
+**Abstract snippet:**
+
+We propose OPSD-V, an on-policy self-distillation paradigm for post-training few-step autoregressive (AR) video diffusion models. Existing few-step AR video generators can produce long videos with low latency, but still suffer from error accumulation and weakened motion dynamics during long autoregressive rollout. OPSD-V reduces long-horizon degradation while preserving the original few-step infer
+
+---
+
+### 11. GATS: Graph-Augmented Tree Search with Layered World Models for Efficient Agent Planning
+
+**Author:** Nowicki
+
+**Year:** 2026
+
+**Score:** 18
+
+**Keywords:** llm, large language model, inference
+
+**Link:** https://arxiv.org/abs/2607.08894v1
+
+**Abstract snippet:**
+
+Large Language Model (LLM) agents have shown promise in multi-step planning tasks, but existing approaches like LATS (Language Agent Tree Search) and ReAct rely heavily on LLM inference during planning, leading to high computational costs and stochastic behavior. We present \textbf{GATS} (Graph-Augmented Tree Search), a planning framework that combines systematic UCB1-based tree search with a laye
+
+---
+
+### 12. Workflow as Knowledge: Semantic Persistence for LLM-Mediated Workflows
+
+**Author:** Zanitti
+
+**Year:** 2026
+
+**Score:** 18
+
+**Keywords:** llm, large language model, inference
+
+**Link:** https://arxiv.org/abs/2607.08740v1
+
+**Abstract snippet:**
+
+Large language model (LLM) applications increasingly use explicit workflows for tool use, retrieval, branching, checkpointing, and human approval. Existing workflow systems already address many execution concerns. This paper proposes a Lisp-inspired but language-independent conceptual model: symbolic forms, object identity, and live-image thinking are used as explanatory lenses, not implementation
+
+---
+
+### 13. Towards Precision Therapy in Hepatocellular Carcinoma: A Clinical-Reasoning LLM for Risk Stratification and Treatment Guidance
+
+**Author:** Dong
+
+**Year:** 2026
+
+**Score:** 15
+
+**Keywords:** llm, large language model, training
+
+**Link:** https://arxiv.org/abs/2607.08602v1
+
+**Abstract snippet:**
+
+Hepatocellular carcinoma (HCC) is a common malignancy and a leading cause of cancer-related mortality. Current guidelines and staging systems provide coarse categories, but often miss within-stage heterogeneity and the clinical context in electronic medical records (EMRs). We present HCC-STAR (Hepatocellular Carcinoma Staging, Treatment And pRognosis), a clinically aligned large language model tha
+
+---
+
+### 14. Evaluating the Effect of Frame Rate in Sequence-Based Classification of Autism-Related Self-Stimulatory Hand Idiosyncrasies
+
+**Author:** Washington
+
+**Year:** 2026
+
+**Score:** 14
+
+**Keywords:** training, pipeline, machine learning, neural network, network, memory
+
+**Link:** https://arxiv.org/abs/2607.07957v1
+
+**Abstract snippet:**
+
+Autism spectrum disorder (ASD) affects over 75 million individuals worldwide, yet scalable computational methods for remote behavioral screening remain limited. This study addresses two complementary challenges in automated detection of autism-related self-stimulatory behaviors from video: (1) identifying the optimal sequence-based neural network architecture and temporal sampling rate, and (2) ch
+
+---
+
+### 15. Cognitive-structured Multimodal Agent for Multimodal Understanding, Generation, and Editing
+
+**Author:** Li
+
+**Year:** 2026
+
+**Score:** 14
+
+**Keywords:** inference, serving, memory
+
+**Link:** https://arxiv.org/abs/2607.08497v1
+
+**Abstract snippet:**
+
+Recent unified multimodal models show a single architecture can jointly perform vision/language understanding and image generation/editing. However, they repeatedly feed all historical visual and textual inputs into a shared context window, limiting long-horizon multimodal dialogue due to visual token explosion and unreliable cross-turn referencing. We propose a Cognitive-structured Multimodal Age
+
+---
+
+## OCS & Optical Networking Spotlight
+
+Total: 2
+
+### 1. Broadband silicon photonic phase shifters driven by gradient optical forces
+
+**Author:** Stobbe
+
+**Year:** 2026
+
+**OCS Score:** 8
+
+**OCS Keywords:** silicon photonic, silicon photonics
+
+**Link:** https://arxiv.org/abs/2607.08558v1
+
+**Abstract snippet:**
+
+While initially deployed for optical interconnects, silicon photonics is increasingly being explored as a hardware platform for programmable optical systems, including linear optical processors, neuromorphic photonic networks, quantum photonic circuits and multiplexed sensor arrays. Common to most existing implementations is that light is controlled with electronics, and even basic demonstrations 
+
+---
+
+### 2. Who Needs DRAM? We Have Fiber
+
+**Author:** Kaxiras
+
+**Year:** 2026
+
+**OCS Score:** 6
+
+**OCS Keywords:** co-packaged optics
+
+**Link:** https://arxiv.org/abs/2607.08407v1
+
+**Abstract snippet:**
+
+The rising pressure on DRAM availability and contract pricing reflects generative AI's massive high-performance memory requirements. This pressure is heavily compounded by hyperscale data center expansion, which now consumes a significant portion of global DRAM output. In this work, we propose a new architecture: Fiber Memory, which reimagines the role of optical fiber in a hyperscale data center,
+
+---

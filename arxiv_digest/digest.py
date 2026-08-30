@@ -40,8 +40,17 @@ def save_seen(seen):
 
 
 def load_digest_seen():
-    """{arxiv_id: {title, keywords, ocs_keywords, date}} — 上过 digest 的论文。"""
+    """{arxiv_id: {title, keywords, ocs_keywords, date, shown, score}} — 上过 digest 的论文。
+
+    shown=True  → 已实际出现在 digest 板块中，永久跳过。
+    shown=False → matched 但被 top-N 挤掉（pending），可在补遗窗口内复活。
+    旧格式条目无 shown 字段 → 迁移时一律视为 shown=True（保守，行为不变）。
+    """
     data, migrated = _load_json_migrated(config.DIGEST_STATE_FILE)
+    for value in data.values():
+        if "shown" not in value:
+            value["shown"] = True
+            migrated = True
     if migrated:
         save_digest_seen(data)
     return data
@@ -80,12 +89,28 @@ def select_top(scored_papers, max_n):
     return scored_papers[:max_n], total
 
 
+def finalize_stamps(digest_seen, selected, ocs_selected, carry_over, today):
+    """Top-N 选择后调用：把实际出现在 digest 各板块的论文标记为 shown=True。
+
+    matched 但未被任何板块选中的论文保持 shown=False（pending），
+    在 config.RESURFACE_DAYS 天内仍可通过 carry-over 板块复活。
+    """
+    for p in list(selected) + list(ocs_selected) + list(carry_over):
+        pid = flt.normalize_arxiv_id(p.get("link", ""))
+        entry = digest_seen.get(pid)
+        if entry is None:
+            continue
+        entry["shown"] = True
+        entry["shown_date"] = today
+
+
 # ── Markdown generation ────────────────────────────────────────
 
-def generate_markdown(papers, ocs_papers, total_main, total_ocs):
-    """生成 daily_digest.md。"""
+def generate_markdown(papers, ocs_papers, total_main, total_ocs, carry_over=None):
+    """生成 daily_digest.md。carry_over: 高分补遗论文（含 first_seen 日期）。"""
 
     today = config.bj_today_str()
+    carry_over = carry_over or []
 
     lines = [
         f"# arXiv Daily Digest ({today})",
@@ -124,6 +149,42 @@ def generate_markdown(papers, ocs_papers, total_main, total_ocs):
     else:
         lines.extend([
             "_No papers matched the main filter today._",
+            "",
+            "---",
+            ""
+        ])
+
+    # ── High-Score Carry-Over（高分补遗）──
+    lines.extend(["## High-Score Carry-Over (missed earlier this week)", ""])
+
+    if carry_over:
+        lines.extend([f"Total: {len(carry_over)}", ""])
+        for i, paper in enumerate(carry_over, start=1):
+            lines.extend([
+                f"### {i}. {paper['title']}",
+                "",
+                f"**Author:** {paper.get('first_author', 'N/A')}",
+                "",
+                f"**Year:** {paper.get('year', 'N/A')}",
+                "",
+                f"**Score:** {paper['score']}",
+                "",
+                f"**First seen:** {paper.get('first_seen', 'N/A')}",
+                "",
+                f"**Keywords:** {', '.join(paper['matched'])}",
+                "",
+                f"**Link:** {paper['link']}",
+                "",
+                "**Abstract snippet:**",
+                "",
+                paper["summary"],
+                "",
+                "---",
+                ""
+            ])
+    else:
+        lines.extend([
+            "_No carry-over papers this week._",
             "",
             "---",
             ""
@@ -171,7 +232,7 @@ def generate_markdown(papers, ocs_papers, total_main, total_ocs):
 
 # ── Console output ──────────────────────────────────────────────
 
-def print_results(papers, ocs_papers):
+def print_results(papers, ocs_papers, carry_over=None):
     """Print selected papers directly to stdout so you see results immediately."""
     width = 80
 
@@ -192,60 +253,24 @@ def print_results(papers, ocs_papers):
             author = p.get("first_author", "N/A")
             year = p.get("year", "N/A")
             snippet = p.get("summary", "")[:200].replace("\n", " ").strip()
+            first_seen = p.get("first_seen")
 
             print(f"\n  {i:2d}. {title}")
             print(f"      Score: {score}  |  Author: {author}  |  Year: {year}")
+            if first_seen:
+                print(f"      First seen: {first_seen} (carry-over)")
             print(f"      Keywords: {keywords}")
             print(f"      Link: {link}")
             print(f"      Abstract: {snippet}...")
         print(f"\n{'─'*width}")
 
     _print_section("Main Digest", papers)
+    _print_section("High-Score Carry-Over", carry_over or [])
     _print_section("OCS & Optical Networking Spotlight", ocs_papers)
 
 
 # ── Helper ─────────────────────────────────────────────────────
 
 def _is_empty(md_text):
-    """Markdown 内容是否为空 digest。"""
-    return "Total: 0" in md_text or "_No papers matched the main filter today._" in md_text
-
-
-# ── Parse existing digest ──────────────────────────────────────
-
-def parse_existing():
-    """从已有 daily_digest.md 解析论文列表，供 --send-only 使用。"""
-    if not config.OUTPUT_FILE.exists():
-        print(f"[error] {config.OUTPUT_FILE} not found — run without --send-only first.")
-        return [], []
-
-    text = config.OUTPUT_FILE.read_text(encoding="utf-8")
-
-    def _extract(section_label):
-        papers = []
-        section_re = re.compile(
-            r"^## " + re.escape(section_label) + r"\s*$", re.MULTILINE)
-        m = section_re.search(text)
-        if not m:
-            return papers
-
-        section_text = text[m.end():]
-        next_section = re.search(r"^## ", section_text, re.MULTILINE)
-        if next_section:
-            section_text = section_text[:next_section.start()]
-
-        paper_blocks = re.split(r"^### \d+\. ", section_text, flags=re.MULTILINE)
-        for block in paper_blocks:
-            title_match = re.match(r"^(.*)$", block, re.MULTILINE)
-            link_match = re.search(r"^\*\*Link:\*\*\s*(https?://\S+)",
-                                   block, re.MULTILINE)
-            if title_match and link_match:
-                papers.append({
-                    "title": title_match.group(1).strip(),
-                    "link": link_match.group(1).strip(),
-                })
-        return papers
-
-    main_papers = _extract("Main Digest")
-    ocs_papers = _extract("OCS & Optical Networking Spotlight")
-    return main_papers, ocs_papers
+    """Markdown 内容是否为空 digest（任何板块有论文条目即非空）。"""
+    return re.search(r"^### \d+\. ", md_text, re.MULTILINE) is None

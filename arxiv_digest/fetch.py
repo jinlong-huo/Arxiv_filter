@@ -170,7 +170,7 @@ def _do_fetch(url):
     return feed, status_int, bozo, is_429, is_503, fatal
 
 
-def _fetch_one_page(url, wait_on_429, label):
+def _fetch_one_page(url, wait_on_429, label, rate_limit_retries=0):
     """Fetch a single page URL with full retry logic.
 
     Returns (entries, total): list of feedparser entries (empty on
@@ -179,6 +179,10 @@ def _fetch_one_page(url, wait_on_429, label):
 
     Handles: HTTP 429 (rate-limit), HTTP 503 (unavailable), parse errors,
     fatal errors (SSL/DNS), and arXiv "Error" pseudo-entries.
+
+    rate_limit_retries: how many 429 cooldowns have already been spent on
+    this page. With wait_on_429=True, 429s are retried up to
+    config.MAX_429_RETRIES times before giving up.
     """
     # ── Attempt 1 ──────────────────────────────────────────────
     feed, status_int, bozo, is_429, is_503, fatal = _do_fetch(url)
@@ -204,11 +208,17 @@ def _fetch_one_page(url, wait_on_429, label):
     # ── No entries — classify the failure ─────────────────────
     if is_429:
         wait_sec = 300 + random.randint(0, 60)
-        if wait_on_429:
-            print(f"\n  [{label}] ⛔ HTTP 429 rate-limit. "
+        if wait_on_429 and rate_limit_retries < config.MAX_429_RETRIES:
+            print(f"\n  [{label}] ⛔ HTTP 429 rate-limit "
+                  f"({rate_limit_retries + 1}/{config.MAX_429_RETRIES}). "
                   f"Waiting {wait_sec}s ({wait_sec // 60}min) then retrying...")
             time.sleep(wait_sec)
-            return _fetch_one_page(url, wait_on_429=False, label=label)
+            return _fetch_one_page(url, wait_on_429=True, label=label,
+                                   rate_limit_retries=rate_limit_retries + 1)
+        if wait_on_429:
+            print(f"\n  [{label}] ⛔ HTTP 429 persists after "
+                  f"{config.MAX_429_RETRIES} cooldowns — giving up on this page.")
+            return [], None
         if _prompt_retry(f"[{label}] arXiv is rate-limiting this IP (HTTP 429).", wait_sec):
             return _fetch_one_page(url, wait_on_429=False, label=label)
         return [], None
@@ -257,11 +267,17 @@ def _fetch_one_page(url, wait_on_429, label):
 
         if is_429_2:
             wait_sec = 300 + random.randint(0, 60)
-            if wait_on_429:
-                print(f"  [{label}] [RATE-LIMITED] HTTP 429 on retry — "
+            if wait_on_429 and rate_limit_retries < config.MAX_429_RETRIES:
+                print(f"  [{label}] [RATE-LIMITED] HTTP 429 on retry "
+                      f"({rate_limit_retries + 1}/{config.MAX_429_RETRIES}) — "
                       f"waiting {wait_sec}s ({wait_sec // 60}min) then retrying...")
                 time.sleep(wait_sec)
-                return _fetch_one_page(url, wait_on_429=False, label=label)
+                return _fetch_one_page(url, wait_on_429=True, label=label,
+                                       rate_limit_retries=rate_limit_retries + 1)
+            if wait_on_429:
+                print(f"  [{label}] ⛔ HTTP 429 persists after "
+                      f"{config.MAX_429_RETRIES} cooldowns — giving up on this page.")
+                return [], None
             if _prompt_retry(f"[{label}] HTTP 429 on retry — arXiv is rate-limiting.", wait_sec):
                 return _fetch_one_page(url, wait_on_429=False, label=label)
             return [], None
@@ -334,9 +350,11 @@ def _fetch_window(category, date_from, date_to, wait_on_429):
 def fetch_all(wait_on_429=False, date_from=None, date_to=None):
     """拉取全部 CATEGORIES 的论文（每个分类独立请求），返回 (entries_by_category, stats)。
 
-    date_from/date_to: 'YYYY-MM-DD' 字符串（闭区间）。缺省时只拉最近
-    3 天（或 --date 覆盖日的前 3 天）；给定区间时按 RANGE_WINDOW_DAYS 天
-    分窗口、逐窗口逐分类拉取（用于长时间未运行后的补拉）。
+    date_from/date_to: 'YYYY-MM-DD' 字符串（闭区间）。缺省时拉最近 3 天
+    （或 --date 覆盖日的前 3 天），并自动附加一个回看窗口
+    （LOOKBACK_FROM_DAYS_AGO ~ LOOKBACK_TO_DAYS_AGO 天前）用于 carry-over
+    补遗；给定区间时按 RANGE_WINDOW_DAYS 天分窗口、逐窗口逐分类拉取
+    （用于长时间未运行后的补拉，此时不附加回看窗口）。
 
     结果按 arxiv id 全局去重（arXiv 跨列表：同一论文可能出现在多个分类
     的查询结果中）。
@@ -358,13 +376,25 @@ def fetch_all(wait_on_429=False, date_from=None, date_to=None):
             print("[error] --from 不能晚于 --to")
             return _empty_result()
         windows = list(_iter_date_windows(d_from, d_to))
+        print(f"  Plan: {len(windows)} window(s), {d_from} → {d_to} "
+              f"across {len(config.CATEGORIES)} categories")
     else:
         d_to = config.bj_now().date()
         d_from = d_to - timedelta(days=3)
         windows = [(d_from, d_to)]
-
-    print(f"  Plan: {len(windows)} window(s), {d_from} → {d_to} "
-          f"across {len(config.CATEGORIES)} categories")
+        # 自动回看窗口：仅默认日常模式（无 --date / --from / --to）启用，
+        # 覆盖 arXiv 延迟上架 + 忘记运行的日子，供 carry-over 补遗使用。
+        if config.DATE_OVERRIDE is None:
+            lb_to = d_to - timedelta(days=config.LOOKBACK_TO_DAYS_AGO)
+            lb_from = d_to - timedelta(days=config.LOOKBACK_FROM_DAYS_AGO)
+            if lb_from <= lb_to:
+                windows.append((lb_from, lb_to))
+                print(f"  Plan: daily {d_from} → {d_to}  +  "
+                      f"lookback {lb_from} → {lb_to}  "
+                      f"across {len(config.CATEGORIES)} categories")
+        if len(windows) == 1:
+            print(f"  Plan: 1 window, {d_from} → {d_to} "
+                  f"across {len(config.CATEGORIES)} categories")
 
     # Pre-fetch jitter — avoid hitting the API at predictable instants
     pre_jitter = random.uniform(1.0, config.API_DELAY)
@@ -373,18 +403,31 @@ def fetch_all(wait_on_429=False, date_from=None, date_to=None):
     entries_by_cat = {cat: [] for cat in config.CATEGORIES}
     seen_ids = set()   # 跨窗口 / 跨分类去重
 
+    # 自适应请求间隔：被 429 后指数加缓，连续成功后回落。
+    # 双窗口日常模式下请求数翻倍，固定 5s 间隔极易触发持续限流。
+    throttle = {"delay": config.API_DELAY, "strikes": 0}
+
     first_request = True
     for w_from, w_to in windows:
         print(f"\n  [window] {w_from} → {w_to}")
         for cat in config.CATEGORIES:
             # Delay between requests (skip the very first one; pre_jitter covers it)
             if not first_request:
-                delay = config.API_DELAY * (0.75 + random.random() * 0.5)
+                delay = throttle["delay"] * (0.75 + random.random() * 0.5)
                 print(f"  [wait] {delay:.1f}s before next category...")
                 time.sleep(delay)
             first_request = False
 
             win_entries = _fetch_window(cat, w_from, w_to, wait_on_429)
+
+            if win_entries:
+                # 成功 → 连续两次成功后间隔回落一级
+                throttle["strikes"] = max(0, throttle["strikes"] - 1)
+            else:
+                # 空结果（含 429/503 放弃）→ 加缓，上限 60s
+                throttle["strikes"] += 1
+            throttle["delay"] = min(60.0,
+                                    config.API_DELAY * (1.5 ** throttle["strikes"]))
 
             for e in win_entries:
                 eid = flt.normalize_arxiv_id(e.id)

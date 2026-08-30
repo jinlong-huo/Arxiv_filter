@@ -1,0 +1,159 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% ================================================
+%  工作周报（中文版）
+%  编译: xelatex -> bibtex -> xelatex -> xelatex
+%
+%  说明: 本版与 weeklyreport-Aug22-en.tex 格式完全一致
+%  （plain article 基类 + Times New Roman + 手动标题块），
+%  仅将英文内容整体替换为对应中文；中文使用宋体渲染。
+% ================================================
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{setspace}
+
+% ---- 字体: 正文西文 Times New Roman，中文宋体 ----
+\setmainfont{Times New Roman}       % 正文西文
+\setCJKmainfont{Songti SC}          % 正文中文（macOS 自带宋体）
+                                    % 若无此字体，可改用 STSong / SimSun / Noto Serif CJK SC
+% \setsansfont{Arial}                % 如标题需用无衬线字体，取消注释
+\onehalfspacing
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection}{1em}{}
+
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+
+\begin{document}
+
+% ---- 标题块（手动设置，与英文版一致） ----
+\begin{center}
+{\Large\bfseries 工作周报}\\[0.5em]
+{\large 霍锦龙}\\[0.2em]
+% 第 \#\,xx 周
+\end{center}
+\vspace{1.5em}
+
+% ================================================
+% 第 1-3 节（动机 / 方法 / 预期成果）通常在整个项目周期内保持稳定，
+% 无需每周重写 —— 只有第 4-7 节（进展 / 讨论 / 问题 / 计划）
+% 需要每周更新。
+% ================================================
+
+\section{研究动机}
+
+MoE（专家混合）模型在训练与推理过程中依赖大量 All-to-All 通信进行
+专家路由。现有 EPS（电分组交换）互联在稀疏、动态的流量模式下带宽
+利用率低、易拥塞。OCS（光电路交换）可提供更高的链路带宽与更低的
+静态时延，但电路建立与重配置的开销限制了其在细粒度、动态路由场景
+中的实际收益。本研究要回答的问题是：能否通过预测专家路由结果并
+预触发电路重配置，将 OCS 的重配置开销隐藏在计算/通信流水线中——
+既保留 OCS 的带宽优势，又规避其动态路由的弱点？
+
+
+Work profiling DeepSeek-MoE-16b-chat on GSM8K shows explicitly that training-time balancing does not ensure balanced expert usage at inference, even for a model trained with loss-free balancing.
+
+can't guarantee sequence-level balance, and at inference time you can't control what sequences arrive
+\section{方法与支撑工作}
+
+核心方法是：在实际推理过程中记录不同模型基于不同输入,不同拓扑,不同放置下的Token-Expert, Token-Rank变化情况.特别是Token-Expert应该具备一定的亲和度关系/图. 例如,在相同的prompt下, 在当前模型(以qwen3.5)为例,在当前拓扑,以3-tier为例, 即inter-node 有两块GPU和在真实负载下评估“电路复用 + 重配置与计算/通信重叠”策略，
+而非仅依赖合成或均匀的路由假设。
+
+#	Keep fixed	Change	Expect on token → expert (routing)	Expect on token → rank (placement-projected)
+baseline	—	—	reference recording	reference recording
+1	model, prompt	topology	identical (bit-for-bit)	identical; only delay/cost moves
+2	model, prompt	placement (expert→rank table)	identical	relabeled — same experts, different owning ranks (this is the "where it changes" showcase)
+3	model	prompt	changes (different affinity graph)	changes accordingly
+4	prompt	model	changes everywhere	changes accordingly
+
+% 支撑参考文献（补充 BibTeX key 并引用，例如 \cite{example_ocs_paper}）：
+% \cite{example_ocs_paper}
+% \cite{example_moe_routing_paper}
+
+\section{预期成果（中长期）}
+
+在接下来的 1--2 个月内：
+\begin{enumerate}
+  \item 在真实权重驱动的 OCS 仿真中，刻画不同 batch size 与拓扑规模下
+        OCS 相对 EPS 的通信收益。
+  \item 确定路由可学习性（如 LoRA 微调前后的路由稳定性）对预触发策略
+        实际增益的影响，并将其转化为可复现的评估方法论。
+  \item 将预触发与 vLLM 的 prefill/decode 通信模式结合，为真实推理
+        服务场景给出部署粒度建议。
+\end{enumerate}
+
+\section{本周进展}
+
+\textbf{真实模型权重与 OCS 仿真结合}
+
+本周，从模型权重中提取的真实路由 trace 已输入 OCS 仿真器，
+初步结果如下。
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{指标} & \textbf{EPS} & \textbf{OCS} & \textbf{$\Delta$} \\
+\midrule
+通信时间      & 23,269 $\mu$s & 17,091 $\mu$s & --26.6\% \\
+OCS 额外开销  & --            & 333 $\mu$s    & -- \\
+电路复用率    & --            & 96.7\%        & -- \\
+重配置时间    & --            & 150 $\mu$s（3 次冷启动） & -- \\
+\bottomrule
+\end{tabular}
+\caption{合成专家 + OCS 对比：电路建立后 87/90 条流走光路，
+相对 EPS 的时延优势明显。}
+\label{tab:ocs_eps}
+\end{table}
+
+\noindent 结论：电路复用率高；在流水线调度下重配置与计算重叠，
+在 DBO 调度下则被完全隐藏。
+
+% 如果本周存在未解决的问题，可在此注明，例如：
+% \noindent\textbf{未解决问题：}仿真器与真实硬件之间的差距、
+% 数据/权重预处理中的具体困难等。
+
+\section{讨论与思考}
+
+真实权重下的电路复用率（96.7\%）与合成场景中的观测接近，表明虽然
+真实路由存在一定的负载不均衡，但仍表现出明显的时间局部性——
+这对真实场景下的预触发策略是一个早期且令人鼓舞的信号。该结论
+仍需在更大的拓扑规模与更多的 batch 配置下进一步确认。
+
+\section{向导师请教的问题}
+
+\begin{enumerate}
+  \item 针对 LoRA 微调前后的路由 trace 评估，是否有推荐的指标用于
+        量化路由稳定性？
+  \item 为保证 benchmark 的代表性，对真实模型权重的选取范围
+        （模型规模、专家数）是否有建议？
+\end{enumerate}
+
+\section{下周计划}
+
+\begin{enumerate}
+  \item 在 Qwen+OCS 测试床上完成多 batch、多拓扑的完整 benchmark，
+        并重标定真实权重下 OCS 的收益。
+  \item 在 OCS 仿真器中对比 LoRA 微调前后的路由 trace，验证路由
+        可学习性对 OCS 预触发的实际贡献。
+  \item 结合 vLLM 的 prefill/decode 通信模式，讨论 OCS 预触发在
+        推理服务场景中的合适粒度。
+\end{enumerate}
+
+\vspace{1em}
+\noindent 以上是本周的工作进展——欢迎任何反馈或指正。
+
+% ================================================
+% \bibliographystyle{plain}
+% \bibliography{bib/database}
+
+\end{document}

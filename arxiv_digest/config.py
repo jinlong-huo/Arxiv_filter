@@ -51,30 +51,45 @@ API_DELAY = 5.0
 RETRY_BACKOFF_BASE = [20.0, 60.0]       # 解析错误退避
 RETRY_BACKOFF_503_BASE = [60.0, 120.0]  # 503 服务端故障退避（更长，尊重 arXiv 恢复时间）
 MAX_RETRIES = 2
+MAX_429_RETRIES = 3                     # --wait 模式下每页 429 冷却重试上限（每次 ~5min）
 
 # ── 区间回填（--from / --to）───────────────────────────────────
 RANGE_WINDOW_DAYS = 3   # 每个拉取窗口的天数（含端点），逐窗口分页拉取
 MAX_PAGES = 10          # 每个窗口每分类最多翻页数（2000 篇上限保护）
+
+# ── 自动回看窗口（默认日常模式专用，防漏跑）─────────────────────
+# 日常运行除最近 3 天窗口外，自动再拉一个回看窗口，覆盖 arXiv 延迟上架
+# 和忘记运行的日子。--date / --from / --to 模式下不启用。
+LOOKBACK_FROM_DAYS_AGO = 8   # 回看窗口起点（今天前 N 天）
+LOOKBACK_TO_DAYS_AGO = 4     # 回看窗口终点（紧接日常 3 天窗口）
+
+# ── 高分补遗（carry-over）──────────────────────────────────────
+# matched 但被 top-N 挤掉的论文记为 pending（shown:false），
+# RESURFACE_DAYS 天内若再次被拉到且分数 ≥ RESURFACE_MIN_SCORE，
+# 进入 "High-Score Carry-Over" 板块，展示后才永久跳过。
+RESURFACE_DAYS = 7        # pending 论文可补遗的天数窗口
+RESURFACE_MIN_SCORE = 12  # 补遗分数线（高于日常 MIN_SCORE）
+MAX_RESURFACED = 5        # 每日补遗展示上限
 
 # ── 主关键词权重 ────────────────────────────────────────────────
 
 KEYWORDS = {
     # LLM 推理
     "llm": 6,
-    "large language model": 6,
-    "inference": 6,
-    "serving": 6,
-    "kv cache": 6,
-    "prefill": 5,
-    "decode": 5,
+    "large language model": 5,
+    "inference": 7,
+    "serving": 7,
+    "kv cache": 7,
+    "prefill": 7,
+    "decode": 7,
     "transformer": 4,
     # MoE / 稀疏专家
-    "mixture of experts": 6,
-    "mixture-of-experts": 6,
+    "mixture of experts": 7,
+    "mixture-of-experts": 7,
     "sparse mixture": 5,
     "expert parallelism": 5,
     "expert routing": 5,
-    "moe": 5,
+    "moe": 7,
     "moe model": 5,
     "moe layer": 5,
     # 基础 ML（低权重 catch-all）
@@ -83,16 +98,16 @@ KEYWORDS = {
     "neural network": 2,
     "training": 3,
     "fine-tuning": 3,
-    "agentic": 4,
-    "ai agent": 4,
+    "agentic": 7,
+    "ai agent": 7,
     # 高性能网络 / 数据中心
     "rdma": 6,
-    "datacenter": 5,
-    "data center": 5,
+    "datacenter": 7,
+    "data center": 7,
     "congestion": 5,
     "tail latency": 5,
     # 调度与资源
-    "scheduling": 5,
+    "scheduling": 7,
     "resource allocation": 5,
     "load balancing": 5,
     # GPU / 性能
@@ -104,10 +119,32 @@ KEYWORDS = {
     "communication": 3,
     "pipeline": 3,
     "parallelism": 3,
-    "network": 2,
+    "network": 7,
     "memory": 2,
+    # LLM serving 系统 / 推理优化（高优先级 — CacheRoute 类）
+    "prefix caching": 8,
+    "prefix cache": 7,
+    "prefix-aware": 7,
+    "prefix affinity": 8,
+    "prefix-affinity": 8,
+    "kv cache reuse": 7,
+    "cache-aware routing": 8,
+    "request routing": 6,
+    "model routing": 6,
+    "llm router": 6,
+    "disaggregated serving": 8,
+    "disaggregation": 6,
+    "pd disaggregation": 7,
+    "prefill-decode": 7,
+    "continuous batching": 7,
+    "speculative decoding": 7,
+    "goodput": 6,
+    "time to first token": 7,
+    "ttft": 6,
+    "tpot": 6,
+    "time per output token": 6,
     # GPU 集合通信库
-    "collective communication": 6,
+    "collective communication": 7,
     "nccl": 5,
     "rccl": 5,
     "all-reduce": 5,
@@ -117,9 +154,9 @@ KEYWORDS = {
 }
 
 NEGATIVE_KEYWORDS = {
-    "a survey": -6,
-    "survey paper": -6,
-    "comprehensive survey": -8,
+    "a survey": -2,
+    "survey paper": -2,
+    "comprehensive survey": -2,
     "this survey": -6,
     "tutorial": -6,
     "benchmark dataset": -6,
@@ -245,7 +282,31 @@ OCS_KEYWORDS = {
     # 量子 / 光网络融合
     "quantum optical network": 4,
     "entanglement distribution optical": 5,
+    # CPO / 共封装光学生态（含 LPO / NPO / 光引擎）
+    "co-packaged": 5,
+    "linear pluggable optics": 6,
+    "linear-pluggable optics": 6,
+    "linear receive optics": 5,
+    "near-packaged optics": 5,
+    "optical engine": 5,
+    "external laser source": 5,
+    "elsfp": 5,
+    "optical io chiplet": 5,
+    "optical i/o chiplet": 5,
+    "chiplet optical": 4,
+    "fiber attach unit": 4,
 }
+
+# 需光通信上下文才生效的缩写（防 "Naive Prompt Optimization" 类误匹配）
+OCS_CONTEXT_KEYWORDS = {
+    "cpo": 5,
+    "lpo": 4,
+    "npo": 4,
+}
+OCS_CONTEXT_REQUIRED = (
+    "optical", "optic", "photonic", "transceiver", "packag",
+    "interconnect", "fiber", "datacenter", "data center", "switch",
+)
 
 OCS_NEGATIVE_KEYWORDS = {
     "a survey": -6,
@@ -267,30 +328,18 @@ OCS_NEGATIVE_KEYWORDS = {
 OCS_MIN_SCORE = 3
 MAX_OCS_PAPERS = 10
 
+# 需 LLM serving 上下文才生效的缩写（防 "SLO 图优化" 类误匹配）
+MAIN_CONTEXT_KEYWORDS = {
+    "slo": 5,
+}
+MAIN_CONTEXT_REQUIRED = (
+    "serving", "inference", "llm", "latency", "throughput",
+    "goodput", "gpu", "token", "request",
+)
+
 # ── 路径 ───────────────────────────────────────────────────────
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 STATE_FILE = SCRIPT_DIR / "seen_papers.json"
 DIGEST_STATE_FILE = SCRIPT_DIR / "digest_papers.json"
 OUTPUT_FILE = SCRIPT_DIR / "daily_digest.md"
-
-# ── 邮件（密码通过环境变量或 .email_password 文件加载）──────────
-
-def _load_email_password():
-    # 1) env var
-    pw = os.environ.get("ARXIV_DIGEST_EMAIL_PASSWORD", "")
-    if pw:
-        return pw
-    # 2) .email_password file
-    pw_file = SCRIPT_DIR.parent / ".email_password"
-    if pw_file.exists():
-        return pw_file.read_text(encoding="utf-8").strip()
-    return ""
-
-EMAIL_CONFIG = {
-    "smtp_host": "smtp.gmail.com",
-    "smtp_port": 587,
-    "sender": "rawking1621@gmail.com",
-    "password": _load_email_password(),
-    "recipient": "rawking1621@gmail.com",
-}

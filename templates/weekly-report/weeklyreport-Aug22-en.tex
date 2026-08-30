@@ -1,0 +1,164 @@
+% !TEX TS-program = xelatex
+% !TEX encoding = UTF-8 Unicode
+% ================================================
+%  Weekly Research Report (English version)
+%  Compile: xelatex -> bibtex -> xelatex -> xelatex
+%
+%  NOTE: this version uses a plain `article` base rather than
+%  `sjtuweekly`, since that class's cover page / running headers are
+%  built for Chinese labels. If you have (or can get) an English
+%  variant of sjtuweekly.cls, swap the \documentclass line below and
+%  drop the manual title block in favor of \makeweeklytitle.
+% ================================================
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fontspec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{setspace}
+
+% ---- Typography: standard Western academic-memo pairing ----
+\setmainfont{Times New Roman}       % body text
+% \setsansfont{Arial}                % uncomment if headings should be sans-serif
+\onehalfspacing
+\titleformat{\section}{\normalfont\bfseries\large}{\thesection}{1em}{}
+
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+
+\begin{document}
+
+% ---- Title block (manual, since not using sjtuweekly's cover page) ----
+\begin{center}
+{\Large\bfseries Weekly Research Report}\\[0.5em]
+{\large Huo Jinlong}\\[0.2em]
+% Week \#\,xx
+\end{center}
+\vspace{1.5em}
+
+% ================================================
+% Sections 1-3 (motivation / approach / expected outcomes) usually
+% stay stable across a project and don't need rewriting every week --
+% only Sections 4-7 (progress / discussion / questions / plan) need
+% weekly updates.
+% ================================================
+
+\section{Motivation}
+
+MoE (Mixture-of-Experts) models rely on heavy All-to-All communication
+for expert routing during both training and inference. Existing EPS
+(electrical packet switching) interconnects suffer from low bandwidth
+utilization and congestion under this sparse, dynamic traffic pattern.
+OCS (optical circuit switching) offers higher link bandwidth and lower
+static latency, but circuit setup and reconfiguration overhead limits
+its practical benefit in fine-grained, dynamic routing scenarios. This
+work asks: can predicting expert-routing outcomes and pre-triggering
+circuit reconfiguration hide OCS's reconfiguration overhead inside the
+compute/communication pipeline -- preserving OCS's bandwidth advantage
+while avoiding its dynamic-routing weakness?
+
+\section{Approach \& Supporting Work}
+
+The core approach is to drive an OCS circuit simulator with expert
+routing traces extracted from real model weights, and evaluate a
+``circuit reuse + reconfiguration/compute overlap'' strategy under
+realistic load, rather than relying only on synthetic or uniform
+routing assumptions.
+% Supporting references (add BibTeX keys and cite, e.g. \cite{example_ocs_paper}):
+% \cite{example_ocs_paper}
+% \cite{example_moe_routing_paper}
+
+\section{Expected Outcomes (Medium/Long-term)}
+
+Over the next 1--2 months:
+\begin{enumerate}
+  \item Characterize OCS's communication benefit over EPS across batch
+        sizes and topology scales, using real-weight-driven OCS simulation.
+  \item Determine how routing learnability (e.g., routing stability
+        before/after LoRA fine-tuning) affects the realized gain from
+        pre-triggering, and turn this into a reproducible evaluation
+        methodology.
+  \item Combine pre-triggering with vLLM's prefill/decode communication
+        patterns to recommend a deployment granularity for real
+        inference-serving scenarios.
+\end{enumerate}
+
+\section{Progress This Week}
+
+\textbf{Combining real model weights with OCS simulation}
+
+Real routing traces extracted from model weights were fed into the OCS
+simulator this week, with preliminary results below.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric} & \textbf{EPS} & \textbf{OCS} & \textbf{$\Delta$} \\
+\midrule
+Communication time    & 23,269 $\mu$s & 17,091 $\mu$s & --26.6\% \\
+OCS extra overhead     & --            & 333 $\mu$s    & -- \\
+Circuit reuse rate     & --            & 96.7\%        & -- \\
+Reconfiguration time    & --            & 150 $\mu$s (3 cold starts) & -- \\
+\bottomrule
+\end{tabular}
+\caption{Synthetic-expert + OCS comparison: 87/90 flows go optical
+after circuit setup, a clear latency advantage over EPS.}
+\label{tab:ocs_eps}
+\end{table}
+
+\noindent Takeaway: circuit reuse is high; reconfiguration overlaps
+with compute under the pipeline schedule, and is fully hidden under
+the DBO schedule.
+
+% If there were open problems this week, note them here, e.g.:
+% \noindent\textbf{Open issues:} simulator-vs-real-hardware gap,
+% specific difficulties in data/weight preprocessing, etc.
+
+\section{Discussion / Reflections}
+
+The circuit reuse rate under real weights (96.7\%) is close to what
+was seen in the synthetic setting, suggesting that although real
+routing shows some load imbalance, it still exhibits meaningful
+temporal locality -- an early, encouraging sign for pre-triggering in
+realistic settings. This still needs to be confirmed at larger
+topology scales and across more batch configurations.
+
+\section{Questions for Advisor}
+
+\begin{enumerate}
+  \item For evaluating routing traces before/after LoRA fine-tuning,
+        is there a recommended metric for quantifying routing
+        stability?
+  \item Any guidance on the range of real model weights (model size,
+        number of experts) to use, to keep the benchmark
+        representative?
+\end{enumerate}
+
+\section{Plan for Next Week}
+
+\begin{enumerate}
+  \item Complete a full multi-batch, multi-topology benchmark on the
+        Qwen+OCS testbed and recalibrate OCS's benefit under real
+        weights.
+  \item Compare routing traces before/after LoRA fine-tuning in the
+        OCS simulator, to verify how much routing learnability
+        actually contributes to OCS pre-triggering.
+  \item Discuss the appropriate granularity for OCS pre-triggering in
+        inference-serving settings, in light of vLLM's
+        prefill/decode communication patterns.
+\end{enumerate}
+
+\vspace{1em}
+\noindent That covers this week's progress -- happy to take any
+feedback or corrections.
+
+% ================================================
+% \bibliographystyle{plain}
+% \bibliography{bib/database}
+
+\end{document}
