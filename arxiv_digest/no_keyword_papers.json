@@ -1,4 +1,11 @@
 {
+  "Real-Time Reconstruction of Markov Sources over MPR Channels": {
+    "title": "Real-Time Reconstruction of Markov Sources over MPR Channels",
+    "link": "https://arxiv.org/abs/2608.27116v1",
+    "first_author": "Pappas",
+    "year": "2026",
+    "summary": "This paper studies the real-time reconstruction and remote actuation of two binary Markov sources over a shared wireless channel with multi-packet reception (MPR). Unlike many existing collision-based formulations that discard simulta- neous transmissions, we exploit MPR and evaluate communica- tion"
+  },
   "SlimTCP: It's fast, but not because it's slim": {
     "title": "SlimTCP: It's fast, but not because it's slim",
     "link": "https://arxiv.org/abs/2608.25834v1",
@@ -650,6 +657,1287 @@
     "year": "2026",
     "summary": "Fully few-shot class-incremental audio classification (FFCAC) requires recognizing new sound classes from only a handful of labeled examples per session, without forgetting previously learned classes and without any large base dataset. Existing methods typically freeze a pre-trained audio--language "
   },
+  "Solving Robust POMDPs with Omega-regular Objectives via Partially Observable Stochastic Games": {
+    "title": "Solving Robust POMDPs with Omega-regular Objectives via Partially Observable Stochastic Games",
+    "link": "https://arxiv.org/abs/2608.24986v1",
+    "first_author": "Krishna",
+    "year": "2026",
+    "summary": "Robust POMDPs (RPOMDPs) generalize classical POMDPs to the setting where exact transition probabilities are not known -- rather, they are only known to belong to some uncertainty set of values. In this work, we study the problem of solving RPOMDPs with general omega-regular objectives, which subsume"
+  },
+  "GameWAM: A World Action Model for Video Games": {
+    "title": "GameWAM: A World Action Model for Video Games",
+    "link": "https://arxiv.org/abs/2608.26200v1",
+    "first_author": "Li",
+    "year": "2026",
+    "summary": "Modern video games combine first-person perception, rapid visual changes, persistent world state, and heterogeneous native controls. Existing game agents map visual and task context directly to actions but lack explicit world dynamics modeling, whereas interactive game world models predict visual fu"
+  },
+  "FrontierChallenge: Evaluating Scientific Workflow Completion": {
+    "title": "FrontierChallenge: Evaluating Scientific Workflow Completion",
+    "link": "https://arxiv.org/abs/2608.24979v1",
+    "first_author": "Wang",
+    "year": "2026",
+    "summary": "Scientific agents increasingly analyze data, execute code, and produce research artifacts, yet most benchmarks emphasize final answers, isolated programs, or a single domain. We introduce FrontierChallenge, a cross-domain benchmark comprising 300 end-to-end scientific workflows. In this paper, we re"
+  },
+  "StarHarness: Evolving Harnesses with Stratified Search for Enterprise Environments": {
+    "title": "StarHarness: Evolving Harnesses with Stratified Search for Enterprise Environments",
+    "link": "https://arxiv.org/abs/2608.24804v1",
+    "first_author": "Davasam",
+    "year": "2026",
+    "summary": "We present StarHarness, a framework for evolving environment-specific agent harnesses while keeping model weights fixed. The evolved harness can include prompt and task framing, tool interfaces, skills, MCP-backed providers, subagent structure, and agent-loop configuration. StarHarness constructs a "
+  },
+  "Beyond Uniform Local Isometry and Topology: FactoMap for Disentangled Representations": {
+    "title": "Beyond Uniform Local Isometry and Topology: FactoMap for Disentangled Representations",
+    "link": "https://arxiv.org/abs/2608.24762v1",
+    "first_author": "Tolooshams",
+    "year": "2026",
+    "summary": "Many disentanglement methods represent generative factors using Euclidean product coordinates, although the underlying factor spaces may wrap, collapse, or have position-dependent geometry. We introduce factor-space structure, combining factor domains, generator-induced identifications, and position"
+  },
+  "Method, Mind, and Morality: How People Make Sense of Artificial Intelligence": {
+    "title": "Method, Mind, and Morality: How People Make Sense of Artificial Intelligence",
+    "link": "https://arxiv.org/abs/2608.24748v1",
+    "first_author": "Evans",
+    "year": "2026",
+    "summary": "How can humans make sense of the rapid takeoff of artificial intelligence (AI)? We studied the sensemaking dynamics of AI through an open-ended, mixed-methods study with computational text analysis of millions of AI-related newspaper articles and social media posts grounded in 57 semi-structured int"
+  },
+  "Enhancing Bayesian Optimization and Active Learning Through Kernel Diversity": {
+    "title": "Enhancing Bayesian Optimization and Active Learning Through Kernel Diversity",
+    "link": "https://arxiv.org/abs/2608.24721v1",
+    "first_author": "Javidi",
+    "year": "2026",
+    "summary": "Hyperparameter selection remains a key challenge in Bayesian optimization (BO) and Bayesian active learning (AL), as model misspecification can lead to suboptimal performance, while more accurate fully Bayesian treatments typically rely on computationally expensive MCMC sampling. This paper proposes"
+  },
+  "Constrained Hyperparameter Optimization for Streaming Data": {
+    "title": "Constrained Hyperparameter Optimization for Streaming Data",
+    "link": "https://arxiv.org/abs/2608.24712v1",
+    "first_author": "Gama",
+    "year": "2026",
+    "summary": "Optimization of hyperparameters is a critical factor to obtain optimal model performance. While existing research has predominantly concentrated on batch-learning scenarios, addressing the complexities inherent in data streams presents a challenge. The deployment of sophisticated methodologies to ma"
+  },
+  "Causal Modelling of Support Interventions for Student Competency Assessment": {
+    "title": "Causal Modelling of Support Interventions for Student Competency Assessment",
+    "link": "https://arxiv.org/abs/2608.24632v1",
+    "first_author": "Cabañas",
+    "year": "2026",
+    "summary": "Accurate assessment of student competencies is essential for enabling educators to identify individual needs, design targeted interventions, and evaluate the effectiveness of educational strategies. Empirical assessment procedures are typically grounded in psychometric models, such as item response "
+  },
+  "Pivot-and-Station Multi-Agent Path Finding: Solvability, Complexity, and Algorithms": {
+    "title": "Pivot-and-Station Multi-Agent Path Finding: Solvability, Complexity, and Algorithms",
+    "link": "https://arxiv.org/abs/2608.24585v1",
+    "first_author": "Bernardini",
+    "year": "2026",
+    "summary": "Automated high-density storage systems (warehouses, robotic parking, plant logistics, etc.) require fleets of agents to move through scarce task-critical resources and then park without obstructing future operations. We introduce Pivot-and-Station Multi-Agent Path Finding (PS-MAPF), a MAPF variant i"
+  },
+  "StrokeGuard: A Multi-Agent Guided System for Prehospital Stroke Assessment": {
+    "title": "StrokeGuard: A Multi-Agent Guided System for Prehospital Stroke Assessment",
+    "link": "https://arxiv.org/abs/2608.24555v1",
+    "first_author": "Guo",
+    "year": "2026",
+    "summary": "Prehospital stroke assessment aims to accurately identify stroke symptoms and make rapid decisions through standardized procedures within an extremely narrow time window, thereby saving valuable time for subsequent treatment. In clinical practice, FAST-based scales are widely used for prehospital st"
+  },
+  "A Behavior-Guided Online Probabilistic Forecasting Method for Electric vehicle Charging Loads": {
+    "title": "A Behavior-Guided Online Probabilistic Forecasting Method for Electric vehicle Charging Loads",
+    "link": "https://arxiv.org/abs/2608.24441v1",
+    "first_author": "Liang",
+    "year": "2026",
+    "summary": "Electric vehicle (EV) charging loads exhibit strong behavioral heterogeneity and temporal variability, posing significant challenges for online probabilistic forecasting under evolving operating conditions. In particular, persistent charging patterns may differ substantially across stations, while r"
+  },
+  "Partial Identification under Causal Orders by Linear Programming": {
+    "title": "Partial Identification under Causal Orders by Linear Programming",
+    "link": "https://arxiv.org/abs/2608.24427v1",
+    "first_author": "Antonucci",
+    "year": "2026",
+    "summary": "Non-parametric (partial) identification of counterfactual queries typically relies on a fully specified causal graph. Motivated by settings with incomplete domain knowledge, we challenge this requirement by leveraging structural assumptions that are inherently implied by the query itself. We show th"
+  },
+  "Do Recipes Have Personas? Characterizing and Generating Creator Style in Attributed Procedural Graphs": {
+    "title": "Do Recipes Have Personas? Characterizing and Generating Creator Style in Attributed Procedural Graphs",
+    "link": "https://arxiv.org/abs/2608.24369v1",
+    "first_author": "Jiang",
+    "year": "2026",
+    "summary": "While large language models (LLMs) possess vast zero-shot procedural knowledge, their tendency to produce homogenized logic often obscures the unique, idiosyncratic execution processes of individual human creators. In this paper, we investigate the computational discovery of procedural personas from"
+  },
+  "From State to Action: OODA-Tool for Reliable Multi-Turn Tool Use": {
+    "title": "From State to Action: OODA-Tool for Reliable Multi-Turn Tool Use",
+    "link": "https://arxiv.org/abs/2608.24368v2",
+    "first_author": "Hu",
+    "year": "2026",
+    "summary": "Reliable multi-turn tool use requires an agent to preserve an evolving task state and ensure that each action remains consistent with it. However, direct function-calling and ReAct-style policies learn state tracking and action generation within the same autoregressive trajectory. This coupling crea"
+  },
+  "Metadata-Aware Adaptation of a Generative Foundation Model for Conditional CMR Synthesis": {
+    "title": "Metadata-Aware Adaptation of a Generative Foundation Model for Conditional CMR Synthesis",
+    "link": "https://arxiv.org/abs/2608.24342v1",
+    "first_author": "Gkontra",
+    "year": "2026",
+    "summary": "Synthetic image generation is a promising strategy to address data scarcity and the underrepresentation of clinically important phenotypes in medical imaging, yet generating images that faithfully reflect meaningful patient characteristics remains challenging. In this work, we investigate metadata-c"
+  },
+  "Mind the Student: Behavioral and Contextual Cues for Automated Engagement Prediction in Online Learning": {
+    "title": "Mind the Student: Behavioral and Contextual Cues for Automated Engagement Prediction in Online Learning",
+    "link": "https://arxiv.org/abs/2608.24340v1",
+    "first_author": "Roig",
+    "year": "2026",
+    "summary": "The prediction of student engagement from the online tutoring videos is difficult because engagement is a multidimensional construct comprising distinct behavioral, emotional, and cognitive states. A reliable prediction requires bringing together different types of behavioral signals as well as expr"
+  },
+  "SENSESHIFT: Continuous Sentiment-Controlled Text Generation via Encoder-based Mask Infilling": {
+    "title": "SENSESHIFT: Continuous Sentiment-Controlled Text Generation via Encoder-based Mask Infilling",
+    "link": "https://arxiv.org/abs/2608.24304v1",
+    "first_author": "Schedl",
+    "year": "2026",
+    "summary": "Recent controllable text generation (CTG) for sentiment control has largely focused on decoder-based large language models, making causal attention the dominant paradigm. While effective for fluent generation, these models still struggle to satisfy complex constraints and follow fine-grained sentime"
+  },
+  "Eating for a Sustainable Planet: Personalized Sustainable Diet Recommendation via Constraint-Aware Decision-Making Model": {
+    "title": "Eating for a Sustainable Planet: Personalized Sustainable Diet Recommendation via Constraint-Aware Decision-Making Modeling",
+    "link": "https://arxiv.org/abs/2608.24274v1",
+    "first_author": "Jiang",
+    "year": "2026",
+    "summary": "A sustainable diet represents a multi-dimensional synergy among four essential pillars: nutrition adequacy, economic affordability, cultural acceptability, and environmental respect. Despite the prevalence of population-level sustainability modeling, practical implementation relies on effective indi"
+  },
+  "Matched Excess-Outranker Regularization for Candidate-Set Interference in Continual Knowledge Graph Embedding": {
+    "title": "Matched Excess-Outranker Regularization for Candidate-Set Interference in Continual Knowledge Graph Embedding",
+    "link": "https://arxiv.org/abs/2608.24273v2",
+    "first_author": "Jiang",
+    "year": "2026",
+    "summary": "Continual knowledge graph embedding updates entity and relation representations as a graph grows. Existing methods primarily address catastrophic forgetting, but entity admission also changes the candidate universe of every compatible query. A historical answer can therefore lose rank even when its "
+  },
+  "STRIVE: Multi-Agent Structured Temporal Reasoning with Integrated Verification for Longitudinal Radiology Report Generat": {
+    "title": "STRIVE: Multi-Agent Structured Temporal Reasoning with Integrated Verification for Longitudinal Radiology Report Generation",
+    "link": "https://arxiv.org/abs/2608.24237v1",
+    "first_author": "Suk",
+    "year": "2026",
+    "summary": "Longitudinal radiology report generation (LRRG) requires identifying both current findings and their changes relative to a prior study. Existing methods jointly model diagnosis, attribute estimation, temporal comparison, and language generation within implicit representations, which can cause task i"
+  },
+  "Preference Data Selection for Mitigating the Alignment Tax in Large Language Models": {
+    "title": "Preference Data Selection for Mitigating the Alignment Tax in Large Language Models",
+    "link": "https://arxiv.org/abs/2608.24192v1",
+    "first_author": "Whang",
+    "year": "2026",
+    "summary": "Aligning large language models to human preferences is crucial for real-world deployment but frequently incurs an alignment tax, leading to the catastrophic forgetting of pre-trained general capabilities. While previous works primarily frame this problem as an optimization or architectural challenge"
+  },
+  "Tlow: Flow-based Item Tokenizer for Recommendation": {
+    "title": "Tlow: Flow-based Item Tokenizer for Recommendation",
+    "link": "https://arxiv.org/abs/2608.24176v1",
+    "first_author": "Liao",
+    "year": "2026",
+    "summary": "Item tokenizer encodes semantic embeddings into token IDs to replace the randomly assigned item IDs used in traditional recommendation models, fundamentally addressing the problems of excessive parameters and cold starts. However, the most common tokenizer, RQ-VAE, suffers from low decoding efficien"
+  },
+  "Task-Adaptive Rubrics for GUI Reward Modeling": {
+    "title": "Task-Adaptive Rubrics for GUI Reward Modeling",
+    "link": "https://arxiv.org/abs/2608.24174v1",
+    "first_author": "Zhang",
+    "year": "2026",
+    "summary": "Recent studies on GUI agents have increasingly focused on outcome reward modeling, which assigns outcome rewards by judging whether an executed trajectory satisfies the success criteria implied by the user instruction. Existing GUI reward verifiers, however, often under-specify how these criteria sh"
+  },
+  "Evaluating and Preventing Security Smells in AI-Generated Ansible Code": {
+    "title": "Evaluating and Preventing Security Smells in AI-Generated Ansible Code",
+    "link": "https://arxiv.org/abs/2608.24962v1",
+    "first_author": "Haseeb",
+    "year": "2026",
+    "summary": "AI coding assistants generate Infrastructure as Code, yet no work has examined whether this code meets security requirements. This matters because security smells in infrastructure code propagate to deployed systems, producing infrastructure that is insecure and untrustworthy. We evaluate 16 AI mode"
+  },
+  "PlaceSeek: Human-Centered Geospatial Retrieval of Urban Outdoor Places via Semantic Grounding and Affective Alignment": {
+    "title": "PlaceSeek: Human-Centered Geospatial Retrieval of Urban Outdoor Places via Semantic Grounding and Affective Alignment",
+    "link": "https://arxiv.org/abs/2608.24133v1",
+    "first_author": "Lou",
+    "year": "2026",
+    "summary": "People search for urban outdoor places not only by category or function, but also by what activities a place can support and how it is perceived. Existing geospatial retrieval remains largely POIcentric and metadata-driven, making it difficult to satisfy openended, affective, or activity-oriented ne"
+  },
+  "From Gradient-Boosted Trees to Deep Recommenders: Practical Lessons from Migrating a Production Customer Support Recomme": {
+    "title": "From Gradient-Boosted Trees to Deep Recommenders: Practical Lessons from Migrating a Production Customer Support Recommender",
+    "link": "https://arxiv.org/abs/2608.24132v1",
+    "first_author": "Mattarella-Micke",
+    "year": "2026",
+    "summary": "Product catalogs in fast-moving service businesses are shifting from static, independently priced SKUs toward dynamically bundled, discount-coupled offerings--a shift that strains the tree-based classifiers traditionally preferred for sparse and highly imbalanced data. These classifiers assume a fix"
+  },
+  "MatReplace: A Reference-Free, Conditioning-Aligned Benchmark for Material Replacement in Interior Scenes": {
+    "title": "MatReplace: A Reference-Free, Conditioning-Aligned Benchmark for Material Replacement in Interior Scenes",
+    "link": "https://arxiv.org/abs/2608.24107v1",
+    "first_author": "Tuan",
+    "year": "2026",
+    "summary": "Material replacement is a common interior-design operation: changing the material of a selected surface while preserving its geometry, surroundings, and illumination. Despite its commercial relevance, no public benchmark isolates this task, and evaluating it is challenging. Reference-based metrics p"
+  },
+  "Reflection with Action-Induced Visual Differences for Desktop GUI Agents": {
+    "title": "Reflection with Action-Induced Visual Differences for Desktop GUI Agents",
+    "link": "https://arxiv.org/abs/2608.24015v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "The Planner-Operator-Reflector (POR) framework is widely used in GUI agents to maintain objective alignment in complex tasks through modular collaboration. However, desktop GUIs introduce a key challenge: large, dense interfaces often exhibit subtle or scattered state changes, placing most of the bu"
+  },
+  "Incorporating Cognitive Load and Knowledge Transfer for Multi-Domain Knowledge Tracing": {
+    "title": "Incorporating Cognitive Load and Knowledge Transfer for Multi-Domain Knowledge Tracing",
+    "link": "https://arxiv.org/abs/2608.24005v1",
+    "first_author": "Liu",
+    "year": "2026",
+    "summary": "Knowledge Tracing (KT) aims to assess students' dynamic knowledge states from their learning histories. While most existing KT methods focus on single-domain learning with notable success, real-world learning scenarios often involve multiple domains simultaneously, introducing two critical factors: "
+  },
+  "When Seeing Is Not Enough: Benchmarking Interactive Visual Grounding in LVLMs": {
+    "title": "When Seeing Is Not Enough: Benchmarking Interactive Visual Grounding in LVLMs",
+    "link": "https://arxiv.org/abs/2608.23978v1",
+    "first_author": "Rambow",
+    "year": "2026",
+    "summary": "Visual grounding is typically evaluated as a one-shot mapping from an informative referring expression to a visual target. This formulation misses a central property of real-world reference: target information is often incomplete, ambiguous, and established through interaction. We introduce a contro"
+  },
+  "Evaluating Language Models on Cross-Language Code Functional Equivalence": {
+    "title": "Evaluating Language Models on Cross-Language Code Functional Equivalence",
+    "link": "https://arxiv.org/abs/2608.23961v1",
+    "first_author": "Assunção",
+    "year": "2026",
+    "summary": "Background: Large Language Models (LLMs) have demonstrated strong performance across a variety of code-understanding tasks, leading many to believe that they can reason about program semantics. However, existing evaluations primarily focus on single-language settings or rely on synthetically generat"
+  },
+  "STAIN-FL: Stealthy Targeted Attack Injection with Contextual Triggers in Federated Learning": {
+    "title": "STAIN-FL: Stealthy Targeted Attack Injection with Contextual Triggers in Federated Learning",
+    "link": "https://arxiv.org/abs/2608.23952v1",
+    "first_author": "Truong-Huu",
+    "year": "2026",
+    "summary": "Federated video anomaly detection trains model collaboratively without sharing raw surveillance footage, but limited server-side visibility lets compromised clients to inject backdoor via malicious updates. This paper introduces STAIN-FL, a stealthy targeted backdoor attack injection framework that "
+  },
+  "Evolutionary Recurrent Decision Model in Developing Adaptive and Maladaptive Behaviors": {
+    "title": "Evolutionary Recurrent Decision Model in Developing Adaptive and Maladaptive Behaviors",
+    "link": "https://arxiv.org/abs/2608.23932v1",
+    "first_author": "Hu",
+    "year": "2026",
+    "summary": "This study introduces the evolutionarily recurrent decision model (ERDM), a computational reinforcement learning framework designed to examine how evolutionary mismatch, bounded rationality, and satisficing contribute to adaptive and maladaptive behavior. ERDM simulates agents across evolutionary re"
+  },
+  "BenchBench-Protocol: Evaluating Real-World Wet-Lab Protocol Reasoning and Modification": {
+    "title": "BenchBench-Protocol: Evaluating Real-World Wet-Lab Protocol Reasoning and Modification",
+    "link": "https://arxiv.org/abs/2608.23898v1",
+    "first_author": "Parsan",
+    "year": "2026",
+    "summary": "We introduce BenchBench-Protocol, a benchmark for large language models of 149 protocol-modification tasks recovered from modifications that scientists made to published protocols during real experimental work. Adapting a published protocol to a new experiment is a routine task for a wet-lab scienti"
+  },
+  "A Mathematical Theory of Interpretation: Rational Entropy, Spectral Readout, and Confusability as a Resource": {
+    "title": "A Mathematical Theory of Interpretation: Rational Entropy, Spectral Readout, and Confusability as a Resource",
+    "link": "https://arxiv.org/abs/2608.23892v1",
+    "first_author": "Reynolds",
+    "year": "2026",
+    "summary": "This article presents the abridged core of \\emph{A Mathematical Theory of Interpretation} (MTI), which treats interpretation as observer-relative spectral measurement under an access structure. MTI makes interpretation a method-design problem: access, query, utility, and medium determine what an obs"
+  },
+  "Resilience Matters for Embodied Agents System: New Metrics, Systematic Evaluation, and Optimization": {
+    "title": "Resilience Matters for Embodied Agents System: New Metrics, Systematic Evaluation, and Optimization",
+    "link": "https://arxiv.org/abs/2608.23839v1",
+    "first_author": "Wang",
+    "year": "2026",
+    "summary": "Embodied Agents System (EAS) are increasingly deployed in open-world physical domains, where reliability directly dictates deployment quality and human-agent trust. However, existing evaluations rely on outcome-centric metrics as success rate or safety scores that collapse diverse execution trajecto"
+  },
+  "SyPS: Measuring Sycophancy Prompt Sensitivity in Large Language Models": {
+    "title": "SyPS: Measuring Sycophancy Prompt Sensitivity in Large Language Models",
+    "link": "https://arxiv.org/abs/2608.23837v1",
+    "first_author": "Ren",
+    "year": "2026",
+    "summary": "Large language models (LLMs) are known to exhibit social sycophancy, often validating or agreeing with users in socially sensitive contexts. Existing evaluations typically measure sycophancy under a fixed prompt formulation, leaving unclear whether such behavior is stable when the same underlying si"
+  },
+  "A Formal Methodological Framework for Auditing Robustness and Fidelity in Explainable AI: From Application to Trust Cert": {
+    "title": "A Formal Methodological Framework for Auditing Robustness and Fidelity in Explainable AI: From Application to Trust Certification",
+    "link": "https://arxiv.org/abs/2608.23817v1",
+    "first_author": "Mahatody",
+    "year": "2026",
+    "summary": "SHAP and LIME are now standard tools for interpreting black-box predictions, yet their outputs can vary substantially when the input is perturbed by small amounts of noise--a problem we observed firsthand in our previous work on food security in Madagascar (Ralinirina et al., 2025). This variability"
+  },
+  "Discovering Cross-Language Reasoning Invariance in LLMs with Geometry-Invariant Sparse Autoencoders": {
+    "title": "Discovering Cross-Language Reasoning Invariance in LLMs with Geometry-Invariant Sparse Autoencoders",
+    "link": "https://arxiv.org/abs/2608.23809v1",
+    "first_author": "Huang",
+    "year": "2026",
+    "summary": "Multilingual language models can solve the same mathematical problem in different languages, but it remains unclear whether they rely on shared features or on language-specific computations that only produce similar outputs. We study this question in five models from four families using the Multilin"
+  },
+  "Disentangled Skill Representations for Predictive Human Modeling": {
+    "title": "Disentangled Skill Representations for Predictive Human Modeling",
+    "link": "https://arxiv.org/abs/2608.23776v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "Understanding human skill is important for AI systems that collaborate with, coach, or assist people. Unlike typical latent variable estimation problems which rely on single observations, skill is a persistent, compositional, and behaviorally grounded construct that must be inferred from patterns ov"
+  },
+  "What Reaches Expert Review? Representation, Structural Screening, and Candidate-Form Dependence in AI-Assisted Item Deve": {
+    "title": "What Reaches Expert Review? Representation, Structural Screening, and Candidate-Form Dependence in AI-Assisted Item Development",
+    "link": "https://arxiv.org/abs/2608.23766v1",
+    "first_author": "Brooks",
+    "year": "2026",
+    "summary": "Between AI-assisted item generation and expert review sits a computational evaluator whose decisions are usually treated as technical preliminaries. Yet representation, structural reduction, and selection policy determine which items and evidence psychometricians ever receive. Across two linked in-s"
+  },
+  "EXAM$^2$: $\\underline{Ex}tending$ $\\underline{A}udio$ $Understanding$ $in$ $\\underline{M}ultilingual$ $and$ $\\underline{": {
+    "title": "EXAM$^2$: $\\underline{Ex}tending$ $\\underline{A}udio$ $Understanding$ $in$ $\\underline{M}ultilingual$ $and$ $\\underline{M}ultimodal$ $Analysis$",
+    "link": "https://arxiv.org/abs/2608.23758v2",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "Recent large audio language models (LALMs) have achieved impressive progress in audio understanding. However, existing evaluations remain largely constrained to English and narrow audio domains. Prior benchmarks typically focus on a single audio modality, i.e., speech, sound, or music, limiting the "
+  },
+  "ConvergeFlow: Language Flow with Provable Convergence to Token Embeddings": {
+    "title": "ConvergeFlow: Language Flow with Provable Convergence to Token Embeddings",
+    "link": "https://arxiv.org/abs/2608.23551v1",
+    "first_author": "Li",
+    "year": "2026",
+    "summary": "Recent advances in continuous diffusion and flow-based language models (LMs) have achieved performance competitive with discrete LMs. However, existing continuous frameworks still rely on decoders supervised with cross entropy (CE) because the flow trajectories are not guaranteed to terminate at val"
+  },
+  "How AI Assistance Affects Human Skill Development: A Study of Learning with Logic Puzzles": {
+    "title": "How AI Assistance Affects Human Skill Development: A Study of Learning with Logic Puzzles",
+    "link": "https://arxiv.org/abs/2608.23543v1",
+    "first_author": "Smyth",
+    "year": "2026",
+    "summary": "While AI assistance can improve human task performance in the short term, it may also undermine the development of skills in the longer term. We examine this tension in a controlled logic-puzzle experiment involving on-demand AI assistance, where participants complete tasks before, during, and after"
+  },
+  "Correcting a learned physical invariant improves world-model rollouts": {
+    "title": "Correcting a learned physical invariant improves world-model rollouts",
+    "link": "https://arxiv.org/abs/2608.23526v1",
+    "first_author": "Bao",
+    "year": "2026",
+    "summary": "World models can predict video without learning dynamics that they reliably preserve. We test whether a frozen DreamerV3 trained only on pendulum video learns a scalar that its own latent transition treats as approximately conserved. A label-free search recovers the same energy-like invariant across"
+  },
+  "When Names Cross Scripts: A Source-Grounded Benchmark for Historical Entity Reconciliation in the Mongol World": {
+    "title": "When Names Cross Scripts: A Source-Grounded Benchmark for Historical Entity Reconciliation in the Mongol World",
+    "link": "https://arxiv.org/abs/2608.23507v1",
+    "first_author": "Zhang",
+    "year": "2026",
+    "summary": "Historical people may appear under different languages, scripts, and transcription traditions, while distinct individuals may share highly similar or even identical names. This makes historical identity reconciliation more than a problem of string matching or transliteration. We introduce MHER, a pr"
+  },
+  "StrategyBench: Evaluating Explicit Strategy Induction in Large Language Models": {
+    "title": "StrategyBench: Evaluating Explicit Strategy Induction in Large Language Models",
+    "link": "https://arxiv.org/abs/2608.23475v1",
+    "first_author": "Sun",
+    "year": "2026",
+    "summary": "As large language models are increasingly used in data-scarce and evolving task scenarios, few-shot in-context learning (ICL) has become a key paradigm for task adaptation. However, direct ICL often uses a small set of examples without explicitly abstracting task rules, making it sensitive to exampl"
+  },
+  "What's the Catch? Evaluating Temporal Consistency in Vision-Language Models": {
+    "title": "What's the Catch? Evaluating Temporal Consistency in Vision-Language Models",
+    "link": "https://arxiv.org/abs/2608.23474v2",
+    "first_author": "Villegas",
+    "year": "2026",
+    "summary": "Vision-language models (VLMs) achieve strong performance on video and image-sequence benchmarks, yet it remains unclear whether they capture temporal structure. To study this question, we formulate temporal grounding as an anomaly detection problem, providing a simple and controlled evaluation that "
+  },
+  "Characterizing Necessary Losers to Explain Tournaments Losers": {
+    "title": "Characterizing Necessary Losers to Explain Tournaments Losers",
+    "link": "https://arxiv.org/abs/2608.23446v1",
+    "first_author": "Mengin",
+    "year": "2026",
+    "summary": "We study the problem of formally explaining why a candidate was not selected by a given tournament rule, by identifying sub-tournaments in which the candidate loses independently of how the rest of the tournament is completed. We define destructive minimal supports as any minimal sub-tournaments sat"
+  },
+  "Towards Comprehensive Basketball Understanding": {
+    "title": "Towards Comprehensive Basketball Understanding",
+    "link": "https://arxiv.org/abs/2608.23435v1",
+    "first_author": "Xie",
+    "year": "2026",
+    "summary": "Understanding a basketball game requires recognizing events, localizing actions, identifying players, and relating these to structured game knowledge. Existing benchmarks primarily evaluate these abilities one at a time, leaving the interactions among these abilities under-explored. We introduce Bas"
+  },
+  "Towards a Densing Law for User Representation Learning at Billion-Scale Capacity": {
+    "title": "Towards a Densing Law for User Representation Learning at Billion-Scale Capacity",
+    "link": "https://arxiv.org/abs/2608.23392v1",
+    "first_author": "Wang",
+    "year": "2026",
+    "summary": "User representation learning in real-world industrial scenarios is commonly scaled by increasing user amount, behavioral sequence length and model size. However, existing methods face two challenges: (i) Bottleneck for raw data scaling at billion-scale capacity, as performance exhibit diminishing pe"
+  },
+  "Cross-lingual Biography Enrichment via Claim Extraction and Alignment": {
+    "title": "Cross-lingual Biography Enrichment via Claim Extraction and Alignment",
+    "link": "https://arxiv.org/abs/2608.23390v2",
+    "first_author": "Gardent",
+    "year": "2026",
+    "summary": "English Wikipedia is often treated as the default encyclopedic source, yet non-English Wikipedia editions can contain richer locally grounded information for long-tail figures. We study cross-lingual biography enrichment: enriching an existing English biography with facts supported by a non-English "
+  },
+  "Mycelial Search: A Graph-Structured Metaheuristic for Continuous Optimisation": {
+    "title": "Mycelial Search: A Graph-Structured Metaheuristic for Continuous Optimisation",
+    "link": "https://arxiv.org/abs/2608.23323v1",
+    "first_author": "Dehshibi",
+    "year": "2026",
+    "summary": "Continuous optimisation methods need to balance sharing information and maintaining alternative search directions. In this paper, we introduce Mycelial Search (Myco), a graph-structured metaheuristic designed around active tips, community-weighted flow, adaptive cord plasticity, and anchor-based inj"
+  },
+  "EviSafe: Evidence-Grounded Safety Evaluation for Vision-Language Models": {
+    "title": "EviSafe: Evidence-Grounded Safety Evaluation for Vision-Language Models",
+    "link": "https://arxiv.org/abs/2608.23313v1",
+    "first_author": "Liu",
+    "year": "2026",
+    "summary": "Vision-language model safety benchmarks typically evaluate only final responses: whether a model refuses, warns, or complies. This outcome-level view cannot tell whether a model is safe for the right multimodal reason. Safelooking behavior may reflect keyword-triggered refusal, missed visual hazards"
+  },
+  "Evaluating SAT Solver Metrics as Predictors of Human-Perceived Nonogram Difficulty": {
+    "title": "Evaluating SAT Solver Metrics as Predictors of Human-Perceived Nonogram Difficulty",
+    "link": "https://arxiv.org/abs/2608.23300v1",
+    "first_author": "Gao",
+    "year": "2026",
+    "summary": "Algorithmic solver effort is often assumed to align with perceived puzzle difficulty, but this assumption is rarely tested against human solving data. We evaluate this assumption for Nonograms, a popular logic puzzle similar to Sudoku in which numeric clues along each row and column determine a uniq"
+  },
+  "Progressively Learning Heterogeneous Skills in a Unified Latent Space": {
+    "title": "Progressively Learning Heterogeneous Skills in a Unified Latent Space",
+    "link": "https://arxiv.org/abs/2608.23258v1",
+    "first_author": "Zhao",
+    "year": "2026",
+    "summary": "We propose HetSkills, a novel framework designed to progressively learn heterogeneous skills within a unified latent space for physics-based character control. The core idea is to treat this latent space as a shared executable interface, enabling seamless integration of skills learned from diverse d"
+  },
+  "Multi-Winner Voting with Argumentative Ballots": {
+    "title": "Multi-Winner Voting with Argumentative Ballots",
+    "link": "https://arxiv.org/abs/2608.23247v1",
+    "first_author": "Ono",
+    "year": "2026",
+    "summary": "We introduce multi-winner voting with argumentative ballots (MVArg) and investigate theoretical properties. As our conceptual contribution, we generalise approval ballots to argumentative ballots, thereby allowing voters to express defeasible preferences over candidates. We accordingly generalise vo"
+  },
+  "Credal Large Language Models for Semantic Commitment under Uncertainty": {
+    "title": "Credal Large Language Models for Semantic Commitment under Uncertainty",
+    "link": "https://arxiv.org/abs/2608.23244v1",
+    "first_author": "Cuzzolin",
+    "year": "2026",
+    "summary": "Large language models (LLMs) often produce fluent but incorrect answers with unwarranted confidence. A central limitation is that standard LLMs represent uncertainty through a single predictive distribution, conflating epistemic ignorance with genuine ambiguity. We introduce Credal Large Language Mo"
+  },
+  "Think Only When Needed: Prompt-Authority Control for Selective Slow-Path Intervention in Vision-Language-Action Manipula": {
+    "title": "Think Only When Needed: Prompt-Authority Control for Selective Slow-Path Intervention in Vision-Language-Action Manipulation",
+    "link": "https://arxiv.org/abs/2608.23224v1",
+    "first_author": "Zhu",
+    "year": "2026",
+    "summary": "Retrieval can efficiently and effectively augment a frozen vision--language--action (VLA) policy without retraining, yet retrieved text becomes a control intervention once it enters the executed prompt. In a matched audit, raw appended text reduces mean success from 92.47\\% to 3.00\\%, while meaningf"
+  },
+  "What is mathematics now, and what should it be?": {
+    "title": "What is mathematics now, and what should it be?",
+    "link": "https://arxiv.org/abs/2608.23218v1",
+    "first_author": "Avigad",
+    "year": "2026",
+    "summary": "Advances in neural theorem provers have been impressive, but the successes obscure a broader vision of what AI can do for mathematics and how mathematicians can engage with AI. This essay advances a more expansive and optimistic point of view."
+  },
+  "Cognitive Profiling of LRMs' Reasoning Traces Using Bloom's Taxonomy": {
+    "title": "Cognitive Profiling of LRMs' Reasoning Traces Using Bloom's Taxonomy",
+    "link": "https://arxiv.org/abs/2608.23205v1",
+    "first_author": "Potamianos",
+    "year": "2026",
+    "summary": "Large Reasoning Models (LRMs) have revolutionized reasoning in LLMs, and the increasing public availability of reasoning traces creates valuable opportunities to study model behavior not only at the surface level but also at the granularity of individual reasoning steps. However, understanding the t"
+  },
+  "AI emotional support is better only when chosen, but shifts preferences even when it is not": {
+    "title": "AI emotional support is better only when chosen, but shifts preferences even when it is not",
+    "link": "https://arxiv.org/abs/2608.23196v1",
+    "first_author": "Goldenberg",
+    "year": "2026",
+    "summary": "People increasingly face a novel decision when seeking emotional support: human or AI. In existing studies, AI's empathic messages are rated as well as or better than humans'. But these studies either assigned the support source or honored people's choice. In real life, support is often incongruent "
+  },
+  "Counterfactual Transition Graphs: Evaluating Cross-Class Transition Quality": {
+    "title": "Counterfactual Transition Graphs: Evaluating Cross-Class Transition Quality",
+    "link": "https://arxiv.org/abs/2608.23164v1",
+    "first_author": "Spiliopoulou",
+    "year": "2026",
+    "summary": "Counterfactual (CF) explanations for time-series classifiers are usually evaluated one example at a time: what minimal edit flips this single window's prediction? We argue that the more informative question for diagnostic interpretability is structural: how does the classifier connect its own classe"
+  },
+  "Language Chain in Alignment: Cross-lingual Ranking Preference Optimization": {
+    "title": "Language Chain in Alignment: Cross-lingual Ranking Preference Optimization",
+    "link": "https://arxiv.org/abs/2608.23149v2",
+    "first_author": "Lim",
+    "year": "2026",
+    "summary": "The alignment of Large Language Models heavily relies on English-centric high-quality preference data, which often leads to suboptimal performance in other languages. In this paper, we propose Cross-lingual Ranking Preference Optimization~(CRPO), a novel framework that leverages robust preference kn"
+  },
+  "Pointing-VLA: Typed Spatial Grounding Interfaces for Vision-Language-Action Manipulation": {
+    "title": "Pointing-VLA: Typed Spatial Grounding Interfaces for Vision-Language-Action Manipulation",
+    "link": "https://arxiv.org/abs/2608.23138v1",
+    "first_author": "Zhu",
+    "year": "2026",
+    "summary": "Vision-language-action (VLA) models often expose spatial grounding through autoregressive text coordinates or opaque action tokens, creating brittle interfaces between multimodal reasoning and robot execution. We present Pointing-VLA, a typed hidden-state spatial readout built on Embodied-R1. Geomet"
+  },
+  "Shaping the Evolutionary Dynamics of Robot Morphology via Adaptive Control Learning": {
+    "title": "Shaping the Evolutionary Dynamics of Robot Morphology via Adaptive Control Learning",
+    "link": "https://arxiv.org/abs/2608.23100v1",
+    "first_author": "Yao",
+    "year": "2026",
+    "summary": "Robot co-design via bi-level optimization couples within-lifetime controller learning for fitness evaluation with cross-generational morphological evolution. Prior work has established that well-adapted morphology facilitates faster control learning, a property termed morphological intelligence. Yet"
+  },
+  "Jiuge-Tuiqiao: An Interpretable Human-AI System for Classical Chinese Poetry Refinement": {
+    "title": "Jiuge-Tuiqiao: An Interpretable Human-AI System for Classical Chinese Poetry Refinement",
+    "link": "https://arxiv.org/abs/2608.23098v2",
+    "first_author": "Sun",
+    "year": "2026",
+    "summary": "Classical Chinese poetry composition has long valued Tuiqiao, the iterative refinement of words, imagery, and prosody. However, many current AI poetry systems follow a one-shot generation paradigm, which reduces users to prompt providers and weakens their creative agency. We present Jiuge-Tuiqiao, a"
+  },
+  "POOL: Propagated Uncertainty Over Lookalikes": {
+    "title": "POOL: Propagated Uncertainty Over Lookalikes",
+    "link": "https://arxiv.org/abs/2608.23086v1",
+    "first_author": "Pal",
+    "year": "2026",
+    "summary": "Black-box large language models need confidence scores that can separate likely-correct from likely-incorrect outputs, enabling systems to prioritize human review, route uncertain cases to stronger models, or choose abstention thresholds on development data. Yet existing confidence estimators face a"
+  },
+  "Feedback That Backfires: Why Small Language Model Agents Repeat the Call They Just Watched Fail": {
+    "title": "Feedback That Backfires: Why Small Language Model Agents Repeat the Call They Just Watched Fail",
+    "link": "https://arxiv.org/abs/2608.23651v1",
+    "first_author": "Gumaan",
+    "year": "2026",
+    "summary": "Agent harnesses record a failed tool call and its error message in the transcript and ask the model to continue, on the assumption that the error is corrective information. We measure whether it is. Defining the corrective gain of a failure record as the change in log-probability of re-emitting the "
+  },
+  "From Generation to Simulation: How Far Are World Models from Being True Simulators?": {
+    "title": "From Generation to Simulation: How Far Are World Models from Being True Simulators?",
+    "link": "https://arxiv.org/abs/2608.23070v1",
+    "first_author": "Zhao",
+    "year": "2026",
+    "summary": "With the rapid progress of diffusion models and large-scale video generation, generative world models are increasingly expected to replace traditional simulators, including physics engines, game engines, and reinforcement-learning environments. Yet the remaining distance from generation to simulatio"
+  },
+  "Cultural Moment Benchmark: Evaluating Video Cultural Reasoning and Grounding in Southeast Asia": {
+    "title": "Cultural Moment Benchmark: Evaluating Video Cultural Reasoning and Grounding in Southeast Asia",
+    "link": "https://arxiv.org/abs/2608.23065v1",
+    "first_author": "Ngo",
+    "year": "2026",
+    "summary": "Cultural understanding in video means more than recognizing what is visible; it requires grasping the symbolic and temporal significance of cultural concepts. We decompose this into three abilities: naming what a concept symbolizes, visually recognizing it on video, and locating its sub-events in ti"
+  },
+  "From Inertia to Objectivity: Improving Deep Research Agents with Noise Isolation": {
+    "title": "From Inertia to Objectivity: Improving Deep Research Agents with Noise Isolation",
+    "link": "https://arxiv.org/abs/2608.23045v2",
+    "first_author": "Wang",
+    "year": "2026",
+    "summary": "Web search agents powered by Large Language Models (LLMs) show strong promise, but deep research tasks expose a recurring failure mode: once an agent has produced a query, plan, or intermediate conclusion, it becomes less objective when later judging the consequences of that same action. We term thi"
+  },
+  "MolEmb: Multimodal Large Language Models Can Be Strong Molecular Embedding Models": {
+    "title": "MolEmb: Multimodal Large Language Models Can Be Strong Molecular Embedding Models",
+    "link": "https://arxiv.org/abs/2608.23646v1",
+    "first_author": "Yu",
+    "year": "2026",
+    "summary": "Molecular embedding models can serve as foundational infrastructure for computational chemistry and drug discovery, where reusable vector representations support property prediction, virtual screening, and retrieval. Most molecular encoders are specialist models built around a single molecular view,"
+  },
+  "PatchWrite: One Line, Not One Section -- Compile-Gated, Validity-Preserving Editing for AI-Drafted Manuscripts": {
+    "title": "PatchWrite: One Line, Not One Section -- Compile-Gated, Validity-Preserving Editing for AI-Drafted Manuscripts",
+    "link": "https://arxiv.org/abs/2608.23001v1",
+    "first_author": "Yang",
+    "year": "2026",
+    "summary": "Automated manuscript pipelines often regenerate an entire section to repair a local defect, allowing unrelated metrics and citations to change even when the resulting PDF still builds. PatchWrite instead constrains how candidate edits become committed manuscript states: it reuses bounded EDIT N M ed"
+  },
+  "Hypergraph Embedding Indexing for Efficient Dense Vector Retrieval": {
+    "title": "Hypergraph Embedding Indexing for Efficient Dense Vector Retrieval",
+    "link": "https://arxiv.org/abs/2608.22980v1",
+    "first_author": "Konda",
+    "year": "2026",
+    "summary": "Dense vector retrieval has become the foundation of modern semantic search, yet existing approximate nearest neighbor (ANN) indexes treat an embedding as an indivisible point in a high-dimensional space. In this work, we propose the Hypergraph Embedding Index (HEI), a framework that instead organize"
+  },
+  "What Process Evaluation of Coding Agents Actually Measures: Action, Task, and Step Are Three Different Levels": {
+    "title": "What Process Evaluation of Coding Agents Actually Measures: Action, Task, and Step Are Three Different Levels",
+    "link": "https://arxiv.org/abs/2608.22960v1",
+    "first_author": "Sun",
+    "year": "2026",
+    "summary": "Coding agents are increasingly evaluated not only by whether they solve a task, but also by how they execute it. However, existing process-level evaluations often treat action prediction, task uncertainty, and step attribution as if they were the same problem, which makes it unclear what such evalua"
+  },
+  "WildHandBench: A Benchmark for Handwritten Text Understanding that Challenges MLLMs and Humans": {
+    "title": "WildHandBench: A Benchmark for Handwritten Text Understanding that Challenges MLLMs and Humans",
+    "link": "https://arxiv.org/abs/2608.22959v1",
+    "first_author": "Han",
+    "year": "2026",
+    "summary": "While the top model on OmniDocBench now reaches 96.34% overall on printed-document parsing, the ability of current models to handle challenging handwritten documents remains largely uncharacterized. Existing benchmarks focus on isolated text or formulas, overlook handwritten tables and real-world de"
+  },
+  "Comparing Chunking and Embedding Strategies for Turkish RAG Systems": {
+    "title": "Comparing Chunking and Embedding Strategies for Turkish RAG Systems",
+    "link": "https://arxiv.org/abs/2608.26192v1",
+    "first_author": "Bayrak",
+    "year": "2026",
+    "summary": "How documents are segmented into retrievable chunks and how those chunks are embedded strongly affect Retrieval-Augmented Generation (RAG) quality, yet neither has been systematically studied for morphologically rich languages such as Turkish. We compare Turkish document question answering across th"
+  },
+  "FLARE: A Systematic, Uncertainty-Aware Framework for Evidence-Based Adoption of Artificial Intelligence in Healthcare": {
+    "title": "FLARE: A Systematic, Uncertainty-Aware Framework for Evidence-Based Adoption of Artificial Intelligence in Healthcare",
+    "link": "https://arxiv.org/abs/2608.23643v1",
+    "first_author": "Ginde",
+    "year": "2026",
+    "summary": "Artificial intelligence is increasingly being introduced into healthcare workflows, yet most evaluations emphasize model accuracy rather than whether adoption is economically worthwhile in real clinical settings. This study proposes FLARE, a systematic and uncertainty-aware framework for evaluating "
+  },
+  "SDoH-Aware Narrative Anchoring Bias in Medical LLMs for Trustworthy Clinical Decision Support": {
+    "title": "SDoH-Aware Narrative Anchoring Bias in Medical LLMs for Trustworthy Clinical Decision Support",
+    "link": "https://arxiv.org/abs/2608.22802v1",
+    "first_author": "Saha",
+    "year": "2026",
+    "summary": "Medical large language models are often judged by how many clinical questions they answer correctly. That view is useful, but it misses a practical risk. A model may know the right answer and still change its response when the same case is written in a different patient voice. This paper evaluates t"
+  },
+  "Triplet2Track: A Hierarchical System with Object-Centric Representations for Reliable Long-Horizon Manipulation": {
+    "title": "Triplet2Track: A Hierarchical System with Object-Centric Representations for Reliable Long-Horizon Manipulation",
+    "link": "https://arxiv.org/abs/2608.22800v1",
+    "first_author": "Lian",
+    "year": "2026",
+    "summary": "Ensuring reliability in uncertain environments remains difficult for long-horizon robotic manipulation. End-to-end VLA models are data-heavy and opaque, making diagnosis and verification difficult. Hierarchical pipelines are more interpretable, but their plans are often weakly grounded in observatio"
+  },
+  "XTC: Head-Aware Sampling by Excluding Top Choices": {
+    "title": "XTC: Head-Aware Sampling by Excluding Top Choices",
+    "link": "https://arxiv.org/abs/2608.22758v1",
+    "first_author": "Shwartz-Ziv",
+    "year": "2026",
+    "summary": "Standard decoding rules for autoregressive language models promote diversity by rescaling the full next-token distribution or truncating its low-probability tail. These strategies overlook a common regime of open-ended generation in which several continuations are plausible but too much probability "
+  },
+  "Object-Uni: A Unified Model for Object-Centric Spatial Understanding and Controllable Generation": {
+    "title": "Object-Uni: A Unified Model for Object-Centric Spatial Understanding and Controllable Generation",
+    "link": "https://arxiv.org/abs/2608.22757v1",
+    "first_author": "Dong",
+    "year": "2026",
+    "summary": "Unified models for visual understanding and generation have made rapid progress, yet they still lack the ability to understand and manipulate the spatial states of object instances. Existing models can describe objects in natural language, but they struggle to precisely represent continuous object p"
+  },
+  "RACO: Reliability-Aware Coarse-Goal Optimization for Inspection-Oriented UAV Vision-Language Navigation": {
+    "title": "RACO: Reliability-Aware Coarse-Goal Optimization for Inspection-Oriented UAV Vision-Language Navigation",
+    "link": "https://arxiv.org/abs/2608.22678v1",
+    "first_author": "Zhu",
+    "year": "2026",
+    "summary": "UAV vision-language navigation (UAV-VLN) is commonly evaluated as goal reaching, but inspection-oriented deployment requires the agent to stop within a valid inspection region and avoid falsely confirming visually or semantically similar distractors. This requirement exposes a key weakness in existi"
+  },
+  "Mol-JEPA: A multimodal Joint Embedding Predictive Architecture for Molecules": {
+    "title": "Mol-JEPA: A multimodal Joint Embedding Predictive Architecture for Molecules",
+    "link": "https://arxiv.org/abs/2608.22642v2",
+    "first_author": "Eickhoff",
+    "year": "2026",
+    "summary": "Despite recent advances in molecular foundation models, several limitations remain, such as chemically invalid augmentations, modality collapse, and incomplete representation of biochemical environments. To address these challenges, we present \\textbf{Mol-JEPA}, a scalable framework for learning mol"
+  },
+  "Do Not Copy/Paste: Soft Barriers for Copying in AI-Assisted Programming": {
+    "title": "Do Not Copy/Paste: Soft Barriers for Copying in AI-Assisted Programming",
+    "link": "https://arxiv.org/abs/2608.22638v1",
+    "first_author": "Bissyandé",
+    "year": "2026",
+    "summary": "Copying a function from a chat window into an editor takes less than a second. For many uses of AI coding tools, that speed is the point; in settings such as programming education, code review, and security-sensitive development, it can also be the problem. This paper frames copy-paste as an \\emph{A"
+  },
+  "Clinical Graph-JEPA: Predictive Patient-State Knowledge Graphs for Cognitive Decision Support": {
+    "title": "Clinical Graph-JEPA: Predictive Patient-State Knowledge Graphs for Cognitive Decision Support",
+    "link": "https://arxiv.org/abs/2608.22583v2",
+    "first_author": "Mao",
+    "year": "2026",
+    "summary": "Clinical records contain rich evidence about patient state, but converting that evidence into reliable, structured knowledge graphs remains difficult because extraction errors, ontology mismatch, missing relations, and temporal ambiguity can propagate into downstream systems. We propose a clinical k"
+  },
+  "Hybrid Panels: Toward Human-AI Collaboration in Survey Research": {
+    "title": "Hybrid Panels: Toward Human-AI Collaboration in Survey Research",
+    "link": "https://arxiv.org/abs/2608.22582v1",
+    "first_author": "Wagner",
+    "year": "2026",
+    "summary": "Large-scale population surveys are essential for generating robust social and scientific insights, yet they face significant challenges, including declining response rates, increasing data collection costs, long delays between data collection and data provision, and the risk of nonresponse bias. Adv"
+  },
+  "Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis: From Ben": {
+    "title": "Fusing Perceptual Vision Experts with Multimodal Large Language Models for Explainable Plant Disease Diagnosis: From Benchmark Imagery to Real-World Robotic Field Validation",
+    "link": "https://arxiv.org/abs/2608.24934v1",
+    "first_author": "Karkee",
+    "year": "2026",
+    "summary": "Accurate field plant disease diagnosis requires reliable fusion of uncertain and conflicting perceptual evidence. We present the Hybrid Hierarchical Multi-Agent Framework (H$^{2}$MAF), combining decision-level fusion of EfficientNet-B3 and ConvNeXt-Tiny with semantic arbitration by open-weight multi"
+  },
+  "HANSARD: A Reference Architecture for Forensic Readiness, Runtime Witnessing, and Graded Attribution in Autonomous Multi": {
+    "title": "HANSARD: A Reference Architecture for Forensic Readiness, Runtime Witnessing, and Graded Attribution in Autonomous Multi-Agent AI Systems",
+    "link": "https://arxiv.org/abs/2608.22512v1",
+    "first_author": "Papadopoulos",
+    "year": "2026",
+    "summary": "Autonomous multi-agent systems nowadays act in finance, software supply chains, and security operations. Already, the first largely AI-orchestrated intrusion campaigns have been reported. Yet, when such a system causes harm, no method can robustly establish what happened, what caused it, or who is a"
+  },
+  "When Does AI for PDEs Yield Scientific Evidence?": {
+    "title": "When Does AI for PDEs Yield Scientific Evidence?",
+    "link": "https://arxiv.org/abs/2608.22504v1",
+    "first_author": "Wang",
+    "year": "2026",
+    "summary": "Existing AI-for-PDE benchmarks primarily assess models in terms of predictive or approximation accuracy. In physics research, however, AI outputs often serve as evidence for scientific claims. These two objectives are not equivalent: the former measures an output's agreement with a reference target "
+  },
+  "When Persona Simulations Are Informative: Graph-Structured Signals for Pluralistic Opinion Sensing": {
+    "title": "When Persona Simulations Are Informative: Graph-Structured Signals for Pluralistic Opinion Sensing",
+    "link": "https://arxiv.org/abs/2608.22438v1",
+    "first_author": "Shin",
+    "year": "2026",
+    "summary": "Persona-conditioned large language models (LLMs) are increasingly used to simulate survey responses across diverse domains. However, apparent response variation can reflect unconditioned model priors or token sampling noise rather than systematic persona conditioning. We argue that persona-condition"
+  },
+  "Pre-Decoding Acoustic Triage for Budgeted Vision-Language Captioning of Untrimmed Egocentric Video": {
+    "title": "Pre-Decoding Acoustic Triage for Budgeted Vision-Language Captioning of Untrimmed Egocentric Video",
+    "link": "https://arxiv.org/abs/2608.22359v1",
+    "first_author": "Xiao",
+    "year": "2026",
+    "summary": "Automatically analyzing hours-long egocentric video is increasingly essential for progress monitoring, quality control, and safety in logistics, construction, and manufacturing. Yet current pipelines that process short, fixed-size windows with a vision-language model (VLM) are prohibitively expensiv"
+  },
+  "Multimodal examination answer data with expert-designed Outcome-Based Education rubrics for criterion-level assessment": {
+    "title": "Multimodal examination answer data with expert-designed Outcome-Based Education rubrics for criterion-level assessment",
+    "link": "https://arxiv.org/abs/2608.22346v1",
+    "first_author": "Ali",
+    "year": "2026",
+    "summary": "This data article describes a multimodal collection of scanned examination answers paired with expert-designed Outcome-Based Education (OBE) grading metadata. The collection contains 485 answer submissions from 415 consenting students at four academic institutions. Eight faculty contributors supplie"
+  },
+  "Invocation-Level Reliability of Tool-Using Agents": {
+    "title": "Invocation-Level Reliability of Tool-Using Agents",
+    "link": "https://arxiv.org/abs/2608.26189v1",
+    "first_author": "Dasgupta",
+    "year": "2026",
+    "summary": "Tool-using agents fail two ways: choosing the wrong tool, or forming wrong arguments, and an early failure of either kind can silently corrupt everything downstream. We measure a correct-invocation rate that separates the two, under both a clean teacher-forced context and the model's own free-runnin"
+  },
+  "GAN-Diff : Coupling Pretrained WGAN-GP Features with Conditional Diffusion U-Nets": {
+    "title": "GAN-Diff : Coupling Pretrained WGAN-GP Features with Conditional Diffusion U-Nets",
+    "link": "https://arxiv.org/abs/2608.22272v1",
+    "first_author": "Khan",
+    "year": "2026",
+    "summary": "Generative adversarial networks (GANs) can provide efficient image generation, while diffusion models offer high-quality image restoration but require iterative sampling. This paper presents a hybrid GAN-guided diffusion framework that uses a pretrained Wasserstein GAN with gradient penalty (WGAN-GP"
+  },
+  "FreKoo++: Learning Continuous Spectral Dynamics for Temporal Domain Generalization": {
+    "title": "FreKoo++: Learning Continuous Spectral Dynamics for Temporal Domain Generalization",
+    "link": "https://arxiv.org/abs/2608.22224v1",
+    "first_author": "Lu",
+    "year": "2026",
+    "summary": "Temporal Domain Generalization (TDG) aims to learn from historical domains and generalize to unseen future distributions under concept drift. Nevertheless, prevailing TDG methods struggle with complex real-world streaming scenarios involving both multi-scale drift patterns (e.g., long-term periodici"
+  },
+  "Spending Scarce Confirmatory PET Measurements: Target-Aligned Validation in A4/LEARN": {
+    "title": "Spending Scarce Confirmatory PET Measurements: Target-Aligned Validation in A4/LEARN",
+    "link": "https://arxiv.org/abs/2608.22223v1",
+    "first_author": "Cui",
+    "year": "2026",
+    "summary": "Anti-amyloid therapies and blood-based biomarkers are changing Alzheimer disease workups into a two-stage measurement workflow: screen broadly with cheaper information, then spend scarce confirmatory amyloid measurements where they support the decision that will be reported. Amyloid positron-emissio"
+  },
+  "Query-Driven Multimodal Information Extraction from Long Documents": {
+    "title": "Query-Driven Multimodal Information Extraction from Long Documents",
+    "link": "https://arxiv.org/abs/2608.22214v1",
+    "first_author": "Yang",
+    "year": "2026",
+    "summary": "In domain-specific multimodal long documents, images and text jointly convey complex knowledge that cannot be fully captured by plain text alone. However, existing paradigms like DocVQA primarily focus on generating textual answers or localizing evidence regions, rather than outputting query-specifi"
+  },
+  "Is Your Neighborhood Safe? Place-based Stigma in Large Language Models' Urban Safety Judgments": {
+    "title": "Is Your Neighborhood Safe? Place-based Stigma in Large Language Models' Urban Safety Judgments",
+    "link": "https://arxiv.org/abs/2608.26188v1",
+    "first_author": "Lin",
+    "year": "2026",
+    "summary": "Large language models are increasingly used to inform safety decisions in cities, such as where it is safe to walk, rent, or travel. We ask whether such judgments track measured risk or the patterns attached to an urban neighborhood's name. We probe seven instruct-tuned models under three conditions"
+  },
+  "Aggregation-Aware Synthetic Text Generation Against Authorship Re-Identification": {
+    "title": "Aggregation-Aware Synthetic Text Generation Against Authorship Re-Identification",
+    "link": "https://arxiv.org/abs/2608.22161v1",
+    "first_author": "Rajtmajer",
+    "year": "2026",
+    "summary": "Online users often release multiple texts under the same identity, giving attackers an author profile that can reveal more than any single text. Existing authorship obfuscation methods optimize privacy independently for each document, leaving them blind to cross-document correlations that make aggre"
+  },
+  "AUDITA: certified auditing and causal attribution of adverse outcomes in autonomous multi-agent systems": {
+    "title": "AUDITA: certified auditing and causal attribution of adverse outcomes in autonomous multi-agent systems",
+    "link": "https://arxiv.org/abs/2608.22160v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "Physical automation is scaling toward fleets of embodied machines commanded by an AI brain. Early deployments already run factories and warehouses at production rates beyond any human line, and their adoption is accelerating. But when their joint decisions cause harm, everyone involved has reason to"
+  },
+  "Evaluation of Small Vision-Language Models on Qualitative Mechanical Problems": {
+    "title": "Evaluation of Small Vision-Language Models on Qualitative Mechanical Problems",
+    "link": "https://arxiv.org/abs/2608.22143v1",
+    "first_author": "Ghimire",
+    "year": "2026",
+    "summary": "Qualitative mechanical problem-solving (QMPS) refers to solving qualitative problems from the mechanical domain. Qualitative problems can be solved with minimal discipline-specific information, without any robust quantitative calculation, generally by using qualitative reasoning and commonsense know"
+  },
+  "Measuring Stability and Failure Behavior in Language Models Under Structured Perturbations": {
+    "title": "Measuring Stability and Failure Behavior in Language Models Under Structured Perturbations",
+    "link": "https://arxiv.org/abs/2608.22138v1",
+    "first_author": "Golsefid",
+    "year": "2026",
+    "summary": "Language models are usually judged by a single accuracy score, which does not reveal how their performance degrades as inputs are perturbed. We present a graded, multi-family, failure-aware framework for stress-testing reasoning models. It perturbs each problem along a multi-level severity ladder ac"
+  },
+  "Learning Implicit Constitutive Laws for Dynamic 3D Gaussian Splatting from Monocular Videos": {
+    "title": "Learning Implicit Constitutive Laws for Dynamic 3D Gaussian Splatting from Monocular Videos",
+    "link": "https://arxiv.org/abs/2608.22102v1",
+    "first_author": "Han",
+    "year": "2026",
+    "summary": "We present GCA (Gaussian Constitutive Alignment), a framework for learning implicit constitutive laws from monocular dynamic video of deformable objects represented by 3D Gaussians. Given a static multi-view scan for geometric initialization, our method learns intrinsic physical dynamics solely from"
+  },
+  "When the Canonical Completion Is Wrong: Formalizing and Measuring the Jump in Large Language Models": {
+    "title": "When the Canonical Completion Is Wrong: Formalizing and Measuring the Jump in Large Language Models",
+    "link": "https://arxiv.org/abs/2608.26187v1",
+    "first_author": "Hernández-Lobato",
+    "year": "2026",
+    "summary": "Whether large language models (LLMs) can perform the abductive leap from evidence to a new system of axioms, commonly referred to as a jump, has recently attracted considerable debate. A prominent position holds that LLMs are structurally incapable of such jumps, while recent studies challenge both "
+  },
+  "Real-TurnTurk: A Multimodal Turkish Corpus for Turn-Taking Prediction": {
+    "title": "Real-TurnTurk: A Multimodal Turkish Corpus for Turn-Taking Prediction",
+    "link": "https://arxiv.org/abs/2608.22071v1",
+    "first_author": "Kaplan",
+    "year": "2026",
+    "summary": "Turn-taking is a basic organizational feature of human conversation and remains difficult to model in natural, synchronous dialog systems. While existing research has explored multimodal approaches and large language models for turn-ending prediction, there is a lack of naturalistic conversational c"
+  },
+  "From SQL Generation to Tool Selection: A Domain-Oriented Pattern for MCP Servers": {
+    "title": "From SQL Generation to Tool Selection: A Domain-Oriented Pattern for MCP Servers",
+    "link": "https://arxiv.org/abs/2608.22063v1",
+    "first_author": "Bogliolo",
+    "year": "2026",
+    "summary": "Agents built on Large Language Models (LLMs) increasingly reach enterprise data through the Model Context Protocol (MCP), and many MCP database servers maximize flexibility by exposing a single generic SQL execution tool. This paper proposes the Domain-Oriented Tooling Pattern: instead of generating"
+  },
+  "CRS-Bench: A Reference-Relative Reliability Benchmark for Medical Image Encoders": {
+    "title": "CRS-Bench: A Reference-Relative Reliability Benchmark for Medical Image Encoders",
+    "link": "https://arxiv.org/abs/2608.22059v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "Pretrained image encoders are central to medical image classification, where expert annotation is costly and task-specific cohorts are often limited. As the model space expands from general-purpose to broad-medical and specialty-specific encoders, selecting the representation becomes a substantive m"
+  },
+  "Variance Driven Exploration: A Provable and Efficient Methodology for Pure Exploration in Highly Stochastic Environments": {
+    "title": "Variance Driven Exploration: A Provable and Efficient Methodology for Pure Exploration in Highly Stochastic Environments",
+    "link": "https://arxiv.org/abs/2608.21995v1",
+    "first_author": "Dam",
+    "year": "2026",
+    "summary": "We propose Variance Driven Exploration (VarDE), a principled approach for pure exploration in highly stochastic environments, where the exploration process is dominated by stochastic variance. VarDE is built on a fundamental principle: sampling effort should be allocated to minimize the uncertainty "
+  },
+  "Bulbul: A Dataset for Dialectal Arabic Speech Recognition": {
+    "title": "Bulbul: A Dataset for Dialectal Arabic Speech Recognition",
+    "link": "https://arxiv.org/abs/2608.21950v1",
+    "first_author": "Luqman",
+    "year": "2026",
+    "summary": "Arabic automatic speech recognition (ASR) faces unique challenges due to diglossia, extensive regional dialect variation, and limited speech resources. Existing speech datasets often focus on single dialects or large-scale broadcast/web data, leading to trade-offs between linguistic diversity and an"
+  },
+  "Multimodal Prompt Learning with Irregular EHRs for Robust Monitoring of Critical Care Patients": {
+    "title": "Multimodal Prompt Learning with Irregular EHRs for Robust Monitoring of Critical Care Patients",
+    "link": "https://arxiv.org/abs/2608.21941v1",
+    "first_author": "Liu",
+    "year": "2026",
+    "summary": "Accurate assessment of patients in intensive care units (ICUs) is essential for timely clinical intervention and improved patient outcomes. Multimodal electronic health records (EHRs), including structured physiological time series and longitudinal clinical notes, provide complementary information f"
+  },
+  "Can You Say This for Me? Speaking Up by Proxy in Co-Located Discussion": {
+    "title": "Can You Say This for Me? Speaking Up by Proxy in Co-Located Discussion",
+    "link": "https://arxiv.org/abs/2608.26185v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "Equal participation in co-located discussion is important for effective collaboration, yet people often hold back when they anticipate negative interpersonal or professional consequences, especially when raising a point requires voicing it themselves. We present SecondVoice, a mixed-reality system t"
+  },
+  "ESCRAG-R1: Retrieval-Augmented Reinforcement Learning for Emotional Support Conversation": {
+    "title": "ESCRAG-R1: Retrieval-Augmented Reinforcement Learning for Emotional Support Conversation",
+    "link": "https://arxiv.org/abs/2608.21925v1",
+    "first_author": "Li",
+    "year": "2026",
+    "summary": "Emotional Support Conversation (ESC) systems aim to provide holistic support by balancing professional therapeutic competence with natural empathy. However, existing methods struggle to simultaneously achieve structured, stage-aware reasoning and seamless empathy-expertise alignment, often resulting"
+  },
+  "Consistency Is Not Coherence: Orientation Search for Certified Alignments Between 4D Defence Upper Ontologies": {
+    "title": "Consistency Is Not Coherence: Orientation Search for Certified Alignments Between 4D Defence Upper Ontologies",
+    "link": "https://arxiv.org/abs/2608.21914v1",
+    "first_author": "Rovai",
+    "year": "2026",
+    "summary": "We align three upper ontologies that sit under UK and NATO defence data infrastructure: the Information Exchange Standard (IES), the Higher Quality Data Model (HQDM) that underpins the National Digital Twin, and Basic Formal Ontology (BFO). No public alignment between IES and HQDM existed. Promoting"
+  },
+  "GameXpert-Bench: How Far Are Coding Agents from Expert Game Development?": {
+    "title": "GameXpert-Bench: How Far Are Coding Agents from Expert Game Development?",
+    "link": "https://arxiv.org/abs/2608.21833v1",
+    "first_author": "Zeng",
+    "year": "2026",
+    "summary": "Recent large language models (LLMs) can operate as coding agents that build complete games from natural language requests. Game development is especially demanding because program logic, visual and audio content, interfaces, interaction and playability must function together in one executable artifa"
+  },
+  "Hints, Critics, and Teachers: Prior Injection for Sparse-Reward RL in Vision-Language Math Reasoning": {
+    "title": "Hints, Critics, and Teachers: Prior Injection for Sparse-Reward RL in Vision-Language Math Reasoning",
+    "link": "https://arxiv.org/abs/2608.21811v1",
+    "first_author": "Fu",
+    "year": "2026",
+    "summary": "Reinforcement learning for vision-language math reasoning starves under sparse reward: on a pool of 20,830 visual-math problems where Qwen2-VL-2B answers 3.6% of rollouts correctly, 85-97% of GRPO rollout groups are entirely wrong and contribute zero gradient. We train eleven methods under identical"
+  },
+  "SAFE-G: Structure-aware Faithful Evidence-guided Generation for Knowledge-based Visual Question Answering": {
+    "title": "SAFE-G: Structure-aware Faithful Evidence-guided Generation for Knowledge-based Visual Question Answering",
+    "link": "https://arxiv.org/abs/2608.21796v1",
+    "first_author": "Xu",
+    "year": "2026",
+    "summary": "Knowledge-based Visual Question Answering (KB-VQA) aims to answer queries that necessitate reasoning over external knowledge sources beyond the visual content. Typically, current methods fuse multimodal features to retrieve external information, subsequently leveraging Multimodal Large Language Mode"
+  },
+  "Lexical Coupling in GUI Element Grounding: Sentence Embeddings Track Labels across Mobile and Web": {
+    "title": "Lexical Coupling in GUI Element Grounding: Sentence Embeddings Track Labels across Mobile and Web",
+    "link": "https://arxiv.org/abs/2608.21794v1",
+    "first_author": "Jacucci",
+    "year": "2026",
+    "summary": "GUI grounding evaluations that expose UI elements as text metadata often treat high instruction-element embedding similarity as evidence of semantic grounding. Across three mobile and web benchmarks, we show that this interpretation is frequently confounded by visible-label recovery. Lexical baselin"
+  },
+  "Ask or Answer: A Decision Framework for Multi-Turn Health Misinformation Intervention": {
+    "title": "Ask or Answer: A Decision Framework for Multi-Turn Health Misinformation Intervention",
+    "link": "https://arxiv.org/abs/2608.21721v1",
+    "first_author": "Hong",
+    "year": "2026",
+    "summary": "Correcting health misinformation in dialogue requires more than producing a factual rebuttal: users differ in what they know, what they believe, and what they need to hear, so an effective intervention often depends on first asking the right clarifying question. Yet existing methods either respond i"
+  },
+  "Ultra-Low-Loss Silicon Nitride on Sapphire for Broad-Transparency Nonlinear and Quantum Photonics": {
+    "title": "Ultra-Low-Loss Silicon Nitride on Sapphire for Broad-Transparency Nonlinear and Quantum Photonics",
+    "link": "https://arxiv.org/abs/2608.27335v1",
+    "first_author": "Zhang",
+    "year": "2026",
+    "summary": "The field of photonic integrated circuits (PIC) has flourished in the past two decades, fueling numerous cutting-edge applications across sensing, networking, data interconnect, and quantum information processing. As a guiding material for PIC, Si$_3$N$_4$ has seen extensive use for its ultra-low lo"
+  },
+  "Influence of Many-Body Dipole-Dipole Interactions on Excitation Transfer in a Dense Gas": {
+    "title": "Influence of Many-Body Dipole-Dipole Interactions on Excitation Transfer in a Dense Gas",
+    "link": "https://arxiv.org/abs/2608.27250v1",
+    "first_author": "Sautenkov",
+    "year": "2026",
+    "summary": "We study non-radiative dipole-dipole induced excitation transfer in dense Rb vapour. We show that density dependence of characteristic time of the excitation diffusion changes from linear to non-linear for high Rb density. It is attributed to the breakdown of binary collisions approach to the dipole"
+  },
+  "Self-starting Dynamics in All-fibre All-Normal-Dispersion Thulium Mamyshev oscillator": {
+    "title": "Self-starting Dynamics in All-fibre All-Normal-Dispersion Thulium Mamyshev oscillator",
+    "link": "https://arxiv.org/abs/2608.27050v1",
+    "first_author": "Chernysheva",
+    "year": "2026",
+    "summary": "Ultrashort pulse formation from noise represents a fundamental self-organisation process in nonlinear dissipative systems and remains central to ultrafast photonics. Mamyshev oscillators offer a particularly valuable platform for investigating this phenomenon because they do not rely on conventional"
+  },
+  "Field-driven attosecond deflection of electron beams at the position of planar foils": {
+    "title": "Field-driven attosecond deflection of electron beams at the position of planar foils",
+    "link": "https://arxiv.org/abs/2608.27015v1",
+    "first_author": "Morimoto",
+    "year": "2026",
+    "summary": "While the coupling of free-electron beams and light has enabled the control of quantum states in electrons and the generation of ultrashort electron pulses, it can induce artifacts when probing a laser-driven sample with an electron beam. Here, we theoretically study optical-field-driven beam deflec"
+  },
+  "Cavity Solitons": {
+    "title": "Cavity Solitons",
+    "link": "https://arxiv.org/abs/2608.26985v1",
+    "first_author": "Harkness",
+    "year": "2026",
+    "summary": "A driven optical cavity containing a nonlinear medium can support stable, soliton-like objects, bright non-diffracting spots of light on a uniform background. Importantly, the nonlinear medium need not support ordinary (propagating) spatial solitons, and cavity solitons have been both predicted and "
+  },
+  "Ultra-broadband transient absorption down to 200 nm enabled by soliton dynamics in gas-filled hollow capillary fibers": {
+    "title": "Ultra-broadband transient absorption down to 200 nm enabled by soliton dynamics in gas-filled hollow capillary fibers",
+    "link": "https://arxiv.org/abs/2608.26910v1",
+    "first_author": "Oppermann",
+    "year": "2026",
+    "summary": "The deep ultraviolet (DUV) window (200-300 nm) is essential for the characterization of (bio)chemical and material systems through the UV signatures of nucleobases, amino acids, peptide bonds, many organic moieties, and wide bandgap transitions. However, extending ultrafast spectroscopy to the DUV t"
+  },
+  "Exceptional point induced by hyperbolicity in an electrostatic spherical shell": {
+    "title": "Exceptional point induced by hyperbolicity in an electrostatic spherical shell",
+    "link": "https://arxiv.org/abs/2608.26905v1",
+    "first_author": "Peres",
+    "year": "2026",
+    "summary": "Exceptional points (EPs) are non--Hermitian degeneracies at which both eigenvalues and eigenvectors coalesce, usually engineered through balanced gain and loss or non--reciprocity. In this work, we show that the radial electrostatic problem of an anisotropic core--shell nanoparticle realizes an EP w"
+  },
+  "The Effect of Geometry on Thermodynamic Response": {
+    "title": "The Effect of Geometry on Thermodynamic Response",
+    "link": "https://arxiv.org/abs/2608.26898v1",
+    "first_author": "Kolaric",
+    "year": "2026",
+    "summary": "At the nano- and microscale, various patterns influence and shape thermal and optical response, making them essential for the survival of various biological species. In addition, controlling thermal radiation is vital for a broad range of applications, such as thermal management, spectroscopy, optoe"
+  },
+  "Split Coaxial Cable Medium for Tunable Artificial Dielectrics and Plasmas": {
+    "title": "Split Coaxial Cable Medium for Tunable Artificial Dielectrics and Plasmas",
+    "link": "https://arxiv.org/abs/2608.26815v1",
+    "first_author": "Baena",
+    "year": "2026",
+    "summary": "We introduce the Split Coaxial Cable Medium (SCCM), a mechanically tunable, capacitively loaded wire medium supporting artificial-dielectric and artificial-plasma Bloch regimes with high in-plane isotropy. Its unit cell comprises coaxial conductors interrupted by axial gaps. Relative axial displacem"
+  },
+  "Dual-Symmetrized Construction of Electromagnetic Beams Beyond the Paraxial Approximation with an Explicit Separation of ": {
+    "title": "Dual-Symmetrized Construction of Electromagnetic Beams Beyond the Paraxial Approximation with an Explicit Separation of Scalar and Vectorial Corrections",
+    "link": "https://arxiv.org/abs/2608.26776v1",
+    "first_author": "Forbes",
+    "year": "2026",
+    "summary": "We develop a perturbative framework for constructing the fields of electromagnetic beams beyond the paraxial approximation, in which the vectorial correction is shared symmetrically between the electric and magnetic fields and separated from the isotropic scalar correction. The method is based on a "
+  },
+  "Directional Emission From High-Q Asymmetric Hollow Whispering Gallery Resonators": {
+    "title": "Directional Emission From High-Q Asymmetric Hollow Whispering Gallery Resonators",
+    "link": "https://arxiv.org/abs/2608.26691v1",
+    "first_author": "Chormaic",
+    "year": "2026",
+    "summary": "Whispering gallery mode (WGM) resonators with broken rotational symmetry exhibit phenomena that are generally absent in conventional symmetric cavities, including directional emission. While such effects have been extensively investigated in solid and planar resonators, they remain largely unexplore"
+  },
+  "Lower bound on the thickness of broadband dielectric mirrors": {
+    "title": "Lower bound on the thickness of broadband dielectric mirrors",
+    "link": "https://arxiv.org/abs/2608.26633v1",
+    "first_author": "Kats",
+    "year": "2026",
+    "summary": "We present a lower bound on the total physical thickness of a lossless, non-dispersive dielectric mirror for a given minimum reflectance across a wavelength band. The bound is based on a causality-based sum rule translated from a known result in acoustics, that expresses the wavelength integral of t"
+  },
+  "Real-Space Analysis of Two-Photon Polarization States in Type-II SPDC for High-Purity Polarization Entanglement": {
+    "title": "Real-Space Analysis of Two-Photon Polarization States in Type-II SPDC for High-Purity Polarization Entanglement",
+    "link": "https://arxiv.org/abs/2608.26499v1",
+    "first_author": "Morita",
+    "year": "2026",
+    "summary": "Spontaneous parametric down-conversion (SPDC) is one of the most widely used sources of polarization-entangled photon pairs, and understanding the generated biphoton state is essential for realizing high-brightness and high-purity entangled-photon sources. In particular, Type-II SPDC produces a biph"
+  },
+  "Phase retrieval based on intensity-only spatiotemporal wavefront shaping": {
+    "title": "Phase retrieval based on intensity-only spatiotemporal wavefront shaping",
+    "link": "https://arxiv.org/abs/2608.26445v1",
+    "first_author": "Popoff",
+    "year": "2026",
+    "summary": "We introduce a phase retrieval method based on harmonic field representations generated by intensity-only spatiotemporal modulation. A periodic amplitude angular modulation encodes phase information into temporal intensity harmonics, enabling wavefront reconstruction without interferometry, referenc"
+  },
+  "Optically Induced Thermal Runaway in Phase-Change VO2 Nanostructures": {
+    "title": "Optically Induced Thermal Runaway in Phase-Change VO2 Nanostructures",
+    "link": "https://arxiv.org/abs/2608.26401v1",
+    "first_author": "Ligmajer",
+    "year": "2026",
+    "summary": "While thermal runaway occurs across diverse physical disciplines, its presence in subwavelength phase-change photonics remains unexplored because existing thermo-optical models break down near sharp optical transitions. Here, we introduce an iterative multiphysics framework coupling full-wave electr"
+  },
+  "Loss-tolerant hybrid metasurface mirror for reducing coating Brownian noise in precision optical cavities": {
+    "title": "Loss-tolerant hybrid metasurface mirror for reducing coating Brownian noise in precision optical cavities",
+    "link": "https://arxiv.org/abs/2608.26370v1",
+    "first_author": "Evans",
+    "year": "2026",
+    "summary": "We propose a hybrid mirror design that places an embedded metasurface beneath a Bragg reflector, combining the low coating Brownian noise of metasurface mirrors with the low optical loss of conventional multilayer coatings. Unlike previous hybrid designs, which place the metasurface at the input sur"
+  },
+  "Moving forward with multilayer metastructures - simple design of complex optics": {
+    "title": "Moving forward with multilayer metastructures - simple design of complex optics",
+    "link": "https://arxiv.org/abs/2608.26298v1",
+    "first_author": "Miller",
+    "year": "2026",
+    "summary": "I propose a simple and progressive way of designing and fabricating complex multilayered optics, even as we scale to large numbers of layers. The approach relies on successive layers of two-by-two blocks in which light only flows in the forward direction. It exploits a proposed trapezoidal architect"
+  },
+  "Optical extinction and near-field properties of plasmonic dimers: Role of particle shape and separation": {
+    "title": "Optical extinction and near-field properties of plasmonic dimers: Role of particle shape and separation",
+    "link": "https://arxiv.org/abs/2608.26073v1",
+    "first_author": "Busch",
+    "year": "2026",
+    "summary": "Localized surface plasmons (LSPs) supported by metallic nanostructures exhibit a great tunability of their resonance frequencies and associated spatial field distributions. In particular, nanoscale gaps and sharp corners exhibit promising near-field enhancements for applications such as biochemical "
+  },
+  "Nonconcentric Multi-shell Nanowires: Geometry-Induced Plasmon Hybridization and Near-Field Localization": {
+    "title": "Nonconcentric Multi-shell Nanowires: Geometry-Induced Plasmon Hybridization and Near-Field Localization",
+    "link": "https://arxiv.org/abs/2608.25974v1",
+    "first_author": "Busch",
+    "year": "2026",
+    "summary": "Localized surface plasmons (LSPs) in multi-shell nanostructures provide a versatile route for controlling optical fields at the nanoscale, yet the influence of deviations from concentric geometries remains insufficiently understood. Here, we investigate the impact of shell nonconcentricity on the qu"
+  },
+  "Structured Non-Locality and Emergent Locality in Cavity-QED Many-Body Dynamics": {
+    "title": "Structured Non-Locality and Emergent Locality in Cavity-QED Many-Body Dynamics",
+    "link": "https://arxiv.org/abs/2608.25908v1",
+    "first_author": "Mann",
+    "year": "2026",
+    "summary": "Cavity quantum electrodynamics (QED) modifies many-body systems by combining cavity-mediated collective interactions with microscopic short-range interactions. The resulting dynamics lies between the local and fully collective limits, such that neither locality nor collectivity alone provides a comp"
+  },
+  "Room-temperature graphene sub-terahertz detector integrated on a silicon dielectric waveguide": {
+    "title": "Room-temperature graphene sub-terahertz detector integrated on a silicon dielectric waveguide",
+    "link": "https://arxiv.org/abs/2608.25895v1",
+    "first_author": "Goltsman",
+    "year": "2026",
+    "summary": "Terahertz (THz) photonics offers a promising platform for next-generation 6G wireless communications, on-chip spectrometers, and non-invasive biomedical sensors. In the near- and mid-infrared, monolithically integrated photodetectors are a cornerstone of photonic integrated circuits (PICs). In the T"
+  },
+  "Surpassing Gaussian optimality in multiparameter estimation with indefinite causal order": {
+    "title": "Surpassing Gaussian optimality in multiparameter estimation with indefinite causal order",
+    "link": "https://arxiv.org/abs/2608.25870v1",
+    "first_author": "Dhar",
+    "year": "2026",
+    "summary": "We identify single-mode Gaussian probes, generated by displacement and squeezing operations on the vacuum state, which are optimal for the simultaneous estimation of displacement and squeezing operations in continuous-variable quantum systems. Importantly, our results reveal that the best precision "
+  },
+  "Robust Unidirectional Edge States in the Continuum in non-Topological Floquet Photonic Crystals": {
+    "title": "Robust Unidirectional Edge States in the Continuum in non-Topological Floquet Photonic Crystals",
+    "link": "https://arxiv.org/abs/2608.25708v1",
+    "first_author": "Zou",
+    "year": "2026",
+    "summary": "Robust unidirectional edge propagation is conventionally attributed to topological protection. Whether edge states in the continuum (EICs) can exhibit such robustness in non-topological systems remains an open question. Here we demonstrate robust unidirectional EICs in Floquet photonic crystals (PhC"
+  },
+  "Robust watt-level continuous-wave deep-ultraviolet lasers near 230 nm": {
+    "title": "Robust watt-level continuous-wave deep-ultraviolet lasers near 230 nm",
+    "link": "https://arxiv.org/abs/2608.25544v1",
+    "first_author": "Truppe",
+    "year": "2026",
+    "summary": "Continuous-wave (CW) deep-ultraviolet (DUV) lasers near 230~nm enable laser cooling of AlF, Cd, and Zn, but second-harmonic generation below 237~nm relies in practice on beta-barium borate (BBO), whose walk-off and UV-induced degradation hinder sustained operation. We demonstrate compact, affordable"
+  },
+  "Generalizing Thermal Transport in High-Contrast Metamaterials through Interfacial Fresnel Reflection": {
+    "title": "Generalizing Thermal Transport in High-Contrast Metamaterials through Interfacial Fresnel Reflection",
+    "link": "https://arxiv.org/abs/2608.25499v1",
+    "first_author": "Han",
+    "year": "2026",
+    "summary": "The rapid growth of generative AI has intensified the need for efficient heat dissipation in large-scale data centers. To control heat flow, thermal metamaterials with layered structures have been widely used, which impart the anisotropic properties of thermal conductivities. However, the convention"
+  },
+  "The double-indexed geometric phase for electromagnetics": {
+    "title": "The double-indexed geometric phase for electromagnetics",
+    "link": "https://arxiv.org/abs/2608.25409v1",
+    "first_author": "Mackay",
+    "year": "2026",
+    "summary": "The double-indexed geometric phase (DIGP) based on a family of Poincaré spinors was formulated to extend the Pancharatnam phase, commonly used to describe the evolution of the polarization state in an optical system relative to a reference polarization state. Analytical results establish the symmetr"
+  },
+  "Analog Time-Frequency Analysis and Frequency Measurement of Ultra-Wideband Microwave Signals via Dual-Comb Channelizatio": {
+    "title": "Analog Time-Frequency Analysis and Frequency Measurement of Ultra-Wideband Microwave Signals via Dual-Comb Channelization",
+    "link": "https://arxiv.org/abs/2608.25378v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "Frequency-to-time mapping (FTTM)-based photonics-assisted spectrum sensing enables wideband spectrum monitoring for applications such as cognitive radio and electronic warfare. However, FTTM-based photonics-assisted spectrum sensing approaches involve trade-offs among analysis bandwidth, temporal re"
+  },
+  "Intrinsic Radial Landau Rainbow in Triaxial Strained Photonic Crystal": {
+    "title": "Intrinsic Radial Landau Rainbow in Triaxial Strained Photonic Crystal",
+    "link": "https://arxiv.org/abs/2608.25260v1",
+    "first_author": "Iwamoto",
+    "year": "2026",
+    "summary": "Localized resonances are essential for enhancing light matter interaction, controlling emission, and realizing compact optical resonators and lasers. Landau levels offer a distinct route to organizing photonic states through synthetic magnetic fields, but their high degeneracy does not define spectr"
+  },
+  "First-Principles Prediction of Nonlinear Optical Response in $\\text{TiO}_2$ for High-Power Dielectric Mirror Application": {
+    "title": "First-Principles Prediction of Nonlinear Optical Response in $\\text{TiO}_2$ for High-Power Dielectric Mirror Applications",
+    "link": "https://arxiv.org/abs/2608.25129v1",
+    "first_author": "Uemoto",
+    "year": "2026",
+    "summary": "Dielectric multilayer mirrors are essential components in optical experiments using high-power lasers, where titanium dioxide ($\\text{TiO}_2$) is widely employed as a high-refractive-index dielectric material. In this study, we investigate the nonlinear optical response of $\\text{TiO}_2$ under inten"
+  },
+  "Predicting THz Generation Capability of Organic Crystals through Data Mining and Crystal Nonlinearity Models": {
+    "title": "Predicting THz Generation Capability of Organic Crystals through Data Mining and Crystal Nonlinearity Models",
+    "link": "https://arxiv.org/abs/2608.24835v1",
+    "first_author": "Johnson",
+    "year": "2026",
+    "summary": "We report the use of DFT computation and mathematical models to predict the nonlinear dielectric polarization (P^{NL}) and nonlinear susceptibility coefficients (χ^{(2)}_{IJK}) of organic materials based on their crystal structures. We apply this computation approach on single-component crystals, co"
+  },
+  "High-harmonic fingerprints of sharp spin twists in a chiral soliton lattice": {
+    "title": "High-harmonic fingerprints of sharp spin twists in a chiral soliton lattice",
+    "link": "https://arxiv.org/abs/2608.24984v1",
+    "first_author": "Ono",
+    "year": "2026",
+    "summary": "A magnetic field applied perpendicular to the helical axis of a monoaxial chiral helimagnet compresses the spin helix into a coplanar chiral soliton lattice (CSL). We show that optically driven high-harmonic generation from itinerant electrons coupled to a frozen CSL resolves the lattice-scale struc"
+  },
+  "Effects of Quantum Noise and Source Blurring on Dark-Field Signal Retrieval in X-ray Speckle-Based Imaging": {
+    "title": "Effects of Quantum Noise and Source Blurring on Dark-Field Signal Retrieval in X-ray Speckle-Based Imaging",
+    "link": "https://arxiv.org/abs/2608.24806v1",
+    "first_author": "Das",
+    "year": "2026",
+    "summary": "X-ray speckle-based dark-field imaging offers high sensitivity to sub-pixel structural features, yet its quantitative reliability in clinical and preclinical settings remains constrained by low photon flux and finite focal spot sizes. However, how hardware-induced noise and source blurring propagate"
+  },
+  "Ultrafast tuning of the focusing efficiency of a nonlinear atomically thin lens": {
+    "title": "Ultrafast tuning of the focusing efficiency of a nonlinear atomically thin lens",
+    "link": "https://arxiv.org/abs/2608.24633v1",
+    "first_author": "Soavi",
+    "year": "2026",
+    "summary": "Control over light focusing is paramount for optical and imaging systems. However, its implementation in active and integrated nanophotonic devices is hindered by the bulky and static nature of standard lenses. Here, we show that Fresnel Zone Plate Lenses (FZPL) based on a monolayer Transitional Met"
+  },
+  "AlGaAs nanowires as a universal platform for GaAs, InGaAs, and InAs quantum dots": {
+    "title": "AlGaAs nanowires as a universal platform for GaAs, InGaAs, and InAs quantum dots",
+    "link": "https://arxiv.org/abs/2608.24495v1",
+    "first_author": "Akopian",
+    "year": "2026",
+    "summary": "Optical quantum dots (QDs) are central to photonic quantum technologies, with fabrication approaches tailored to different spectral ranges. A key challenge, however, is the realization of a unified platform$\\unicode{x2014}$a single growth method combined with a host material offering a designable ar"
+  },
+  "Nonlocal-nonlinear phonon polaritons": {
+    "title": "Nonlocal-nonlinear phonon polaritons",
+    "link": "https://arxiv.org/abs/2608.24344v1",
+    "first_author": "Liberato",
+    "year": "2026",
+    "summary": "When light is confined to deeply subwavelength volumes, optical responses can become nonlocal. Yet how nonlocality reshapes nonlinear light-matter interactions remains largely unexplored, particularly in dielectrics. Here, we theoretically uncover a new class of nonlinear optical processes arising f"
+  },
+  "Quantum-optimal instruments for high-contrast imaging with multi-plane light converters": {
+    "title": "Quantum-optimal instruments for high-contrast imaging with multi-plane light converters",
+    "link": "https://arxiv.org/abs/2608.24315v1",
+    "first_author": "Landman",
+    "year": "2026",
+    "summary": "Spatial Mode Demultiplexers (SPADE) are devices that split an incoming wavefront into a particular set of electric field modes. SPADEs have been shown to be quantum-optimal for many measurement problems including coronagraphy, wavefront sensing and interferometric (nulling) beam combiners. We will s"
+  },
+  "Metalens stereoscopic optical palpation for imaging cancer mechanics": {
+    "title": "Metalens stereoscopic optical palpation for imaging cancer mechanics",
+    "link": "https://arxiv.org/abs/2608.24305v1",
+    "first_author": "Fang",
+    "year": "2026",
+    "summary": "Accurate intraoperative margin assessment is critical for complete resection of solid tumours. However, surgeons routinely rely on manual palpation, which is highly subjective and fundamentally limited by poor spatial resolution, and pre-operative imaging lacks real-time feedback. While emerging opt"
+  },
+  "Design and numerical performance analysis of efficient Ag3TaX4 (X = S, Se, Te) thin film solar cells": {
+    "title": "Design and numerical performance analysis of efficient Ag3TaX4 (X = S, Se, Te) thin film solar cells",
+    "link": "https://arxiv.org/abs/2608.24301v1",
+    "first_author": "Hossain",
+    "year": "2026",
+    "summary": "Silver-based ternary chalcogenides have recently emerged as promising absorber materials for thin film photovoltaics. Nevertheless, their photovoltaic performance in complete device architectures has not yet been systematically explored. In this work, three-dimensional (3D) n-CdS/p-Ag3TaX4 (X = S, S"
+  },
+  "An Ab initio Framework for Simulating Ultrafast Nonlinear Cavity Quantum Electrodynamics Spectra": {
+    "title": "An Ab initio Framework for Simulating Ultrafast Nonlinear Cavity Quantum Electrodynamics Spectra",
+    "link": "https://arxiv.org/abs/2608.24180v1",
+    "first_author": "Gelin",
+    "year": "2026",
+    "summary": "In this letter we introduce a theoretical framework for the simulation of ultrafast transient absorption pump-probe spectra of molecular polaritons. We derive and implement the cavity quantum electrodynamics (QED) evolution equations of polaritonic states within the framework of the quasi-classical "
+  },
+  "Mesa Orientation Engineering for Polarization Locking in VCSELs": {
+    "title": "Mesa Orientation Engineering for Polarization Locking in VCSELs",
+    "link": "https://arxiv.org/abs/2608.24075v1",
+    "first_author": "Danner",
+    "year": "2026",
+    "summary": "While polarization stability is common in many optical systems, intentional polarization bi-stability is also important for polarization-encoded computing. We propose a mesa orientation strategy to engineer the polarization switching of vertical-cavity surface-emitting lasers (VCSELs). Further exper"
+  },
+  "Quantum encoding of structured light into in-plane topological spin textures": {
+    "title": "Quantum encoding of structured light into in-plane topological spin textures",
+    "link": "https://arxiv.org/abs/2608.23856v1",
+    "first_author": "Tretiakov",
+    "year": "2026",
+    "summary": "Structured light offers a powerful means of controlling light-matter interactions through multiple tunable optical degrees of freedom. Using micromagnetic simulations, we investigate the nucleation of asymmetric bimerons and antibimerons by pulsed Laguerre-Gaussian optical vortices in chiral ferroma"
+  },
+  "Classification of Non-Hermitian Flat Bands": {
+    "title": "Classification of Non-Hermitian Flat Bands",
+    "link": "https://arxiv.org/abs/2608.23769v1",
+    "first_author": "Rhim",
+    "year": "2026",
+    "summary": "Exact flat bands provide a versatile setting for correlated and topological phenomena, yet their properties are controlled not only by their dispersion but also by the structure of their Bloch projectors. Here, we establish a projector-based classification of non-Hermitian flat bands. In contrast to"
+  },
+  "Sustained macroscopic quantum coherence in a superradiant solid under ambient conditions": {
+    "title": "Sustained macroscopic quantum coherence in a superradiant solid under ambient conditions",
+    "link": "https://arxiv.org/abs/2608.23748v1",
+    "first_author": "Liu",
+    "year": "2026",
+    "summary": "Macroscopic quantum coherence, such as in laser, Bose-Einstein condensates, superfluids, and superconductors, is important to fundamental physics and useful for quantum technologies. Superradiance provides a mechanism to produce coherence among a large number of particles and photons. Its implementa"
+  },
+  "Nonlocality is the missing design rule for topological photonics": {
+    "title": "Nonlocality is the missing design rule for topological photonics",
+    "link": "https://arxiv.org/abs/2608.23360v1",
+    "first_author": "Davoodi",
+    "year": "2026",
+    "summary": "Topological photonics has provided powerful design rules for routing and localizing light through geometry, symmetry and engineered coupling. However, fabricated nanophotonic and plasmonic devices rarely realize only the local or short-range interaction networks assumed in compact topological models"
+  },
+  "Tracking molecular hydrogen formation from ionized water in real time": {
+    "title": "Tracking molecular hydrogen formation from ionized water in real time",
+    "link": "https://arxiv.org/abs/2608.23292v1",
+    "first_author": "Bucksbaum",
+    "year": "2026",
+    "summary": "Removing an electron from a water molecule can drive its two hydrogen atoms to pair up and depart as molecular hydrogen. However, even for this elementary reaction, the route from start to finish has remained hidden because measurements have yet to follow the electronic and nuclear motion simultaneo"
+  },
+  "Quantum Hydrodynamic Framework of Coherent Terahertz Emission in MXenes Driven via Engineered Femtosecond Waveforms": {
+    "title": "Quantum Hydrodynamic Framework of Coherent Terahertz Emission in MXenes Driven via Engineered Femtosecond Waveforms",
+    "link": "https://arxiv.org/abs/2608.23222v1",
+    "first_author": "Zhong",
+    "year": "2026",
+    "summary": "Coherent terahertz (THz) emitters based on low dimensional quantum materials have attracted significant interest for compact broadband photonic technologies. However, theoretical descriptions that consistently connect microscopic quantum dynamics to emitted THz radiation remain limited for MXenes, w"
+  },
+  "Extreme Ultrafast Dynamics of the Refractive Index in Transparent Conductive Oxides: Theory and Experiment": {
+    "title": "Extreme Ultrafast Dynamics of the Refractive Index in Transparent Conductive Oxides: Theory and Experiment",
+    "link": "https://arxiv.org/abs/2608.23079v1",
+    "first_author": "Segev",
+    "year": "2026",
+    "summary": "Recent experiments in transparent conductive oxides (TCOs) have revealed light-induced order-unity variations in the refractive index occurring at extreme time scales, as short as a few-femtoseconds. These experimental observations remain unexplained, especially the ultrafast 10-20 femtoseconds rela"
+  },
+  "Photonic Crystal Defect Nanocavities Based on Monocrystalline Yttrium Iron Garnet": {
+    "title": "Photonic Crystal Defect Nanocavities Based on Monocrystalline Yttrium Iron Garnet",
+    "link": "https://arxiv.org/abs/2608.23043v1",
+    "first_author": "Ota",
+    "year": "2026",
+    "summary": "Monocrystalline yttrium iron garnet (YIG) is a key material for magneto optics and quantum magnonics owing to its high optical transparency, large magneto-optical (MO) effects at room temperature, and exceptionally-long spin coherence. While rich MO phenomena have been demonstrated in the microwave "
+  },
+  "Sensitivity Limits for $φ$-OTDR": {
+    "title": "Sensitivity Limits for $φ$-OTDR",
+    "link": "https://arxiv.org/abs/2608.23007v1",
+    "first_author": "Zibar",
+    "year": "2026",
+    "summary": "We demonstrate a new lower bound on the sensitivity of $φ$-OTDR by estimating phase using Kalman filtering. Numerical analysis shows a $\\sim$35-dB reduction in the minimum detectable SNR, compared to when using conventional phase estimation."
+  },
+  "Topological space-time waves in complex channels": {
+    "title": "Topological space-time waves in complex channels",
+    "link": "https://arxiv.org/abs/2608.22848v1",
+    "first_author": "Ma",
+    "year": "2026",
+    "summary": "Structured light in space and time has become a powerful playground in which to explore the fundamental physics of wave systems, while simultaneously introducing new exotic forms of light, from spatio-temporal vortices to toroidal pulses of light. Yet their creation remains restricted by complex opt"
+  },
+  "A swept-source dual-comb spectrometer on a chip": {
+    "title": "A swept-source dual-comb spectrometer on a chip",
+    "link": "https://arxiv.org/abs/2608.22827v1",
+    "first_author": "Schwarz",
+    "year": "2026",
+    "summary": "Dual-comb spectroscopy (DCS) enables high-speed, high-resolution spectroscopy by down-converting optical spectra to the radio-frequency (RF) domain through the interference of two mutually detuned frequency combs. Accurately resolving narrow molecular absorption features requires closely spaced comb"
+  },
+  "Periodic Spin Dynamics and Duty-Cycle Optimization in a PWM Bell--Bloom Magnetometer": {
+    "title": "Periodic Spin Dynamics and Duty-Cycle Optimization in a PWM Bell--Bloom Magnetometer",
+    "link": "https://arxiv.org/abs/2608.22737v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "We investigate the duty-cycle-dependent response of a pulse-width-modulated Bell--Bloom atomic magnetometer. A Bloch-equation model is developed to describe the pump-on and pump-off spin dynamics, leading to analytical transient solutions and a periodic steady-state description. An extended free-ind"
+  },
+  "Early-Time Reshaping of Laser-Induced Plasma Profiles": {
+    "title": "Early-Time Reshaping of Laser-Induced Plasma Profiles",
+    "link": "https://arxiv.org/abs/2608.22545v1",
+    "first_author": "Fleischer",
+    "year": "2026",
+    "summary": "Laser-induced plasmas are primarily characterized by their temporal density decay. Using time-resolved transverse optical diffractometry, we reveal their concurrent spatial evolution, demonstrating pronounced broadening and flattening during the first 200 ps following ionization. This non-self-simil"
+  },
+  "Chebyshev self-imaging from inverse-sampled angular spectra": {
+    "title": "Chebyshev self-imaging from inverse-sampled angular spectra",
+    "link": "https://arxiv.org/abs/2608.22415v1",
+    "first_author": "Yessenov",
+    "year": "2026",
+    "summary": "For nearly two centuries, conventional self-imaging has obeyed a single rule: a periodic wave reconstructs itself at a fixed distance, independent of its bandwidth. Here we show this law is programmable. Sampling the angular spectrum in inverse powers of the mode index makes each mode rephase with i"
+  },
+  "Diagonalizing an optical coherence matrix via on-chip Stokes tomography": {
+    "title": "Diagonalizing an optical coherence matrix via on-chip Stokes tomography",
+    "link": "https://arxiv.org/abs/2608.22372v1",
+    "first_author": "Abouraddy",
+    "year": "2026",
+    "summary": "Structured coherence -- partially coherent light spanned by a finite number of modes -- is emerging as a powerful tool in optical communications, computation, cryptography, and spectroscopy. Key to these prospects is the recent development of on-chip processing of structured coherence, in which larg"
+  },
+  "Coordinate transformations and matter waves cloaking": {
+    "title": "Coordinate transformations and matter waves cloaking",
+    "link": "https://arxiv.org/abs/2608.22256v1",
+    "first_author": "Mohammadkhani",
+    "year": "2026",
+    "summary": "Transformation method provides an efficient tool to control wave propagation inside the materials. Using the coordinate transformation approach, we study invisibility cloaks with sphere, cylinder and ellipsoid structures for electronic waves propagation. The underlying physics behind this investigat"
+  },
+  "Dynamically twistable three-dimensional moiré photonic crystals": {
+    "title": "Dynamically twistable three-dimensional moiré photonic crystals",
+    "link": "https://arxiv.org/abs/2608.22052v1",
+    "first_author": "Lobet",
+    "year": "2026",
+    "summary": "Three-dimensional woodpile photonic crystals constitute one of the most successful architectures for realizing photonic band gaps, yet their optical response is traditionally fixed by the geometry established during fabrication. Here, we introduce a twist-controlled woodpile photonic crystal in whic"
+  },
+  "An integrated micro-thermometer for mid-infrared photothermal spectroscopy of dense materials built in a CMOS 200 mm pil": {
+    "title": "An integrated micro-thermometer for mid-infrared photothermal spectroscopy of dense materials built in a CMOS 200 mm pilot line",
+    "link": "https://arxiv.org/abs/2608.21809v1",
+    "first_author": "Jourde",
+    "year": "2026",
+    "summary": "Indirect photothermal infrared spectroscopy of dense materials typically relies on photoacoustic cells for detecting acoustic waves generated by light-induced heating. This detection approach can be challenging to implement as it is highly sensitive to the sealing quality of the interface between th"
+  },
+  "Critical Topological Photonics in Synthetic Dimensions": {
+    "title": "Critical Topological Photonics in Synthetic Dimensions",
+    "link": "https://arxiv.org/abs/2608.21791v1",
+    "first_author": "Yu",
+    "year": "2026",
+    "summary": "Topological states and criticality have long been regarded as incompatible ingredients: the former requires a finite spectral gap, whereas the latter demands its closure. Guided by this view, topological photonics has focused almost exclusively on gapped phases, treating gap-closing transitions as m"
+  },
+  "Coexistence of Magnon-Induced Optical Vortex and Gaussian Beam Scattering Assisted by Rotational Umklapp Process": {
+    "title": "Coexistence of Magnon-Induced Optical Vortex and Gaussian Beam Scattering Assisted by Rotational Umklapp Process",
+    "link": "https://arxiv.org/abs/2608.21788v1",
+    "first_author": "Ono",
+    "year": "2026",
+    "summary": "The exploitation of crystal-lattice symmetries to engineer angular momentum transfer between structured light and magnons marks a novel frontier for optomagnonic research. In Brillouin light scattering, when focused light propagates parallel to an external magnetic field and interacts with ferromagn"
+  },
+  "Reinventing the Single-pixel Imaging Paradigm via Quantum-Operator-Based Signal Processing": {
+    "title": "Reinventing the Single-pixel Imaging Paradigm via Quantum-Operator-Based Signal Processing",
+    "link": "https://arxiv.org/abs/2608.21783v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "A fundamental bottleneck across modern computational imaging and high-dimensional sensing is the conventional decoupled acquisition-reconstruction hierarchy, which subjects high-dimensional spatial sensing to the classical shot-noise limit and intense computational overhead. As a prominent manifesta"
+  },
+  "Pitch-controlled reorientational nonlinearity in chiral nematic liquid crystals: a reduced-order model for self-focusing": {
+    "title": "Pitch-controlled reorientational nonlinearity in chiral nematic liquid crystals: a reduced-order model for self-focusing and soliton formation",
+    "link": "https://arxiv.org/abs/2608.21751v1",
+    "first_author": "Jung",
+    "year": "2026",
+    "summary": "We present a reduced-order semi-analytical model for reorientational nonlinearity in chiral nematic liquid crystals, showing that the chiral pitch acts as the dominant physical length scale governing the onset of nonlinear self-focusing and soliton formation. Starting from the full Frank-Oseen equat"
+  },
   "Hyperuniformity as a unifying organizational principle across diatom architectures": {
     "title": "Hyperuniformity as a unifying organizational principle across diatom architectures",
     "link": "https://arxiv.org/abs/2608.27315v1",
@@ -685,26 +1973,89 @@
     "year": "2026",
     "summary": "Color-center based quantum sensors provide nanoscale resolution under ambient conditions, yet their applicability remains limited. Because the quantization axes are locked to the host lattice, conventional color centers suffer severe signal loss in off-axis magnetic fields. To address this, we repor"
   },
-  "The Effect of Geometry on Thermodynamic Response": {
-    "title": "The Effect of Geometry on Thermodynamic Response",
-    "link": "https://arxiv.org/abs/2608.26898v1",
-    "first_author": "Kolaric",
+  "Quantifying the effect of resonant amplitude and frequency of phononic material vibrations on the coupled fluid-structur": {
+    "title": "Quantifying the effect of resonant amplitude and frequency of phononic material vibrations on the coupled fluid-structure interaction dynamics in separated aerodynamic flows",
+    "link": "https://arxiv.org/abs/2608.26381v1",
+    "first_author": "Matlack",
     "year": "2026",
-    "summary": "At the nano- and microscale, various patterns influence and shape thermal and optical response, making them essential for the survival of various biological species. In addition, controlling thermal radiation is vital for a broad range of applications, such as thermal management, spectroscopy, optoe"
+    "summary": "Phononic materials (PMs) with engineered resonances have been leveraged for fluid-structure interaction (FSI) with fluid flow instabilities, yielding beneficial outcomes such as transition delay, stabilized hypersonic boundary layers, and increased aerodynamic lift. Prior PM-FSI studies primarily id"
   },
-  "Split Coaxial Cable Medium for Tunable Artificial Dielectrics and Plasmas": {
-    "title": "Split Coaxial Cable Medium for Tunable Artificial Dielectrics and Plasmas",
-    "link": "https://arxiv.org/abs/2608.26815v1",
-    "first_author": "Baena",
+  "Watching a GaN Transistor Switch: Real-Time Nanoscale Strain and Heat Dynamics": {
+    "title": "Watching a GaN Transistor Switch: Real-Time Nanoscale Strain and Heat Dynamics",
+    "link": "https://arxiv.org/abs/2608.25980v1",
+    "first_author": "Schulli",
     "year": "2026",
-    "summary": "We introduce the Split Coaxial Cable Medium (SCCM), a mechanically tunable, capacitively loaded wire medium supporting artificial-dielectric and artificial-plasma Bloch regimes with high in-plane isotropy. Its unit cell comprises coaxial conductors interrupted by axial gaps. Relative axial displacem"
+    "summary": "Digital and energy technologies depend on microelectromechanical and power electronic components whose performance is critically impacted by rapid, cyclic deformations. Real-time information on their operation has remained inaccessible due to the need for nanosecond and nanometer resolution in fully"
   },
-  "Lower bound on the thickness of broadband dielectric mirrors": {
-    "title": "Lower bound on the thickness of broadband dielectric mirrors",
-    "link": "https://arxiv.org/abs/2608.26633v1",
-    "first_author": "Kats",
+  "Stringent Constraints on Spin-Spin-Velocity-Dependent Exotic Interactions with a Levitated Magnet Force Sensor": {
+    "title": "Stringent Constraints on Spin-Spin-Velocity-Dependent Exotic Interactions with a Levitated Magnet Force Sensor",
+    "link": "https://arxiv.org/abs/2608.25686v1",
+    "first_author": "Huang",
     "year": "2026",
-    "summary": "We present a lower bound on the total physical thickness of a lossless, non-dispersive dielectric mirror for a given minimum reflectance across a wavelength band. The bound is based on a causality-based sum rule translated from a known result in acoustics, that expresses the wavelength integral of t"
+    "summary": "Exotic spin-spin-velocity-dependent interactions, predicted in extensions of the Standard Model involving new bosonic fields, could resolve fundamental puzzles from dark matter to cosmic asymmetry. However, exploring these weak potential interactions at centimeter scales presents formidable challeng"
+  },
+  "Oscillator-Based Processing Unit for Formant Recognition": {
+    "title": "Oscillator-Based Processing Unit for Formant Recognition",
+    "link": "https://arxiv.org/abs/2608.25191v1",
+    "first_author": "Csaba",
+    "year": "2026",
+    "summary": "Oscillatory neural networks have been successfully applied to a number of computing problems, such as associative memories and computationally hard optimization tasks. In this paper, we show how to use oscillators to process time-dependent waveforms with minimal or no preprocessing. Since preprocess"
+  },
+  "Visualizing and Quantifying Atomic Contributions to Raman Intensities governed by Spatially-Resolved Atomic Interference": {
+    "title": "Visualizing and Quantifying Atomic Contributions to Raman Intensities governed by Spatially-Resolved Atomic Interferences",
+    "link": "https://arxiv.org/abs/2608.25051v1",
+    "first_author": "Braun",
+    "year": "2026",
+    "summary": "Raman spectroscopy is commonly reduced to molecular fingerprint sensing, neglecting Raman intensities. Atomic Raman intensity contributions trace Raman intensities back to their microscopic origin and act as local electronic structure descriptors; however, a both physical but intuitive framework is "
+  },
+  "Imaging atomic scale stochasticity: noise in the nearly commensurate charge density wave of 1T-TaS$_2$ for leaky-integra": {
+    "title": "Imaging atomic scale stochasticity: noise in the nearly commensurate charge density wave of 1T-TaS$_2$ for leaky-integrator-and-fire neuromorphic emulator",
+    "link": "https://arxiv.org/abs/2608.24693v1",
+    "first_author": "Verhage",
+    "year": "2026",
+    "summary": "Low-dimensional materials are promising materials for emulating neuron-like firing were understanding of the atomic-scale origin of this behavior can benefit integration into neurormophic hardware. Using scanning tunneling microscopy (STM) as a highly local probe of correlations in the charge densit"
+  },
+  "Can Strain or Anion Interchange Make an Unstable Structure Stable? Energetics, Lattice Dynamics and Strain-Tunable Band ": {
+    "title": "Can Strain or Anion Interchange Make an Unstable Structure Stable? Energetics, Lattice Dynamics and Strain-Tunable Band Gaps of Lithium Chalcohalide Antiperovskites (Li$_{3}$$BA$) and their Anion Interchange Variants (Li$_{3}$$AB$)",
+    "link": "https://arxiv.org/abs/2608.23815v1",
+    "first_author": "Mendoza-Cortes",
+    "year": "2026",
+    "summary": "Lithium chalcohalide antiperovskites are a promising, non-toxic alternative to lead halide perovskites, with potential as solid electrolytes for Li-ion batteries. we computationally investigate a relatively unexplored anion-interchange mechanism by which cubic Li$_{3}$$AB$ derivatives are obtained f"
+  },
+  "Which transition can be used in sodium mirrorless lasing for mesospheric magnetometry?": {
+    "title": "Which transition can be used in sodium mirrorless lasing for mesospheric magnetometry?",
+    "link": "https://arxiv.org/abs/2608.23272v1",
+    "first_author": "Peng",
+    "year": "2026",
+    "summary": "Directed mirrorless lasing from the mesospheric sodium layer has been proposed as a way to overcome the isotropy of laser-guide-star fluorescence, with demonstrated cell-scale analogues and a demonstrated stand-off magnetometry application. Several transition paths on the Na ladder compete for the s"
+  },
+  "Movable Gate MOSFETs as Readout Devices for Cantilever-Based Nano-Electromechanical Sensors": {
+    "title": "Movable Gate MOSFETs as Readout Devices for Cantilever-Based Nano-Electromechanical Sensors",
+    "link": "https://arxiv.org/abs/2608.23168v1",
+    "first_author": "Knoch",
+    "year": "2026",
+    "summary": "This work proposes a novel readout mechanism for highly sensitive cantilever-based mass sensors using movable-gate (MG) MOSFETs. Traditional dynamic-mode cantilever sensors measure mass through shifts in resonance frequency, which offer high precision but require complex analog circuitry and large d"
+  },
+  "Collective self-sorting on a chip": {
+    "title": "Collective self-sorting on a chip",
+    "link": "https://arxiv.org/abs/2608.22673v1",
+    "first_author": "Morin",
+    "year": "2026",
+    "summary": "We harness two established ingredients for collective demixing: differential speed and curvature to create a self-sorting device. In binary mixtures, motility differences drive spontaneous spatial segregation, while confinement geometry determines how rapidly and strongly this demixing develops. Usi"
+  },
+  "A Comprehensive Study of Charge-Carrier Mobility in Double Lateral-Gate Silicon Junctionless Transistors": {
+    "title": "A Comprehensive Study of Charge-Carrier Mobility in Double Lateral-Gate Silicon Junctionless Transistors",
+    "link": "https://arxiv.org/abs/2608.22257v1",
+    "first_author": "Dehzangi",
+    "year": "2026",
+    "summary": "We give in depth overview of charge-carrier mobility in p-type silicon double lateral-gate junctionless transistors (DLGJLT) through a mix of computer simulations and experimental results. The devices were built on low-doped silicon-on-insulator substrates using atomic force microscope nanolithograp"
+  },
+  "On the Fundamental Limits of Single-snapshot Compressive Ultrasound Imaging Using Random Aberrative Masks": {
+    "title": "On the Fundamental Limits of Single-snapshot Compressive Ultrasound Imaging Using Random Aberrative Masks",
+    "link": "https://arxiv.org/abs/2608.21820v1",
+    "first_author": "Czarske",
+    "year": "2026",
+    "summary": "Compressive sensing emerges as a paradigm shift to realize real-time volumetric ultrasound imaging using a single element transducer equipped with an aberrative mask. Such a coded aperture encodes each scatterer in the FoV as a specific echo signal, compressing each volumetric into a time sequence t"
   },
   "IDSD: Iterative Deep-Learning-Based Signal Decomposition": {
     "title": "IDSD: Iterative Deep-Learning-Based Signal Decomposition",
@@ -733,5 +2084,166 @@
     "first_author": "Caire",
     "year": "2026",
     "summary": "This paper presents a low-complexity precoded MIMO-OFDM system for achieving improved spectral efficiency (SE) via intentionally compressing information symbols among subcarriers. Particularly, the proposed scheme leverages the powerful random multiplexing mechanism for precoding, and adopts the lin"
+  },
+  "On A Unified Cramér-Rao Bound Framework for Joint Delay-Doppler Estimation with Multi-Carrier Waveforms": {
+    "title": "On A Unified Cramér-Rao Bound Framework for Joint Delay-Doppler Estimation with Multi-Carrier Waveforms",
+    "link": "https://arxiv.org/abs/2608.26441v1",
+    "first_author": "Caire",
+    "year": "2026",
+    "summary": "In this work, we derive the Cramér-Rao bound for joint Delay-doppler estimation with multi-carrier waveforms"
+  },
+  "Time-Varying Spiky Wave-Shape Functions for Non-Stationary Signal Decomposition": {
+    "title": "Time-Varying Spiky Wave-Shape Functions for Non-Stationary Signal Decomposition",
+    "link": "https://arxiv.org/abs/2608.26285v1",
+    "first_author": "Wu",
+    "year": "2026",
+    "summary": "We propose a novel framework for decomposing nonstationary spiky signals. Unlike classical adaptive non-harmonic models, which represent signals as amplitude- and frequency-modulated (AM--FM) oscillations, the proposed model is designed for signals whose dominant structures are highly localized, imp"
+  },
+  "(Sequential) Joint Detection and Estimation: Classic Results and New Directions": {
+    "title": "(Sequential) Joint Detection and Estimation: Classic Results and New Directions",
+    "link": "https://arxiv.org/abs/2608.26278v1",
+    "first_author": "Zoubir",
+    "year": "2026",
+    "summary": "We provide an overview of the problem of jointly testing two hypotheses and estimating a parameter of the selected model. Such problems arise in a variety of applications. First, we present a conceptual introduction to suboptimal and optimal procedures for joint detection and estimation. A numerical"
+  },
+  "Statistical Analysis of Primary and Random Clusters in 318 GHz Terahertz Channels for Industrial IoT": {
+    "title": "Statistical Analysis of Primary and Random Clusters in 318 GHz Terahertz Channels for Industrial IoT",
+    "link": "https://arxiv.org/abs/2608.25634v1",
+    "first_author": "Cotton",
+    "year": "2026",
+    "summary": "The ultra-high data rates enabled by terahertz (THz) communications pave the way for the demanding requirements of industrial Internet of Things (IIoT) applications, making the investigation of THz channels in industrial environments a critical research topic. This paper presents a comprehensive sta"
+  },
+  "A Subcarrier-Aware Approach for Robust Respiratory Monitoring with Commodity Wi-Fi": {
+    "title": "A Subcarrier-Aware Approach for Robust Respiratory Monitoring with Commodity Wi-Fi",
+    "link": "https://arxiv.org/abs/2608.25612v1",
+    "first_author": "Ho",
+    "year": "2026",
+    "summary": "Wi-Fi sensing has emerged as a promising modality for contact-free respiratory monitoring in home healthcare due to its ubiquity. However, conventional approaches typically treat Channel State Information (CSI) subcarriers uniformly, neglecting their heterogeneous responses to breathing motions. To "
+  },
+  "Power from Space: Coordinated Satellite Charging for Off-Grid Wireless Systems": {
+    "title": "Power from Space: Coordinated Satellite Charging for Off-Grid Wireless Systems",
+    "link": "https://arxiv.org/abs/2608.25589v1",
+    "first_author": "Alouini",
+    "year": "2026",
+    "summary": "Satellite-enabled wireless power transfer (WPT) may be a transformative solution for charging Internet of Things (IoT) devices in off-grid scenarios where traditional technologies struggle to efficiently meet urgent energy demands. In this article, we review the advantages and limitations of microwa"
+  },
+  "End-to-End Mobility-Aware Multi-RIS Optimization via Blockage Detection and Closed-Form Riemannian Updates": {
+    "title": "End-to-End Mobility-Aware Multi-RIS Optimization via Blockage Detection and Closed-Form Riemannian Updates",
+    "link": "https://arxiv.org/abs/2608.25393v1",
+    "first_author": "Cioffi",
+    "year": "2026",
+    "summary": "Millimeter-wave (mmWave) multi-user MIMO systems are highly susceptible to dynamic blockages, and reconfigurable intelligent surfaces (RIS) have been introduced as a remedy. However, RIS links can themselves be blocked, while existing studies often assume ideal availability. This paper proposes an e"
+  },
+  "Rotatable Antenna Relaying: Joint Precoding and Antenna Pointing Design": {
+    "title": "Rotatable Antenna Relaying: Joint Precoding and Antenna Pointing Design",
+    "link": "https://arxiv.org/abs/2608.24798v1",
+    "first_author": "Chen",
+    "year": "2026",
+    "summary": "This paper investigates a rotatable antenna (RA)-enhanced half-duplex amplify-and-forward relaying system, where a multi-antenna base station (BS) serves multiple single-antenna users via a multi-antenna relay. The BS and users employ isotropic antennas, whereas the relay employs directional RAs who"
+  },
+  "Relativistic Cramér-Rao Bound Scaling for Device-Based and Device-Free Sensing": {
+    "title": "Relativistic Cramér-Rao Bound Scaling for Device-Based and Device-Free Sensing",
+    "link": "https://arxiv.org/abs/2608.24722v1",
+    "first_author": "Jin",
+    "year": "2026",
+    "summary": "This letter investigates range and velocity estimation under relativistic motion for device-based (DB) and device-free (DF) sensing. By deriving the exact time-scaling and time-shift relations induced by one-way and two-way propagation, both sensing modes are cast into a unified affine signal model."
+  },
+  "An Efficient W-/D-Band Power Amplifier in a 130 nm SiGe BiCMOS Process": {
+    "title": "An Efficient W-/D-Band Power Amplifier in a 130 nm SiGe BiCMOS Process",
+    "link": "https://arxiv.org/abs/2608.24687v1",
+    "first_author": "Zirath",
+    "year": "2026",
+    "summary": "This paper presents a wideband power amplifier (PA) designed and implemented in Infineon Technologies' 130-nm SiGe BiCMOS process for upper W-band and lower D-band applications. A complete load-pull simulation methodology is carried out, and a band pass filter (BPF)-based matching strategy is employ"
+  },
+  "Predicting Only from Selected Evidence: A Tempered Product-of-Experts Bottleneck for Auditable EEG Diagnosis": {
+    "title": "Predicting Only from Selected Evidence: A Tempered Product-of-Experts Bottleneck for Auditable EEG Diagnosis",
+    "link": "https://arxiv.org/abs/2608.24377v1",
+    "first_author": "Nguyen",
+    "year": "2026",
+    "summary": "Pretrained EEG backbones improve transfer performance, but downstream diagnosis heads remain hard to audit: predictions are made from unrestricted hidden states, whereas explanations are usually produced only after the decision. We introduce tPoE-EIB, an evidence-information bottleneck head for adap"
+  },
+  "Sensor Drift Compensation via Olfactory system and Reservoir Computing": {
+    "title": "Sensor Drift Compensation via Olfactory system and Reservoir Computing",
+    "link": "https://arxiv.org/abs/2608.24288v1",
+    "first_author": "Yajima",
+    "year": "2026",
+    "summary": "Despite the promising applications of electronic noses (e-Noses) in medical diagnosis and industrial process control, sensor drift remains a critical challenge that degrades long-term sensing reliability by inducing gradual shifts in sensor responses. Conventional drift compensation methods are typi"
+  },
+  "Physics-Informed WiFi Sensing for Robust 3D Human Pose Estimation in Mobile and Cross-Environment Settings": {
+    "title": "Physics-Informed WiFi Sensing for Robust 3D Human Pose Estimation in Mobile and Cross-Environment Settings",
+    "link": "https://arxiv.org/abs/2608.23995v1",
+    "first_author": "Zhang",
+    "year": "2026",
+    "summary": "Device-free human pose estimation using commodity WiFi signals has emerged as a promising paradigm for pervasive sensing in mobile computing systems. However, existing approaches often suffer from severe performance degradation when deployed across heterogeneous environments due to complex multipath"
+  },
+  "Receive Diversity for Differential Binary Noise Modulation": {
+    "title": "Receive Diversity for Differential Binary Noise Modulation",
+    "link": "https://arxiv.org/abs/2608.23950v1",
+    "first_author": "Basar",
+    "year": "2026",
+    "summary": "Differential binary noise (DBN) modulation encodes information in the polarity transition of a reused noise realization, dispensing channel state information and carrier-phase recovery. This letter proposes single-input multiple-output (SIMO) reception for DBN via post-correlation decision-statistic"
+  },
+  "Monotonicity Principle and \"p-Laplace Signature\" for Tomography in Nonlinear Elliptic Inverse Problems": {
+    "title": "Monotonicity Principle and \"p-Laplace Signature\" for Tomography in Nonlinear Elliptic Inverse Problems",
+    "link": "https://arxiv.org/abs/2608.23085v1",
+    "first_author": "Tamburrino",
+    "year": "2026",
+    "summary": "This paper proposes a framework for treating the inverse obstacle problem for nonlinear elliptic equations with nonlinear materials.\n  The problem is challenging because nonlinear materials exhibit a rich diversity of scenarios to consider, since nonlinearity can take different forms. In this articl"
+  },
+  "The Loop-Gain Matrix: Coupled Rebalancing Feedback and the Blind Spots of Scalar Stability Monitoring": {
+    "title": "The Loop-Gain Matrix: Coupled Rebalancing Feedback and the Blind Spots of Scalar Stability Monitoring",
+    "link": "https://arxiv.org/abs/2608.22768v1",
+    "first_author": "Woo",
+    "year": "2026",
+    "summary": "The stability of markets hosting leveraged exchange-traded products is governed not by any single product's loop gain but by the spectral radius of a loop-gain matrix, and scalar per-product monitoring underestimates system feedback by construction. Recent work measures the self-reinforcement of a l"
+  },
+  "Interference-Tolerant Mixer-First Receivers for FR3: Design Principles and Tradeoffs": {
+    "title": "Interference-Tolerant Mixer-First Receivers for FR3: Design Principles and Tradeoffs",
+    "link": "https://arxiv.org/abs/2608.22647v1",
+    "first_author": "Rahmani",
+    "year": "2026",
+    "summary": "Frequency Range 3 (FR3), spanning 7.125-24.25 GHz, is a promising candidate band for 6G communications, bridging the coverage of sub-6 GHz bands and the capacity of millimeter-wave frequencies. Its incumbent-dense and non-contiguous spectrum demands frequency-agile, interference-tolerant receivers ("
+  },
+  "Deterministic Cramer-Rao Bounds for Coherent Direction-of-Arrival Estimation: Rank Information Versus Coherence Structur": {
+    "title": "Deterministic Cramer-Rao Bounds for Coherent Direction-of-Arrival Estimation: Rank Information Versus Coherence Structure",
+    "link": "https://arxiv.org/abs/2608.22250v1",
+    "first_author": "Yang",
+    "year": "2026",
+    "summary": "Direction-of-arrival (DOA) estimation is a fundamental problem in array signal processing, for which the Cramer-Rao bound (CRB) serves as a standard performance benchmark under both stochastic and deterministic source models. In multipath environments, the source matrix is of low-rank and, more spec"
+  },
+  "Efficient Alternating Optimization for Hybrid Digital-Wave Beamforming in SIM-Assisted Cell-Free Massive MIMO": {
+    "title": "Efficient Alternating Optimization for Hybrid Digital-Wave Beamforming in SIM-Assisted Cell-Free Massive MIMO",
+    "link": "https://arxiv.org/abs/2608.22156v1",
+    "first_author": "Renzo",
+    "year": "2026",
+    "summary": "Stacked intelligent metasurfaces (SIMs) have recently emerged as a promising architecture for large-scale beamforming systems, including cell-free massive MIMO (CF-mMIMO), due to their cost-effective wave-domain signal processing capabilities. However, existing algorithms for the joint optimization "
+  },
+  "Vibrato Matching for Modulation Control and Blending in Sound Mixtures": {
+    "title": "Vibrato Matching for Modulation Control and Blending in Sound Mixtures",
+    "link": "https://arxiv.org/abs/2608.22057v1",
+    "first_author": "Hyrkas",
+    "year": "2026",
+    "summary": "In sound mixtures of more than one musical source, different vibrato patterns act as a cue that multiple sources are present for both human listeners and source separation algorithms. Matching the vibrato patterns of the signals in the mixture reduces the perception of multiple sources, particularly"
+  },
+  "PACC: Propagation-Aware Channel Charting with Physics-Guided Metric Learning": {
+    "title": "PACC: Propagation-Aware Channel Charting with Physics-Guided Metric Learning",
+    "link": "https://arxiv.org/abs/2608.21838v1",
+    "first_author": "Li",
+    "year": "2026",
+    "summary": "Channel charting has emerged as a promising paradigm that maps high-dimensional channel state information into a low-dimensional latent space, facilitating tasks such as radio environment sensing and beam management. However, existing methods often rely on precise user locations or timestamp-based p"
+  },
+  "Adaptive Payload-Aided Near-Field Beam Tracking via Thompson Sampling": {
+    "title": "Adaptive Payload-Aided Near-Field Beam Tracking via Thompson Sampling",
+    "link": "https://arxiv.org/abs/2608.21770v1",
+    "first_author": "Zhang",
+    "year": "2026",
+    "summary": "Extremely large antenna arrays at high frequencies substantially extend the radiative near-field region in 6G networks, making mobile beam alignment depend jointly on user angle and range. The added range dimension enlarges the beam-search space, making repeated pilot-based sweeping costly under mob"
+  },
+  "Posterior Information Dynamics of Diffusion Models for Linear Inverse Problems": {
+    "title": "Posterior Information Dynamics of Diffusion Models for Linear Inverse Problems",
+    "link": "https://arxiv.org/abs/2608.21709v1",
+    "first_author": "Meng",
+    "year": "2026",
+    "summary": "Diffusion models are widely used as priors for linear inverse problems, yet endpoint quality does not reveal when measurement information enters reverse denoising or how it is allocated across signal directions. We study this process through the smoothed likelihood force, the difference between exac"
   }
 }
