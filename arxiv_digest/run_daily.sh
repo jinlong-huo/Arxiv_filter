@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# run_daily.sh — fetch → verify → download → rename
+# run_daily.sh — fetch → verify → download → rename → audit
 #
 # Runs the arXiv pipeline once, verifies the digest is healthy, then
 # gates PDF download + rename on success.  Fails loudly and
@@ -92,6 +92,16 @@ echo "[rename] Renaming PDFs …"
 echo ""
 
 python3 rename_papers.py
+
+echo ""
+
+# ──────────────────────────────────────────────
+# Step 5 — Verify downloads (report-only audit)
+# ──────────────────────────────────────────────
+echo "[verify] Auditing digest papers against download folder …"
+echo ""
+
+python3 verify_downloads.py || true
 
 echo ""
 echo -e "${GREEN}══════════════════════════════════════════════════${NC}"

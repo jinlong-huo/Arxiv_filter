@@ -34,6 +34,20 @@
     "year": "2026",
     "summary": "Indoor localization based on Wi-Fi typically relies on extensive collection of real-world received signal strength (RSS) fingerprints, making deployment costly and time-consuming. We present a ray-tracing-based framework that reduces this reliance by generating synthetic RSS fingerprints from a buil"
   },
+  "Performance Evaluation of Fast Fourier Transforms on Emerging RISC-V Hardware with Vector Extension Support": {
+    "title": "Performance Evaluation of Fast Fourier Transforms on Emerging RISC-V Hardware with Vector Extension Support",
+    "link": "https://arxiv.org/abs/2608.28076v1",
+    "first_author": "Herten",
+    "year": "2026",
+    "summary": "This manuscript presents a performance evaluation of Fast Fourier Transform (FFT) implementations on emerging processors supporting the RISC-V Vector Extension (RVV 1.0). By introducing juFFTe, a light-weight high-performance library for discrete Fourier transforms, it is demonstrated how effective "
+  },
+  "Learning-Augmented Heuristics: Simple, yet Smart, Robust and Interpretable Cache Eviction": {
+    "title": "Learning-Augmented Heuristics: Simple, yet Smart, Robust and Interpretable Cache Eviction",
+    "link": "https://arxiv.org/abs/2608.27975v1",
+    "first_author": "Yang",
+    "year": "2026",
+    "summary": "Caching is widely used across the system stack to improve performance and efficiency, with eviction algorithms at its core. Existing cache eviction policies fall into two broad categories: static heuristics (e.g., 2Q, S3-FIFO) and smart algorithms (e.g., ARC, LRB). Smart caches can adapt to workload"
+  },
   "Consensus with Stochastic Broadcast": {
     "title": "Consensus with Stochastic Broadcast",
     "link": "https://arxiv.org/abs/2608.27336v1",

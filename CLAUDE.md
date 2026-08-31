@@ -11,9 +11,13 @@ arxiv_digest/               # Pipeline (fetch → filter → select → digest)
   ├── fetch.py              #   arXiv API: query builder, retry logic, error classification
   ├── filter.py             #   Text cleaning, keyword scoring (main + OCS, context-gated acronyms)
   ├── digest.py             #   State I/O, top-N selection, markdown generation
-  ├── download_papers.py    #   PDF downloader
+  ├── classify.py           #   Subfolder router: digest paper → LLM/moe, OCS/hardware, …
+  ├── download_papers.py    #   PDF downloader (routes to topic subfolders via classify.py)
+  ├── verify_downloads.py   #   Audit: digest papers vs on-disk PDFs; backfill missing (--days/--download)
   ├── rename_papers.py      #   PDF renamer (Zotero format)
-  └── test_catchup.py       #   Catch-up mechanism test (no network)
+  ├── test_catchup.py       #   Catch-up mechanism test (no network)
+  ├── test_classify.py      #   Subfolder routing golden cases (no network)
+  └── test_verify.py        #   Download-verify matching tests (no network)
 members/<name>/           # Personal workspace — paper notes, projects, repros
 paper-notes/              # Shared paper note template
 knowledge-base/           # Glossary, reading roadmap, topic deep-dives
@@ -35,12 +39,14 @@ onboarding/ / offboarding/ # Join/leave procedures
 2. **filter.py** — Scores each paper against two independent keyword filters: main (LLM/GPU/RDMA/scheduling) and OCS spotlight (optical switching + CPO ecosystem). Clash-prone acronyms (`cpo`/`lpo`/`npo`, `slo`) are context-gated: they only score when optical/serving context words are present.
 3. **digest.py** — Selects top-15 main + top-10 OCS + top-5 carry-over, writes `daily_digest.md`. Manages `seen_papers.json` (write-only ledger) and `digest_papers.json` (two-tier gate) state.
 4. **Arxiv_filter.py** — Orchestrates the pipeline. `--wait` auto-retries on 429; `--from YYYY-MM-DD --to YYYY-MM-DD` backfills a period; `--ignore-seen` re-scores regardless of digest history (use with `--from/--to`).
+5. **download_papers.py** — Routes each digest paper to a topic subfolder via `classify.py`: `LLM/{moe,memory,agents,train,eval,inference,misc}`, `OCS/{hardware,topology,algorithms,applications}`, or top-level `Distributed/` (collectives / distributed-training infra). Most-specific topic wins (MoE-serving → `moe`); weak-signal papers fall back to `misc`/`applications`. Decisions are logged to `download_log.json` for review; tune rules in `config.SUBFOLDER_RULES`.
+6. **verify_downloads.py** — Audits that digest papers actually exist on disk (match by arXiv ID or normalized title). Default: current digest; `--days N`: papers shown in digests within the last N days ("useful papers"); `--download`: backfills missing ones into their classified subfolders. `run_daily.sh` runs it report-only after renaming.
 
 ### Two-tier digest gate + carry-over
 
 Papers that match but get cut by top-N are stamped `shown: false` (pending) in `digest_papers.json` instead of being permanently skipped. Within `RESURFACE_DAYS` (7) days, a pending paper scoring ≥ `RESURFACE_MIN_SCORE` (12) resurfaces via the **High-Score Carry-Over** digest section (max `MAX_RESURFACED` = 5), labeled with its original first-seen date. Only papers actually shown in a section get `shown: true` (permanent skip). Legacy entries without a `shown` field migrate to `shown: true`.
 
-All knobs live in `config.py`: `CATEGORIES`, `KEYWORDS`, `OCS_KEYWORDS`, `MIN_SCORE`, `MAX_PAPERS`, `LOOKBACK_*`, `RESURFACE_*`.
+All knobs live in `config.py`: `CATEGORIES`, `KEYWORDS`, `OCS_KEYWORDS`, `MIN_SCORE`, `MAX_PAPERS`, `LOOKBACK_*`, `RESURFACE_*`, `SUBFOLDER_RULES`.
 
 ## Dependencies
 
